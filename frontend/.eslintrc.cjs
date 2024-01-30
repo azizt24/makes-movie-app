@@ -22,7 +22,7 @@ module.exports = {
   },
   settings: {
     react: {
-      version: "detect" // This overrides '18.2' to always use the detected React version
+      version: "18.2"
     }
   },
   plugins: ["react", "react-refresh", "prettier", "react-hooks"],
