@@ -31,6 +31,7 @@ module.exports = {
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": [1, { extensions: [".jsx"] }],
     "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
     "no-unused-vars": "warn",
     "indent": ["error", "tab"],
     "linebreak-style": ["error", "windows"],
