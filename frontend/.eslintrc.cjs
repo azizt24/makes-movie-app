@@ -1,45 +1,33 @@
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    es2021: true
-  },
+  env: { browser: true, es2020: true },
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended",
-    "airbnb",
-    "plugin:prettier/recommended"
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
-  settings: {
-    react: {
-      version: "18.2"
-    }
-  },
-  plugins: ["react", "react-refresh", "prettier", "react-hooks"],
+  settings: { react: { version: '18.2' } },
+  plugins: ["react", "react-refresh", "react-hooks"],
   rules: {
-    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-    "prettier/prettier": ["error"],
-    "react/jsx-filename-extension": [1, { extensions: [".jsx"] }],
-    "react/react-in-jsx-scope": "off",
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
     "react/prop-types": "off",
     "no-unused-vars": "warn",
-    "indent": ["error", "tab"],
-    "linebreak-style": ["error", "windows"],
-    "quotes": ["error", "single"],
+    "react/jsx-filename-extension": [1, { extensions: [".jsx"] }],
+    "react/react-in-jsx-scope": "off",
+    "quotes": ["warn", "single"],
     "semi": ["error", "always"],
     "no-console": 1,
-    "stylelint/declaration-block-no-ignored-properties": true,
-    "stylelint/declaration-block-no-duplicate-properties": true,
-    "stylelint/no-unknown-animations": true
-  }
+  },
 };
