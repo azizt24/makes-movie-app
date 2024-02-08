@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "dev": "concurrently \"npm run dev-backend\" \"npm run dev-frontend\"",
+    "dev-backend": "cd backend && npm run dev",
+    "dev-frontend": "cd frontend && npm run dev",
+    "test": "cd backend && npm test"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -11,6 +17,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "husky": "^9.0.6",
     "lint-staged": "^15.2.0"
   }

@@ -3,6 +3,15 @@
     "es2021": true,
     "node": true,
   },
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/",
+    "build/",
+    "**/*.test.js",
+    "**/*.spec.js",
+    "tests/",
+    "__tests__/",
+  ],
   "extends": "eslint:recommended",
   "parserOptions": {
     "ecmaVersion": 12,
