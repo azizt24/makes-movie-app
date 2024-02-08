@@ -1,46 +1,16 @@
 {
   "env": {
-    "node": true,
-    "es6": true,
     "es2021": true,
+    "node": true,
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:eslint-comments/recommended",
-    "plugin:jest/recommended",
-    "plugin:promise/recommended",
-    "prettier",
-    "airbnb-base",
-    "plugin:prettier/recommended",
-  ],
-  "parser": "espree",
-  "plugins": ["eslint-comments", "jest", "promise", "import", "prettier"],
+  "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 12,
+    "sourceType": "module",
   },
   "rules": {
-    "prettier/prettier": ["error"],
-    "no-unused-vars": "warn",
-    "indent": ["error", "tab"],
-    "linebreak-style": ["error", "windows"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
-    "no-console": 1,
-    "no-use-before-define": [
-      "error",
-      {
-        "functions": false,
-        "classes": true,
-        "variables": true,
-      },
-    ],
-    "import/no-extraneous-dependencies": "off",
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".json"],
-      },
-    },
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-unused-vars": ["warn"],
+    "no-undef": "error",
   },
 }
