@@ -1,14 +1,19 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
-/* CR - add reset as we learned at the course */
 html {
     font-size: 62.5%; 
 }
-*{
-    box-sizing: border-box;
+
+* {
     margin: 0;
     padding: 0;
+  }
+  
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
   }
 
 :root {
@@ -30,11 +35,22 @@ html {
     --font-weight-regular: 400;
     --font-weight-bold: 700;
 }
+
 body {
+    box-sizing: border-box;
+
     font-family: var(--font-family-main);
-    color: var(--text-dark);
-    background-color: var(--background-color);
+    font-weight:var(--font-weight-regular) ; 
+    line-height: 1.6;
 }
+
+ul {
+    list-style-type: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
 
 h1 {
     font-size: var(--heading-primary);
@@ -59,3 +75,4 @@ p {
     font-weight: var(--font-weight-regular);
     color: var(--text-between);
 }
+
