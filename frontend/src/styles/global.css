@@ -37,8 +37,8 @@ html {
 
 body {
   box-sizing: border-box;
-  /* CR - add font size --paragraph */
   font-family: var(--font-family-main);
+  font-size: var(--paragraph);
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
 }
@@ -50,27 +50,23 @@ ul {
 a {
   text-decoration: none;
 }
-/* CR - remove all the font-weight and the colors */
+
 h1 {
   font-size: var(--heading-primary);
-  font-weight: var(--font-weight-bold);
-  color: var(--primary-color);
+  
 }
 
 h2 {
   font-size: var(--heading-secondary);
-  font-weight: var(--font-weight-regular);
-  color: var(--secondary-color);
+  
 }
 
 h3 {
   font-size: var(--heading-tertiary);
-  font-weight: var(--font-weight-light);
-  color: var(--secondary-color-light);
+  
 }
 
 p {
   font-size: var(--paragraph);
-  font-weight: var(--font-weight-regular);
-  color: var(--text-between);
+  
 }
