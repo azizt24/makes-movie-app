@@ -5,7 +5,11 @@
 html {
     font-size: 62.5%; 
 }
-
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
 :root {
     --primary-color: #82d8d8;
@@ -25,4 +29,33 @@ html {
     --font-weight-light: 300;
     --font-weight-regular: 400;
     --font-weight-bold: 700;
+}
+body {
+    font-family: var(--font-family-main);
+    color: var(--text-dark);
+    background-color: var(--background-color);
+}
+
+h1 {
+    font-size: var(--heading-primary);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: var(--heading-secondary);
+    font-weight: var(--font-weight-regular);
+    color: var(--secondary-color);
+}
+
+h3 {
+    font-size: var(--heading-tertiary);
+    font-weight: var(--font-weight-light);
+    color: var(--secondary-color-light);
+}
+
+p {
+    font-size: var(--paragraph);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-between);
 }
