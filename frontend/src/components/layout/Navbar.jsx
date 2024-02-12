@@ -26,7 +26,7 @@ const Navbar = () => {
     setIsToggled(!isToggled);
   };
   const handleSearch = () => {
-    // Handle search functionality
+    
   };
 
   return (
