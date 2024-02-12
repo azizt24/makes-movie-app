@@ -11,16 +11,23 @@ import {
   SearchButton,
   GoogleButton,
   SettingIcon,
+  MenuBox,
 } from './Navbar.styles';
 
-import Setting from '../../assets/Setting.png';
-import ToggleOff from '../../assets/ToggleOff1.png';
-import ToggleOn from '../../assets/ToggleIn1.png';
-import SearchSvg from '../../assets/SearchSvg.png';
+import Setting from '../../../assets/Setting2.svg';
+import ToggleOff from '../../../assets/ToggleOff1.png';
+import ToggleOn from '../../../assets/ToggleIn1.png';
+import SearchSvg from '../../../assets/SearchSvg.png';
 
 
 const Navbar = () => {
   const [isToggled, setIsToggled] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+     const handleMenuToggle = () => {
+       setIsMenuOpen(!isMenuOpen);
+     };
 
   const handleToggle = () => {
     setIsToggled(!isToggled);
@@ -32,11 +39,22 @@ const Navbar = () => {
   return (
     <NavbarContainer>
       <LeftSide>
-        <HamburgerIcon>
+        <HamburgerIcon onClick={handleMenuToggle} isOpen={isMenuOpen}>
           <HamburgerLines></HamburgerLines>
           <HamburgerLines></HamburgerLines>
           <HamburgerLines></HamburgerLines>
         </HamburgerIcon>
+        {isMenuOpen && ( // Conditionally render the MenuBox
+          <MenuBox>
+            <ul>
+              <li>Home</li>
+              <li>Ai Generated Movies</li>
+              <li>Movies</li>
+              <li>Advanced Search</li>
+              <li>Popular Actors</li>
+            </ul>
+          </MenuBox>
+        )}
       </LeftSide>
       <RightSide>
         <GoogleButton>

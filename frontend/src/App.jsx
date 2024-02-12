@@ -1,4 +1,4 @@
-import { Navbar } from '../../frontend/src/components/layout/index';
+import { Navbar } from '../../frontend/src/components/layout/Navbar/index';
 
 function App() {
   return (
