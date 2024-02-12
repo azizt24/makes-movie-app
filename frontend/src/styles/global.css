@@ -53,20 +53,16 @@ a {
 
 h1 {
   font-size: var(--heading-primary);
-  
 }
 
 h2 {
   font-size: var(--heading-secondary);
-  
 }
 
 h3 {
   font-size: var(--heading-tertiary);
-  
 }
 
 p {
   font-size: var(--paragraph);
-  
 }
