@@ -10,11 +10,14 @@ import {
   HamburgerLines,
   SearchButton,
   GoogleButton,
-} from './NavbarStyles';
+  SettingIcon,
+} from './Navbar.styles';
 
 import Setting from '../../assets/Setting.png';
 import ToggleOff from '../../assets/ToggleOff1.png';
 import ToggleOn from '../../assets/ToggleIn1.png';
+import SearchSvg from '../../assets/SearchSvg.png';
+
 
 const Navbar = () => {
   const [isToggled, setIsToggled] = useState(false);
@@ -37,14 +40,18 @@ const Navbar = () => {
       </LeftSide>
       <RightSide>
         <GoogleButton>
-          Sign in as Pinchas <br></br> pinchas.hodadad@gmail.com
+          <b>Sign in as movie466 </b>
+          <br></br> movie466@gmail.com
         </GoogleButton>
-        <img src={Setting} alt="Settings" />
+        <SettingIcon src={Setting} alt="Settings" />
         <ToggleButton onClick={handleToggle}>
           <img src={isToggled ? ToggleOn : ToggleOff} alt="Toggle" />
         </ToggleButton>
         <SearchInput type="text" placeholder="Search..." />
-        <SearchButton onClick={handleSearch}>Search</SearchButton>
+        <SearchButton onClick={handleSearch}>
+          <img src={SearchSvg} alt="searchsvg" />
+          Search
+        </SearchButton>
       </RightSide>
     </NavbarContainer>
   );
