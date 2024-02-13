@@ -1,9 +1,10 @@
+import { RouterProvider } from 'react-router-dom';
+import router from './routes/RouteConfig'; 
+
 function App() {
 
   return (
-    <div>
-      <h1>Movie App</h1>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
