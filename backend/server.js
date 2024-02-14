@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import logger from './config/logger.js';
 import connectDB from './db/db.js';
-
+import movieRoutes from './routes/movieRoutes.js';
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
