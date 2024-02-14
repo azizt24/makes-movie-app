@@ -77,8 +77,17 @@ const router = createBrowserRouter([
         element: <Movie />,
       },
       {
-        path: 'movies/:category/page/:page',
-        element: <Movies />,
+        path: 'movies',
+        children: [
+          {
+            path: ':category/page/:page',
+            element: <Movies />,
+          },
+          {
+            path: 'actors/:name/page/:page',
+            element: <ActorMovies />,
+          },
+        ],
       },
       {
         path: 'tv/:category/page/:page',
@@ -91,10 +100,6 @@ const router = createBrowserRouter([
       {
         path: 'popular-actors/page/:page',
         element: <PopularActors />,
-      },
-      {
-        path: 'movies/actors/:name/page/:page',
-        element: <ActorMovies />,
       },
       {
         path: 'ai-generated-movies',
