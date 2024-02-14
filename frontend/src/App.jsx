@@ -1,10 +1,12 @@
 import { Navbar } from '../../frontend/src/components/layout/Navbar/index';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes/RouteConfig';
 
 function App() {
   return (
     <div>
       <Navbar />
-      <h1>Movie App</h1>
+      <RouterProvider router={router} />
     </div>
   );
 }
