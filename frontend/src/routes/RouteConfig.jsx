@@ -66,64 +66,125 @@ const SharedLayout = () => {
 
   const router = createBrowserRouter([
     {
-        path: '/',
-        element: <SharedLayout />,
-        errorElement: <Error />,
-        children: [
-          {
-            index: true,
-            element: <Home />,
-          },
-          {
-            path: 'movie/:id',
-            element: <Movie />,
-          },
-          {
-            path: 'movies/:category/page/:page',
-            element: <Movies />,
-          },
-          {
-            path: 'tv/:category/page/:page',
-            element: <TvShows />,
-          },
-          {
-            path: 'search/:type/:query/page/:page',
-            element: <MovieListSearch />,
-          },
-          {
-            path: 'popular-actors/page/:page',
-            element: <PopularActors />,
-          },
-          {
-            path: 'movies/actors/:name/page/:page',
-            element: <ActorMovies />,
-          },
-          {
-            path: 'ai-generated-movies',
-            element: <AIGeneratedMovies />,
-          },
-          {
-            path: 'ai-generated-movies/:categoryName',
-            element: <AIGeneratedMoviesByCategory />,
-          },
-          {
-            path: 'watch/:id',
-            element: <Watch />,
-          },
-          {
-            path: 'savedmovies',
-            element: <SavedMovies />,
-          },
-          {
-            path: 'settings',
-            element: <Settings />,
-          },
-          {
-            path: 'advanced-search',
-            element: <AdvancedSearch />,
-          },
-        ],
-      },
-    ]); 
-    
+      path: '/',
+      element: <SharedLayout />,
+      errorElement: <Error />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: 'movie',
+          children: [
+            {
+              path: ':id',
+              element: <Movie />,
+            },
+          ],
+        },
+        {
+          path: 'movies/:category/page/:page',
+          children: [
+            {
+              path: ':category/page',
+              children: [
+                {
+                      path: ':page',
+                      element: <Movies />,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          path: 'tv',
+          children: [
+            {
+              path: ':category/page',
+              children: [
+                    {
+                      path: ':page',
+                      element: <TvShows />,
+                    },
+                  ],
+            },
+          ],
+        },
+        {
+          path: 'search',
+          children: [
+            {
+              path: ':type',
+              children: [
+                {
+                  path: ':query/page',
+                  children: [
+                        {
+                          path: ':page',
+                          element: <MovieListSearch />,
+                        },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          path: 'popular-actors/page',
+          children: [
+                {
+                  path: ':page',
+                  element: <PopularActors />,
+                },
+          ],
+        },
+        {
+          path: 'movies/actors',
+          children: [
+            {
+              path: ':name/page',
+              children: [
+                    {
+                      path: ':page',
+                      element: <ActorMovies />,
+                    },
+              ],
+            },
+          ],
+        },
+        {
+          path: 'ai-generated-movies',
+          children: [
+            {
+              path: ':categoryName',
+              element: <AIGeneratedMoviesByCategory />,
+            },
+          ],
+        },
+        {
+          path: 'watch',
+          children: [
+            {
+              path: ':id',
+              element: <Watch />,
+            },
+          ],
+        },
+        {
+          path: 'savedmovies',
+          element: <SavedMovies />,
+        },
+        {
+          path: 'settings',
+          element: <Settings />,
+        },
+        {
+          path: 'advanced-search',
+          element: <AdvancedSearch />,
+        },
+      ],
+    },
+  ]);
+  
     export default router;
