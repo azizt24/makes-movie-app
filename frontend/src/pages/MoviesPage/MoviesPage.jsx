@@ -1,15 +1,6 @@
-import {
-  TitleContainer,
-  FirstTitleLetter,
-  RestOfTitle,
-} from './MoviesPage.style';
+import MoviesTitle from '../../components/MoviesTitle/MoviesTitle';
 
 const MoviesPage = () => {
-  return (
-    <TitleContainer>
-      <FirstTitleLetter>m</FirstTitleLetter>
-      <RestOfTitle>ovies</RestOfTitle>
-    </TitleContainer>
-  );
+  return <MoviesTitle />;
 };
 export default MoviesPage;
