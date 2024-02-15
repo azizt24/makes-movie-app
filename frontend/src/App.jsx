@@ -1,4 +1,4 @@
-import { Navbar } from '../../frontend/src/components/layout/Navbar/index';
+import { Navbar } from './components';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/RouteConfig';
 

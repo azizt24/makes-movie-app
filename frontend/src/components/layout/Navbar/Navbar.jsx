@@ -39,7 +39,7 @@ const Navbar = () => {
           <HamburgerLines></HamburgerLines>
           <HamburgerLines></HamburgerLines>
         </HamburgerIcon>
-        {isMenuOpen && ( // Conditionally render the MenuBox
+        {isMenuOpen && ( // CR - don't leave comments in the code - Conditionally render the MenuBox
           <MenuBox>
             <ul>
               <li>Home</li>

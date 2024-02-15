@@ -1,8 +1,8 @@
 import styled  from 'styled-components';
-import '../../../styles/global.css';
-import'./Navbar';
+import '../../../styles/global.css'; // CR - you don't need this import - remove it
+import'./Navbar'; // CR - this import is not necessary, remove it
 
- 
+// CR - remove comments from the code
 export const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
