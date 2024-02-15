@@ -1,9 +1,10 @@
-import Footer from './components/layout/Footer/Footer';
+import { Footer } from './components';
+
 function App() {
   return (
     <div>
       <h1>Movie App</h1>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
