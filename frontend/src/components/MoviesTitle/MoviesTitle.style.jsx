@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const TitleContainer = styled.div`
   width: 100%;
-  background: rgb(82, 71, 99);
   text-align: center;
   padding-top: 14.4px;
   padding-bottom: 14.4px;
