@@ -1,9 +1,10 @@
 import { MoviesButtonsContainer, MoviesBtn } from './MoviesButtons.style';
-const MoviesButtons = () => {
+
+const MoviesButtons = ({ onLatestMovies, onHighestRated }) => {
   return (
     <MoviesButtonsContainer>
-      <MoviesBtn>latest movies</MoviesBtn>
-      <MoviesBtn>Highest rated</MoviesBtn>
+      <MoviesBtn onClick={onLatestMovies}>Latest Movies</MoviesBtn>
+      <MoviesBtn onClick={onHighestRated}>Highest Rated </MoviesBtn>
     </MoviesButtonsContainer>
   );
 };
