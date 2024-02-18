@@ -1,0 +1,46 @@
+.movie-slide {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 300px; /* Adjust as needed */
+  color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.movie-slide-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.movie-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.movie-plot {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.movie-info {
+  font-size: 0.9em;
+}
+
+.movie-details-button {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.movie-details-button:hover {
+  background-color: #0056b3;
+}
+
+ 
