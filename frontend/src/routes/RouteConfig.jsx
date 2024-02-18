@@ -1,9 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
-
+import Pagination from '../components/Pagination/Pagination';
 //mock components
 
 const SharedLayout = () => {
-  return <div>Shared Layout</div>;
+  return (
+    <div>
+      <Pagination />
+    </div>
+  );
 };
 
 const Error = () => {
@@ -77,17 +81,8 @@ const router = createBrowserRouter([
         element: <Movie />,
       },
       {
-        path: 'movies',
-        children: [
-          {
-            path: ':category/page/:page',
-            element: <Movies />,
-          },
-          {
-            path: 'actors/:name/page/:page',
-            element: <ActorMovies />,
-          },
-        ],
+        path: 'movies/:category/page/:page',
+        element: <Movies />,
       },
       {
         path: 'tv/:category/page/:page',
@@ -100,6 +95,10 @@ const router = createBrowserRouter([
       {
         path: 'popular-actors/page/:page',
         element: <PopularActors />,
+      },
+      {
+        path: 'movies/actors/:name/page/:page',
+        element: <ActorMovies />,
       },
       {
         path: 'ai-generated-movies',
