@@ -35,11 +35,13 @@ const Navbar = () => {
   return (
     <NavbarContainer>
       <LeftSide>
+        {/* CR - put in a separate component the HamburgerIcon */}
         <HamburgerIcon onClick={handleMenuToggle} isOpen={isMenuOpen}>
           <HamburgerLines></HamburgerLines>
           <HamburgerLines></HamburgerLines>
           <HamburgerLines></HamburgerLines>
         </HamburgerIcon>
+        {/* CR - put in a separate component the MenuBox */}
         {isMenuOpen && (
           <MenuBox>
             <ul>
@@ -53,14 +55,17 @@ const Navbar = () => {
         )}
       </LeftSide>
       <RightSide>
+        {/* CR - put in a separate component the GoogleButton */}
         <GoogleButton>
           <b>Sign in as movie466 </b>
           <br></br> movie466@gmail.com
         </GoogleButton>
         <SettingIcon src={Setting} alt="Settings" />
+        {/* CR - put in a separate component the ToggleButton */}
         <ToggleButton onClick={handleToggle}>
           <img src={isToggled ? ToggleOn : ToggleOff} alt="Toggle" />
         </ToggleButton>
+        {/* CR - put in a separate component the SearchInput and the SearchButton */}
         <SearchInput type="text" placeholder="Search..." />
         <SearchButton onClick={handleSearch}>
           <img src={SearchSvg} alt="searchsvg" />
