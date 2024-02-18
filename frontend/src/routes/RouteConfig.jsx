@@ -1,9 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import MoviesPage from '../pages/MoviesPage/MoviesPage';
+
 //mock components
 
 const SharedLayout = () => {
-  return <MoviesPage />;
+  return <div>SharedLayout</div>;
 };
 
 const Error = () => {
@@ -65,12 +66,12 @@ const AdvancedSearch = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <SharedLayout />,
+    element: <MoviesPage />,
     errorElement: <Error />,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <MoviesPage />,
       },
       {
         path: 'movie/:id',
