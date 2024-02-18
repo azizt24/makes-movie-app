@@ -29,6 +29,7 @@ const Navbar = () => {
   const handleToggle = () => {
     setIsToggled(!isToggled);
   };
+
   const handleSearch = () => {};
 
   return (
@@ -39,7 +40,7 @@ const Navbar = () => {
           <HamburgerLines></HamburgerLines>
           <HamburgerLines></HamburgerLines>
         </HamburgerIcon>
-        {isMenuOpen && ( // CR - don't leave comments in the code - Conditionally render the MenuBox
+        {isMenuOpen && (
           <MenuBox>
             <ul>
               <li>Home</li>
