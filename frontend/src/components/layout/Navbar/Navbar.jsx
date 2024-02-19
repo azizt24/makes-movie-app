@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import  { useState, useEffect } from 'react';
 import { NavbarContainer, LeftSide, RightSide } from './Navbar.styles';
 
 import HamburgerIconComponnent from './HamburgerIconComponnent';
@@ -10,8 +11,21 @@ import SearchButtonComponnent from './SearchButtonComponnent';
 import SettingIconComponnent from './SettingIconComponnent';
 
 const Navbar = () => {
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
   const [isToggled, setIsToggled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,19 +44,23 @@ const Navbar = () => {
           onClick={handleMenuToggle}
           isOpen={isMenuOpen}
         />
-        {isMenuOpen && ( // Conditionally render the MenuBox
-          <MenuBoxComponnent />
-        )}
+        {isMenuOpen && <MenuBoxComponnent />}
       </LeftSide>
       <RightSide>
         <GoogleButtonComponnent />
-        <SettingIconComponnent />
-        <ToggleButtonComponnent onClick={handleToggle} isToggled={isToggled} />
-        <SearchInputComponnent />
-        <SearchButtonComponnent onClick={handleSearch} />
+        {!isMobileView && <SettingIconComponnent />}
+        {!isMobileView && (
+          <ToggleButtonComponnent
+            onClick={handleToggle}
+            isToggled={isToggled}
+          />
+        )}
+        {!isMobileView && <SearchInputComponnent />}
+        {!isMobileView && <SearchButtonComponnent onClick={handleSearch} />}
       </RightSide>
     </NavbarContainer>
   );
 };
 
 export default Navbar;
+

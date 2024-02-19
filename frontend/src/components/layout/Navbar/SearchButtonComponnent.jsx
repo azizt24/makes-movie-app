@@ -5,7 +5,7 @@ const SearchButtonComponnent = ({ handleSearch }) => {
   return (
     <SearchButton onClick={handleSearch}>
       <img src={SearchSvg} alt="searchsvg" />
-      Search
+      <b>Search</b>
     </SearchButton>
   );
 };

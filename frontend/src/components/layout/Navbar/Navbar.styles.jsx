@@ -1,6 +1,6 @@
-import styled  from 'styled-components';
+import styled from 'styled-components';
 import '../../../styles/global.css'; // CR - you don't need this import - remove it
-import'./Navbar'; // CR - this import is not necessary, remove it
+import './Navbar'; // CR - this import is not necessary, remove it
 
 // CR - remove comments from the code
 export const NavbarContainer = styled.nav`
@@ -10,7 +10,7 @@ export const NavbarContainer = styled.nav`
   padding: 1rem 2rem;
   background-color: var(--secondary-color-light);
   color: #fff;
-  width:100vw;
+  width: 100vw;
   height: 67px; /* Set a fixed height for the NavbarContainer */
 `;
 
@@ -21,7 +21,6 @@ export const LeftSide = styled.div`
 export const MenuBox = styled.div`
   position: absolute;
   top: 100%;
-  /* left: 0; */
   background-color: var(--secondary-color-light);
   color: #fff;
   width: 267px;
@@ -52,6 +51,12 @@ export const MenuBox = styled.div`
   li:hover {
     color: var(--primary-color);
   }
+
+  @media (max-width: 768px) {
+    width: 270px;
+    height: 260px; /* Set the width of the image */
+    margin-left: -2rem;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -60,9 +65,10 @@ export const SearchInput = styled.input`
   border-color: var(--primary-color);
   margin-right: 1rem;
   height: 36px;
-  width: 180px; /* Set a fixed height for the SearchInput */
+  width: 180px;
   @media (max-width: 768px) {
-    display: none;
+    width: 130px;
+    height: 27px; /* Set the width of the image */
   }
 `;
 
@@ -89,7 +95,9 @@ export const ToggleButton = styled.button`
     height: 100%;
   }
   @media (max-width: 768px) {
-    display: none;
+    width: 40px;
+    height: 20px; /* Set the width of the image */
+    margin-right: 2rem;
   }
 `;
 
@@ -138,7 +146,6 @@ export const HamburgerLines = styled.span`
   transition: all 0.3s ease;
 `;
 
-
 // Search button
 
 export const SearchButton = styled.button`
@@ -167,7 +174,8 @@ export const SearchButton = styled.button`
     transform: translateY(-5px);
   }
   @media (max-width: 768px) {
-    display: none;
+    width: 90px;
+    height: 27px; /* Set the width of the image */
   }
 `;
 
@@ -198,7 +206,35 @@ export const SettingIcon = styled.img`
     transform: rotate(180deg) scale(1.2); /* Rotate by 180 degrees and increase size by 20% */
   }
   @media (max-width: 768px) {
-    display: none;
+    width: 20px;
+    height: 20px; /* Set the width of the image */
   }
 `;
 
+//mobile
+
+export const FlexContainerAbove = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 245px;
+  height: 36px;
+`;
+
+export const FlexContainerBelow = styled.div`
+  display: flex;
+  align-items: flex-start; /* Align items to the start */
+  width: 264px;
+  height: 35px;
+  margin-bottom: 1rem;
+`;
+
+export const MobileFlex = styled.div`
+  margin-top: -2rem;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const MobileList = styled.div`
+  font-size: 14px;
+  height: 140px;
+`;
