@@ -38,25 +38,33 @@ const Navbar = () => {
   const handleSearch = () => {};
 
   return (
-    <NavbarContainer>
+    <NavbarContainer isToggled={isToggled}>
       <LeftSide>
         <HamburgerIconComponnent
           onClick={handleMenuToggle}
           isOpen={isMenuOpen}
+          isToggled={isToggled}
         />
-        {isMenuOpen && <MenuBoxComponnent />}
+        {isMenuOpen && (
+          <MenuBoxComponnent isToggled={isToggled} onClick={handleToggle} />
+        )}
       </LeftSide>
       <RightSide>
         <GoogleButtonComponnent />
-        {!isMobileView && <SettingIconComponnent />}
+        {!isMobileView && <SettingIconComponnent isToggled={isToggled} />}
         {!isMobileView && (
           <ToggleButtonComponnent
             onClick={handleToggle}
             isToggled={isToggled}
           />
         )}
-        {!isMobileView && <SearchInputComponnent />}
-        {!isMobileView && <SearchButtonComponnent onClick={handleSearch} />}
+        {!isMobileView && <SearchInputComponnent isToggled={isToggled} />}
+        {!isMobileView && (
+          <SearchButtonComponnent
+            onClick={handleSearch}
+            isToggled={isToggled}
+          />
+        )}
       </RightSide>
     </NavbarContainer>
   );

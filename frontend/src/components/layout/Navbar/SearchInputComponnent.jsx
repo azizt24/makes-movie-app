@@ -1,5 +1,5 @@
 import { SearchInput } from './Navbar.styles';
-const SearchInputComponnent = () => {
-  return <SearchInput type="text" placeholder="Search..." />;
+const SearchInputComponnent = ({ isToggled }) => {
+  return <SearchInput type="text" placeholder="Search..." isToggled={isToggled}/>;
 };
 export default SearchInputComponnent;

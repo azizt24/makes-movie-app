@@ -9,22 +9,25 @@ import { FlexContainerBelow } from './Navbar.styles';
 import { MobileFlex } from './Navbar.styles';
 import { MobileList } from './Navbar.styles';
 
-const MenuBoxComponnent = () => {
+const MenuBoxComponnent = ({ isToggled, onClick }) => {
   const isMobileView = window.innerWidth <= 768;
 
   return (
     <>
       {isMobileView ? (
         <>
-          <MenuBox>
+          <MenuBox isToggled={isToggled}>
             <MobileFlex>
               <FlexContainerAbove>
-                <ToggleButtonComponnent />
-                <SettingIconComponnent />
+                <ToggleButtonComponnent
+                  isToggled={isToggled}
+                  onClick={onClick}
+                />
+                <SettingIconComponnent isToggled={isToggled} />
               </FlexContainerAbove>
               <FlexContainerBelow>
-                <SearchInputComponnent />
-                <SearchButtonComponnent />
+                <SearchInputComponnent isToggled={isToggled} />
+                <SearchButtonComponnent isToggled={isToggled} />
               </FlexContainerBelow>
             </MobileFlex>
             <MobileList>
@@ -39,7 +42,7 @@ const MenuBoxComponnent = () => {
           </MenuBox>
         </>
       ) : (
-        <MenuBox>
+        <MenuBox isToggled={isToggled}>
           <ul>
             <li>Home</li>
             <li>Ai Generated Movies</li>
