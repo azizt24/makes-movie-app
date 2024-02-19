@@ -20,6 +20,7 @@ const Navbar = () => {
   const handleToggle = () => {
     setIsToggled(!isToggled);
   };
+
   const handleSearch = () => {};
 
   return (
