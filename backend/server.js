@@ -14,7 +14,7 @@ connectDB();
 
 const PORT = process.env.PORT || 5000;
 //Routes
-app.use('/api', movieRoutes);
+app.use('/api/movies', movieRoutes);
 
 const server = app.listen(
   PORT,
