@@ -5,9 +5,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function App() {
-
   return (
-    <RouterProvider router={router} />
+    <div>
+      <h1>Movie App</h1>
+      <Footer />
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
