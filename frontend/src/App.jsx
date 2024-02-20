@@ -1,8 +1,5 @@
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/RouteConfig'; 
-// In your main file such as index.js or App.js
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 function App() {
 
