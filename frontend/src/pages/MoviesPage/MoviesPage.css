@@ -1,0 +1,12 @@
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+  transform: translateY(570px);
+  background-color: #b12222;
+}
+.home {
+  background-color: #b12222; /* Replace with your desired background color */
+}

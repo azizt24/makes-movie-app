@@ -1,0 +1,54 @@
+.movie-card-front,
+.movie-card-back {
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  perspective: 100px;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 200px;
+}
+.movie-poster-back {
+  display: block;
+  margin: 0px auto;
+  width: 200px;
+  height: 250px;
+  border-radius: 0px;
+  box-shadow: 0 500 500px rgba(0, 0, 0, 0.6);
+}
+.movie-details,
+.movie-overview {
+  padding: 10px;
+  color: white;
+}
+
+.movie-card-front {
+  background-color: #333;
+  position: relative;
+}
+
+.movie-card-back {
+  background-color: #444;
+  position: relative;
+  backface-visibility: hidden;
+}
+
+.details-button {
+  border: none;
+  background-color: #007bff;
+  color: white;
+  padding: 5px 73px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  position: center;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-100px);
+  transform: translateY(8px);
+}
