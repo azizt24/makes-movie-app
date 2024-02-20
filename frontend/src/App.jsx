@@ -6,8 +6,8 @@ function App() {
   return (
     <div>
       <h1>Movie App</h1>
-      <Footer />
       <RouterProvider router={router} />
+      <Footer />
     </div>
   );
 }
