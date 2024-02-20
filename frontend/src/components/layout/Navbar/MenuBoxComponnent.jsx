@@ -9,14 +9,18 @@ import { FlexContainerBelow } from './Navbar.styles';
 import { MobileFlex } from './Navbar.styles';
 import { MobileList } from './Navbar.styles';
 
-const MenuBoxComponnent = ({ isToggled, onClick }) => {
+const MenuBoxComponnent = ({ isToggled, onClick, isMenuOpen }) => {
   const isMobileView = window.innerWidth <= 768;
 
   return (
     <>
       {isMobileView ? (
         <>
-          <MenuBox isToggled={isToggled}>
+          <MenuBox
+            isToggled={isToggled}
+            isMenuOpen={isMenuOpen}
+            className="menu-box"
+          >
             <MobileFlex>
               <FlexContainerAbove>
                 <ToggleButtonComponnent
@@ -42,7 +46,11 @@ const MenuBoxComponnent = ({ isToggled, onClick }) => {
           </MenuBox>
         </>
       ) : (
-        <MenuBox isToggled={isToggled}>
+        <MenuBox
+          isToggled={isToggled}
+          isMenuOpen={isMenuOpen}
+          className="menu-box"
+        >
           <ul>
             <li>Home</li>
             <li>Ai Generated Movies</li>

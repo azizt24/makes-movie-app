@@ -1,5 +1,5 @@
 
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { NavbarContainer, LeftSide, RightSide } from './Navbar.styles';
 
 import HamburgerIconComponnent from './HamburgerIconComponnent';
@@ -10,9 +10,8 @@ import SearchInputComponnent from './SearchInputComponnent';
 import SearchButtonComponnent from './SearchButtonComponnent';
 import SettingIconComponnent from './SettingIconComponnent';
 
-const Navbar = () => {
+const Navbar = ({ isToggled, setIsToggled }) => {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
-  const [isToggled, setIsToggled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -38,37 +37,44 @@ const Navbar = () => {
   const handleSearch = () => {};
 
   return (
-    <NavbarContainer isToggled={isToggled}>
-      <LeftSide>
-        <HamburgerIconComponnent
-          onClick={handleMenuToggle}
-          isOpen={isMenuOpen}
-          isToggled={isToggled}
-        />
-        {isMenuOpen && (
-          <MenuBoxComponnent isToggled={isToggled} onClick={handleToggle} />
-        )}
-      </LeftSide>
-      <RightSide>
-        <GoogleButtonComponnent />
-        {!isMobileView && <SettingIconComponnent isToggled={isToggled} />}
-        {!isMobileView && (
-          <ToggleButtonComponnent
-            onClick={handleToggle}
+    <>
+      <NavbarContainer isToggled={isToggled}>
+        <LeftSide>
+          <HamburgerIconComponnent
+            onClick={handleMenuToggle}
+            isOpen={isMenuOpen}
             isToggled={isToggled}
           />
-        )}
-        {!isMobileView && <SearchInputComponnent isToggled={isToggled} />}
-        {!isMobileView && (
-          <SearchButtonComponnent
-            onClick={handleSearch}
-            isToggled={isToggled}
-          />
-        )}
-      </RightSide>
-    </NavbarContainer>
+          {
+            <MenuBoxComponnent
+              isToggled={isToggled}
+              onClick={handleToggle}
+              isMenuOpen={isMenuOpen}
+            />
+          }
+        </LeftSide>
+        <RightSide>
+          <GoogleButtonComponnent />
+          {!isMobileView && <SettingIconComponnent isToggled={isToggled} />}
+          {!isMobileView && (
+            <ToggleButtonComponnent
+              onClick={handleToggle}
+              isToggled={isToggled}
+            />
+          )}
+          {!isMobileView && <SearchInputComponnent isToggled={isToggled} />}
+          {!isMobileView && (
+            <SearchButtonComponnent
+              onClick={handleSearch}
+              isToggled={isToggled}
+            />
+          )}
+        </RightSide>
+      </NavbarContainer>
+    </>
   );
 };
 
 export default Navbar;
+
 

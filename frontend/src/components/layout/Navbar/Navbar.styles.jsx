@@ -1,8 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import '../../../styles/global.css'; // CR - you don't need this import - remove it
-import './Navbar'; // CR - this import is not necessary, remove it
 
-// CR - remove comments from the code
+
 export const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -14,7 +12,7 @@ export const NavbarContainer = styled.nav`
       : 'var(--secondary-color-light)'};
   color: #fff;
   width: 100vw;
-  height: 67px; /* Set a fixed height for the NavbarContainer */
+  height: 67px; 
 `;
 
 export const LeftSide = styled.div`
@@ -30,11 +28,18 @@ const slideIn = keyframes`
   }
 `;
 
+const slideOut = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-120%);
+  }
+`;
 
 export const MenuBox = styled.div`
   position: absolute;
   top: 100%;
-  /* background-color: var(--secondary-color-light); */
   background-color: ${props =>
     props.isToggled
       ? 'var(--DarModeBodyColor)'
@@ -52,7 +57,9 @@ export const MenuBox = styled.div`
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;
-  animation: ${slideIn} 0.5s ease-out;
+  animation:
+    ${props => (props.isMenuOpen ? slideIn : slideOut)} 0.5s ease-out forwards;
+    
   font-size: large;
 
   ul {
@@ -72,7 +79,7 @@ export const MenuBox = styled.div`
 
   @media (max-width: 768px) {
     width: 270px;
-    height: 260px; /* Set the width of the image */
+    height: 260px; 
     margin-left: -2rem;
   }
 `;
@@ -80,14 +87,14 @@ export const MenuBox = styled.div`
 export const SearchInput = styled.input`
   padding: 0.5rem;
   border: 3px solid;
-  border-color:  ${props =>
+  border-color: ${props =>
     props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
   margin-right: 1rem;
   height: 36px;
   width: 180px;
   @media (max-width: 768px) {
     width: 130px;
-    height: 27px; /* Set the width of the image */
+    height: 27px; 
   }
 `;
 
@@ -100,13 +107,12 @@ export const RightSide = styled.div`
 export const ToggleButton = styled.button`
   border: none;
   cursor: pointer;
-  /* background-color: var(--primary-color); */
   background-color: ${props =>
     props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
   border: 1px solid;
   border-radius: 18px;
-  height: 28px; /* Set a fixed height for the ToggleButton */
-  width: 60px; /* Set a fixed width for the ToggleButton */
+  height: 28px; 
+  width: 60px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,14 +123,13 @@ export const ToggleButton = styled.button`
   }
   @media (max-width: 768px) {
     width: 40px;
-    height: 20px; /* Set the width of the image */
+    height: 20px; 
     margin-right: 2rem;
   }
 `;
 
-// hamburger
+
 export const HamburgerIcon = styled.div`
-  // Filter out the isOpen prop
   width: 70px;
   height: 60px;
   padding: 10px;
@@ -136,7 +141,6 @@ export const HamburgerIcon = styled.div`
     props.isToggled
       ? 'var(--DarkModePurplelight)'
       : 'var(--secondary-color-light)'};
-  /* background-color: var(--secondary-color-light); */
   align-items: center;
   transition: transform 0.3s ease;
 
@@ -148,7 +152,6 @@ export const HamburgerIcon = styled.div`
     transition: all 0.3s ease;
   }
 
-  /* Apply styles when menu is open */
 
   ${props =>
     props.isOpen &&
@@ -164,7 +167,7 @@ export const HamburgerIcon = styled.div`
     }
   `}
 `;
-// Add content to HamburgerIcon
+
 export const HamburgerLines = styled.span`
   width: 100%;
   height: 3px;
@@ -172,7 +175,6 @@ export const HamburgerLines = styled.span`
   transition: all 0.3s ease;
 `;
 
-// Search button
 
 export const SearchButton = styled.button`
   display: flex;
@@ -187,13 +189,12 @@ export const SearchButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   width: 123px;
-  transition:
-    transform 0.5s ease;
-  height: 37px; /* Set a fixed height for the SearchButton */
+  transition: transform 0.5s ease;
+  height: 37px; 
   img {
-    width: 20px; /* Set the width of the image */
-    height: 20px; /* Set the height of the image */
-    margin-right: 5px; /* Add some right margin for spacing */
+    width: 20px;
+    height: 20px; 
+    margin-right: 5px; 
   }
   &:hover {
     background-color: #eae6e6;
@@ -201,7 +202,7 @@ export const SearchButton = styled.button`
   }
   @media (max-width: 768px) {
     width: 90px;
-    height: 27px; /* Set the width of the image */
+    height: 27px; 
   }
 `;
 
@@ -213,7 +214,7 @@ export const GoogleButton = styled.button`
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  height: 44px; /* Set a fixed height for the GoogleButton */
+  height: 44px; 
   width: 199px;
   margin-right: 1.5rem;
   &:hover {
@@ -221,19 +222,19 @@ export const GoogleButton = styled.button`
   }
 `;
 
-//setting button
+
 
 export const SettingIcon = styled.img`
-  width: 28px; /* Set the width of the image */
-  height: 30px; /* Set the height of the image */
+  width: 28px; 
+  height: 30px; 
   margin-right: 1.5rem;
-  transition: transform 0.5s ease; /* Add some right margin for spacing */
+  transition: transform 0.5s ease; 
   &:hover {
-    transform: rotate(180deg) scale(1.2); /* Rotate by 180 degrees and increase size by 20% */
+    transform: rotate(180deg) scale(1.2); 
   }
   @media (max-width: 768px) {
     width: 20px;
-    height: 20px; /* Set the width of the image */
+    height: 20px; 
   }
 `;
 
@@ -248,7 +249,7 @@ export const FlexContainerAbove = styled.div`
 
 export const FlexContainerBelow = styled.div`
   display: flex;
-  align-items: flex-start; /* Align items to the start */
+  align-items: flex-start;
   width: 264px;
   height: 35px;
   margin-bottom: 1rem;
