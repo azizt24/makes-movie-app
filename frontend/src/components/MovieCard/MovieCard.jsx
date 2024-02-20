@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import './MovieCard.css';  
 
