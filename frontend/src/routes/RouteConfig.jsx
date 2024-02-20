@@ -1,13 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '../pages/Home/Home.jsx';  
+import Error from '../pages/Error/Error.jsx'; 
 
 const SharedLayout = () => {
   return <div>Shared Layout</div>;
 };
 
-const Error = () => {
-  return <div>Error</div>;
-};
+// const Error = () => {
+//   return <div>Error</div>;
+// };
 
 const Movie = () => {
   return <div>Movie</div>;

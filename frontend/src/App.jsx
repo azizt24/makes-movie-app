@@ -1,13 +1,14 @@
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/RouteConfig'; 
-// In your main file such as index.js or App.js
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { Footer } from './components';
 
 function App() {
-
   return (
-    <RouterProvider router={router} />
+    <div>
+      <h1>Movie App</h1>
+      <Footer />
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
