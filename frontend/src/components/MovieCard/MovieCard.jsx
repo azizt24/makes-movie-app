@@ -30,7 +30,6 @@ const MovieCard = ({ movie }) => {
           </div>
         </div>
       </div>
-
       <div className="movie-card-back" onClick={handleFlip}>
         <img
           src={backdrop_path ? posterUrl : defaultPoster}

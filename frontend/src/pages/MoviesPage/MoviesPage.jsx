@@ -1,49 +1,29 @@
+import React, { useState } from 'react'; // Import useState from React
 import MoviesButtons from '../../components/MoviesButtons/MoviesButtons';
 import MoviesTitle from '../../components/MoviesTitle/MoviesTitle';
 import Pagination from '../../components/Pagination/Pagination';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import { MoviesContainer } from './MoviesPage.style';
-import { useState, useEffect } from 'react';
 import './MoviesPage.css';
-import axios from 'axios';
-import { HIGHEST_RATED_MOVIES, LATEST_MOVIES_URL } from './constants';
+import { HighestRatedMovies } from './../../data/HighestRatedMovies';
+import { latestMovies } from './../../data/latestMovies';
 
 const MoviesPage = () => {
-  const [latestMovies, setLatestMovies] = useState([]);
-  const [highestRatedMovies, setHighestRatedMovies] = useState([]);
+  // State to track which movies to display
   const [displayLatest, setDisplayLatest] = useState(true);
 
-  useEffect(() => {
-    fetchLatestMovies();
-  }, []);
-
-  const fetchLatestMovies = async (page = 1) => {
-    try {
-      const result = await axios.get(`${LATEST_MOVIES_URL}${page}`);
-      setLatestMovies(result.data.results);
-    } catch (error) {
-      console.error('Error fetching latest movies:', error);
-    }
-  };
-
-  const fetchHighestRatedMovies = async (page = 1) => {
-    try {
-      const result = await axios.get(`${HIGHEST_RATED_MOVIES}${page}`);
-      setHighestRatedMovies(result.data.results);
-    } catch (error) {
-      console.error('Error fetching highest rated movies:', error);
-    }
-  };
-
-  const handleLatestClick = async () => {
-    await fetchLatestMovies();
+  // Handler for clicking on "Latest Movies" button
+  const handleLatestClick = () => {
     setDisplayLatest(true);
   };
 
-  const handleHighestRatedClick = async () => {
-    await fetchHighestRatedMovies();
+  // Handler for clicking on "Highest Rated" button
+  const handleHighestRatedClick = () => {
     setDisplayLatest(false);
   };
+
+  // Determine which set of movies to display based on state
+  const moviesToDisplay = displayLatest ? latestMovies : HighestRatedMovies;
 
   return (
     <MoviesContainer>
@@ -54,13 +34,9 @@ const MoviesPage = () => {
       />
       <Pagination />
       <div className="movie-grid">
-        {displayLatest
-          ? latestMovies.map(movie => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))
-          : highestRatedMovies.map(movie => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
+        {moviesToDisplay.map(movie => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
       </div>
     </MoviesContainer>
   );
