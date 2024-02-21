@@ -8,6 +8,19 @@ import { FlexContainerAbove } from './Navbar.styles';
 import { FlexContainerBelow } from './Navbar.styles';
 import { MobileFlex } from './Navbar.styles';
 import { MobileList } from './Navbar.styles';
+import LinksList from './LinksList';
+
+const links = [
+  {
+    name: 'Home',
+    path: '/',
+  },
+  {
+    name: 'Ai Generated Movies',
+    path: '/ai-generated-movies',
+  },
+  // CR -add the other links here
+];
 
 const MenuBoxComponnent = ({ isToggled, onClick, isMenuOpen }) => {
   const isMobileView = window.innerWidth <= 768;
@@ -35,13 +48,7 @@ const MenuBoxComponnent = ({ isToggled, onClick, isMenuOpen }) => {
               </FlexContainerBelow>
             </MobileFlex>
             <MobileList>
-              <ul>
-                <li>Home</li>
-                <li>Ai Generated Movies</li>
-                <li>Movies</li>
-                <li>Advanced Search</li>
-                <li>Popular Actors</li>
-              </ul>
+              <LinksList links={links} />
             </MobileList>
           </MenuBox>
         </>
@@ -51,13 +58,7 @@ const MenuBoxComponnent = ({ isToggled, onClick, isMenuOpen }) => {
           isMenuOpen={isMenuOpen}
           className="menu-box"
         >
-          <ul>
-            <li>Home</li>
-            <li>Ai Generated Movies</li>
-            <li>Movies</li>
-            <li>Advanced Search</li>
-            <li>Popular Actors</li>
-          </ul>
+          <LinksList links={links} />
         </MenuBox>
       )}
     </>
