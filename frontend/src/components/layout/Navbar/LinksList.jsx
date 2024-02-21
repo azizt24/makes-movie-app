@@ -6,7 +6,6 @@ const LinksList = ({ links }) => {
       {links.map(link => (
         <li key={link.name}>
           <Link to={link.path}>{link.name}</Link>{' '}
-          {/* CR - style the a tag as needed */}
         </li>
       ))}
     </ul>

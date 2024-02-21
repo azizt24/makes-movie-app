@@ -71,11 +71,16 @@ export const MenuBox = styled.div`
   li {
     margin-bottom: 0.5rem;
     cursor: pointer;
+
+    a{
+      color: white;
+      
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
   }
 
-  li:hover {
-    color: var(--primary-color);
-  }
 
   @media (max-width: 768px) {
     width: 270px;

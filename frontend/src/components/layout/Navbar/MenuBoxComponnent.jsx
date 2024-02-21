@@ -19,7 +19,18 @@ const links = [
     name: 'Ai Generated Movies',
     path: '/ai-generated-movies',
   },
-  // CR -add the other links here
+  {
+    name: 'Movies',
+    path: '/movies/latest/page/1',
+  },
+  {
+    name: 'Advanced Search',
+    path: '/advanced-search',
+  },
+  {
+    name: 'Popular Actors',
+    path: '/popular-actors/page/1',
+  },
 ];
 
 const MenuBoxComponnent = ({ isToggled, onClick, isMenuOpen }) => {
