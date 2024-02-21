@@ -6,16 +6,15 @@ export const PaginationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  border: 1px solid black;
+  border: 1px solid #ffffff;
   color: var(--text-white);
   width: 100vw;
-  background: red;
+  background-color: var(--secondary-color-light);
 `;
 
 export const NumberContainer = styled.div`
   align-items: center;
   width: 20vw;
-  background: blue;
 
   @media (max-width: 1000px) {
     width: 80%;
@@ -26,14 +25,10 @@ export const PaginationButton = styled.button`
   color: var(--text-white);
   border: none;
   cursor: pointer;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  border-right: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
   width: 20vw;
-  background: balck;
-
-  &:hover {
-    background-color: #0056b3;
-  }
+  background-color: var(--secondary-color-light);
 
   @media (max-width: 576px) {
     width: 10%;
@@ -47,11 +42,8 @@ export const NumberButton = styled.button`
   color: var(--text-white);
   border: none;
   cursor: pointer;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  border-right: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
   width: 11.1%;
-
-  &:hover {
-    background-color: #505357;
-  }
+  background-color: var(--secondary-color-light);
 `;

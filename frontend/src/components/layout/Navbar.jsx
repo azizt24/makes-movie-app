@@ -3,4 +3,4 @@ const Navbar = () => {
     <div>Navbar</div>
   )
 }
-export default Navbar
+export default Navbar;
