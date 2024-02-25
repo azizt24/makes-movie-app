@@ -23,6 +23,7 @@ const Error = () => {
     <ErrorContainer>
       <GenericErrorSection>
         <p className="error-message">There was an error...</p>
+        <p className="error-message">Please try again later.</p>
       </GenericErrorSection>
     </ErrorContainer>
   );

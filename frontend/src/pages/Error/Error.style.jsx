@@ -46,7 +46,8 @@ export const NotFoundSection = styled.div`
 
 export const GenericErrorSection = styled.main`
   display: flex;
-  min-height: 100vh;
+  flex-direction: column;
+  height: auto;
   place-items: center;
   padding: 2rem;
 
