@@ -9,14 +9,14 @@ import {
 } from './Pagination.style';
 import MovieCard from '../MovieCard/MovieCard';
 
-const Pagination = ({ onPageChange }) => {
+const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     // Update currentPage when onPageChange changes
     setCurrentPage(1);
-  }, [onPageChange]);
+  }, []);
 
   const fetchMovies = async (key, page = currentPage) => {
     // Use currentPage instead of 22
@@ -42,28 +42,24 @@ const Pagination = ({ onPageChange }) => {
   const handleFirstPage = () => {
     if (!isFirstPage) {
       setCurrentPage(1);
-      onPageChange(1);
     }
   };
 
   const handlePrevPage = () => {
     if (!isFirstPage) {
       setCurrentPage(currentPage - 1);
-      onPageChange(currentPage - 1);
     }
   };
 
   const handleNextPage = () => {
     if (!isLastPage) {
       setCurrentPage(currentPage + 1);
-      onPageChange(currentPage + 1);
     }
   };
 
   const handleLastPage = () => {
     if (!isLastPage) {
       setCurrentPage(500);
-      onPageChange(500);
     }
   };
 
@@ -79,13 +75,39 @@ const Pagination = ({ onPageChange }) => {
         <PaginationButton onClick={handleFirstPage} disabled={isFirstPage}>
           First
         </PaginationButton>
+    
         <NumberContainer>
-          {Array.from({ length: 9 }, (_, i) => (
-            <NumberButton key={i + 1} onClick={() => onPageChange(i + 1)}>
-              {i + 1}
-            </NumberButton>
-          ))}
+          {Array.from({ length: 9 }, (_, i) => {
+            let offset = Math.floor(9 / 2);
+            let pageNumber;
+
+            if (currentPage === totalPages ) {
+              pageNumber = currentPage - 8 + i;
+            }
+             else if (currentPage > totalPages - 5) {
+               pageNumber = totalPages - 8 + i;
+             }
+            else if (currentPage === 1 || currentPage < 5) {
+              pageNumber = 1 + i;
+            } else {
+              pageNumber = currentPage - offset + i;
+            }
+
+            const isCurrentPage = pageNumber === currentPage;
+
+            return (
+              <NumberButton
+                key={pageNumber}
+                onClick={() => setCurrentPage(pageNumber)}
+                disabled={pageNumber <= 0 || pageNumber > totalPages}
+                isCurrentPage={isCurrentPage}
+              >
+                {pageNumber}
+              </NumberButton>
+            );
+          })}
         </NumberContainer>
+
         <PaginationButton onClick={handleLastPage} disabled={isLastPage}>
           Last
         </PaginationButton>
@@ -109,8 +131,6 @@ export default Pagination;
 
 
 
-
-
 // import { useState, useEffect } from 'react'; // Import useEffect
 // import { useQuery } from 'react-query';
 // import {
@@ -121,14 +141,14 @@ export default Pagination;
 // } from './Pagination.style';
 // import MovieCard from '../MovieCard/MovieCard';
 
-// const Pagination = ({ onPageChange }) => {
+// const Pagination = () => {
 //   const [currentPage, setCurrentPage] = useState(1);
 //   const [movies, setMovies] = useState([]);
 
 //   useEffect(() => {
 //     // Update currentPage when onPageChange changes
 //     setCurrentPage(1);
-//   }, [onPageChange]);
+//   }, []);
 
 //   const fetchMovies = async (key, page = currentPage) => {
 //     // Use currentPage instead of 22
@@ -154,28 +174,24 @@ export default Pagination;
 //   const handleFirstPage = () => {
 //     if (!isFirstPage) {
 //       setCurrentPage(1);
-//       onPageChange(1);
 //     }
 //   };
 
 //   const handlePrevPage = () => {
 //     if (!isFirstPage) {
 //       setCurrentPage(currentPage - 1);
-//       onPageChange(currentPage - 1);
 //     }
 //   };
 
 //   const handleNextPage = () => {
 //     if (!isLastPage) {
 //       setCurrentPage(currentPage + 1);
-//       onPageChange(currentPage + 1);
 //     }
 //   };
 
 //   const handleLastPage = () => {
 //     if (!isLastPage) {
 //       setCurrentPage(500);
-//       onPageChange(500);
 //     }
 //   };
 
@@ -191,13 +207,39 @@ export default Pagination;
 //         <PaginationButton onClick={handleFirstPage} disabled={isFirstPage}>
 //           First
 //         </PaginationButton>
+    
 //         <NumberContainer>
-//           {Array.from({ length: 9 }, (_, i) => (
-//             <NumberButton key={i + 1} onClick={() => onPageChange(i + 1)}>
-//               {i + 1}
-//             </NumberButton>
-//           ))}
+//           {Array.from({ length: 9 }, (_, i) => {
+//             let offset = Math.floor(9 / 2);
+//             let pageNumber;
+
+//             if (currentPage === totalPages ) {
+//               pageNumber = currentPage - 8 + i;
+//             }
+//              else if (currentPage > totalPages - 5) {
+//                pageNumber = totalPages - 8 + i;
+//              }
+//             else if (currentPage === 1 || currentPage < 5) {
+//               pageNumber = 1 + i;
+//             } else {
+//               pageNumber = currentPage - offset + i;
+//             }
+
+//             const isCurrentPage = pageNumber === currentPage;
+
+//             return (
+//               <NumberButton
+//                 key={pageNumber}
+//                 onClick={() => setCurrentPage(pageNumber)}
+//                 disabled={pageNumber <= 0 || pageNumber > totalPages}
+//                 isCurrentPage={isCurrentPage}
+//               >
+//                 {pageNumber}
+//               </NumberButton>
+//             );
+//           })}
 //         </NumberContainer>
+
 //         <PaginationButton onClick={handleLastPage} disabled={isLastPage}>
 //           Last
 //         </PaginationButton>
@@ -216,7 +258,5 @@ export default Pagination;
 // };
 
 // export default Pagination;
-
-
 
 

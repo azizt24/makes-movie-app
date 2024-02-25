@@ -46,4 +46,10 @@ export const NumberButton = styled.button`
   border-left: 1px solid #ffffff;
   width: 11.1%;
   background-color: var(--secondary-color-light);
+  ${({ isCurrentPage }) =>
+    isCurrentPage &&
+    `
+    background-color: #ccc; /* Change background color for current page */
+    cursor: default; /* Disable hover effect for current page */
+  `}
 `;
