@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import logger from './config/logger.js';
 import connectDB from './db/db.js';
-
+import errorHandler from './middleware/errorHandler.js';
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
@@ -11,6 +11,11 @@ app.get('/', (req, res) => res.send('Server running'));
 
 // Connect to MongoDB
 connectDB();
+
+//MiddleWare
+app.use(express.json()); 
+
+ app.use(errorHandler); 
 
 const PORT = process.env.PORT || 5000;
 
