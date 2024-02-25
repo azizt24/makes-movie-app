@@ -1,11 +1,11 @@
-// import { FooterContainer, FooterContent, PoweredBy } from './Footer.style';
+import { FooterContainer, FooterContent, PoweredBy } from './Footer.style';
 
-// const Footer = () => {
-//   return (
-//     <FooterContainer>
-//       <PoweredBy>Powered by</PoweredBy> <FooterContent />
-//     </FooterContainer>
-//   );
-// };
+const Footer = ({ isToggled }) => {
+  return (
+    <FooterContainer isToggled={isToggled}>
+      <PoweredBy>Powered by</PoweredBy> <FooterContent />
+    </FooterContainer>
+  );
+};
 
-// export default Footer;
+export default Footer;

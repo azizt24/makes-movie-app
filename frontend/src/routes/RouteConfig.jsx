@@ -1,18 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Pagination from '../components/Pagination/Pagination';
+import { SharedLayout } from '../components';
+import { Error } from '../pages';
+
 //mock components
-
-const SharedLayout = () => {
-  return (
-    <div>
-      <Pagination />
-    </div>
-  );
-};
-
-const Error = () => {
-  return <div>Error</div>;
-};
 
 const Home = () => {
   return <div>Home</div>;
