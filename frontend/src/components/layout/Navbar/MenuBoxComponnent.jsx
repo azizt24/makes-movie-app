@@ -33,7 +33,12 @@ const links = [
   },
 ];
 
-const MenuBoxComponnent = ({ isToggled, onClick, isMenuOpen }) => {
+const MenuBoxComponnent = ({
+  isToggled,
+  onClick,
+  isMenuOpen,
+  setIsMenuOpen,
+}) => {
   const isMobileView = window.innerWidth <= 768;
 
   return (
@@ -59,7 +64,7 @@ const MenuBoxComponnent = ({ isToggled, onClick, isMenuOpen }) => {
               </FlexContainerBelow>
             </MobileFlex>
             <MobileList>
-              <LinksList links={links} />
+              <LinksList links={links} setIsMenuOpen={setIsMenuOpen} />
             </MobileList>
           </MenuBox>
         </>
@@ -69,7 +74,7 @@ const MenuBoxComponnent = ({ isToggled, onClick, isMenuOpen }) => {
           isMenuOpen={isMenuOpen}
           className="menu-box"
         >
-          <LinksList links={links} />
+          <LinksList links={links} setIsMenuOpen={setIsMenuOpen} />
         </MenuBox>
       )}
     </>

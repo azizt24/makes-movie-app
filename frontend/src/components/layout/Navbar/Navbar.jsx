@@ -45,13 +45,12 @@ const Navbar = ({ isToggled, setIsToggled }) => {
             isOpen={isMenuOpen}
             isToggled={isToggled}
           />
-          {
-            <MenuBoxComponnent
-              isToggled={isToggled}
-              onClick={handleToggle}
-              isMenuOpen={isMenuOpen}
-            />
-          }
+          <MenuBoxComponnent
+            isToggled={isToggled}
+            onClick={handleToggle}
+            isMenuOpen={isMenuOpen}
+            setIsMenuOpen={setIsMenuOpen}
+          />
         </LeftSide>
         <RightSide>
           <GoogleButtonComponnent />

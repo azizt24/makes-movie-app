@@ -230,16 +230,17 @@ export const GoogleButton = styled.button`
 
 
 export const SettingIcon = styled.img`
-  width: 28px; 
-  height: 30px; 
+  width: 28px;
+  height: 30px;
   margin-right: 1.5rem;
-  transition: transform 0.5s ease; 
+  cursor: pointer;
+  transition: transform 0.5s ease;
   &:hover {
-    transform: rotate(180deg) scale(1.2); 
+    transform: rotate(180deg) scale(1.2);
   }
   @media (max-width: 768px) {
     width: 20px;
-    height: 20px; 
+    height: 20px;
   }
 `;
 
