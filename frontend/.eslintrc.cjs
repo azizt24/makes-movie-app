@@ -28,6 +28,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     quotes: ['warn', 'single'],
     semi: ['warn', 'always'],
-    'no-console': 1,
+    'no-console': ['warn', { allow: ['error', 'info'] }],
   },
 };
