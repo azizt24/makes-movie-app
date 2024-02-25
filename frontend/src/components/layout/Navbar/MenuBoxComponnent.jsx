@@ -10,6 +10,8 @@ import { MobileFlex } from './Navbar.styles';
 import { MobileList } from './Navbar.styles';
 import LinksList from './LinksList';
 
+
+
 const links = [
   {
     name: 'Home',
@@ -21,7 +23,7 @@ const links = [
   },
   {
     name: 'Movies',
-    path: '/movies/latest/page/1',
+    path: '/movies/latest/page/1', // This will be dynamic
   },
   {
     name: 'Advanced Search',

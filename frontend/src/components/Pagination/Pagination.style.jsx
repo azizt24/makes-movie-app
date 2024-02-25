@@ -53,3 +53,13 @@ export const NumberButton = styled.button`
     cursor: default; /* Disable hover effect for current page */
   `}
 `;
+
+
+export const MovieGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin-top: 30px;
+  padding: 10px;
+`;

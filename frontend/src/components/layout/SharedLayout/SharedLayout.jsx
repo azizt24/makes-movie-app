@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Footer from './../Footer/Footer';
-// import MoviesPage from '../../../pages/MoviesPage/MoviesPage';
-import Pagination from '../../Pagination/Pagination';
+import MoviesPage from '../../../pages/MoviesPage/MoviesPage';
 
 const SharedLayout = () => {
   const [isToggled, setIsToggled] = useState(false);
@@ -11,8 +10,7 @@ const SharedLayout = () => {
   return (
     <>
       <Navbar isToggled={isToggled} setIsToggled={setIsToggled} />
-      {/* <MoviesPage/> */}
-      <Pagination />
+      <MoviesPage />
       <Outlet />
       <Footer isToggled={isToggled} />
     </>
