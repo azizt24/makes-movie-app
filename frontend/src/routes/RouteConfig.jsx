@@ -1,13 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-
+import Error from '../pages/Error/Error'; 
 //mock components
 
 const SharedLayout = () => {
   return <div>Shared Layout</div>;
-};
-
-const Error = () => {
-  return <div>Error</div>;
 };
 
 const Home = () => {
