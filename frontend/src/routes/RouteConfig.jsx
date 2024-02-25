@@ -1,11 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import MoviePage from '../pages/moviePage/MoviePage';
 
 //mock components
 
 const SharedLayout = () => {
- return <MoviePage/>;
-  // return <div>Shared Layout</div>;
+  return <div>Shared Layout</div>;
 };
 
 const Error = () => {

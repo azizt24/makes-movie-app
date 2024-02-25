@@ -1,0 +1,25 @@
+.carousel-slide {
+  margin-top: 100px;
+  margin-left: 45px;
+  padding: 20px;
+  text-align: left;
+  position: relative;
+  min-height: 100px;
+  color: #2a6496;
+  font-size: 15px;
+  font-weight: 400;
+  width: 90%;
+}
+.carousel-slide p {
+  margin-left: 50px;
+  border-left: 2px solid #49bcec;
+  border-right: 2px solid #49bcec;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.show-more {
+  background: none;
+  border: none;
+  color: #195b97;
+  font-weight: bold;
+}
