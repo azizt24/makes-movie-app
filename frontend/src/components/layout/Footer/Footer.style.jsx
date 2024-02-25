@@ -33,13 +33,13 @@ export const FooterContent = styled.div`
   }
 `;
 
-// export const PoweredBy = styled.span`
-//   margin-top: 10px;
-//   font-size: 10px;
-//   color: #ffffff;
-//   @media screen and (max-width: 768px) {
-//     font-size: 8px;
-//     margin-top: 4px;
-//     margin-right: 2px;
-//   }
-// `;
+export const PoweredBy = styled.span`
+  margin-top: 10px;
+  font-size: 10px;
+  color: #ffffff;
+  @media screen and (max-width: 768px) {
+    font-size: 8px;
+    margin-top: 4px;
+    margin-right: 2px;
+  }
+`;
