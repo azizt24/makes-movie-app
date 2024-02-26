@@ -23,12 +23,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Routes
+app.use('/api/v1/movies', movieRoutes);
 
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-//Routes
-app.use('/api/movies', movieRoutes);
 
 const server = app.listen(
   PORT,
