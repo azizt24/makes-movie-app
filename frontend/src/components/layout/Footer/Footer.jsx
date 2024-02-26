@@ -1,11 +1,12 @@
 import { FooterContainer, FooterContent, PoweredBy } from './Footer.style';
 
-const Footer = () => {
+const Footer = ({ isToggled }) => {
   return (
-    <FooterContainer>
+    <FooterContainer isToggled={isToggled}>
       <PoweredBy>Powered by</PoweredBy> <FooterContent />
     </FooterContainer>
   );
 };
 
 export default Footer;
+
