@@ -2,7 +2,7 @@ import axios from 'axios';
 import { HIGHEST_RATED_MOVIES, MOVIE_SMALL_IMAGE } from '../../config/constants.js';
 
 export const fetchHighestRatedMovies = async (req, res) => {
-  const page = req.query.page || 1;
+  const page = req.param.page || 1;
 
   try {
     const { data } = await axios.get(HIGHEST_RATED_MOVIES + page);

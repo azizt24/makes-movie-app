@@ -1,3 +1,7 @@
+import dotenv from 'dotenv';
+
+dotenv.config({ path: './config/config.env' });
+
 const API_KEY = process.env.TMDB_API_KEY;
 
 export const HIGHEST_RATED_MOVIES = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=`;

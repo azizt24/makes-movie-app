@@ -5,7 +5,7 @@ import {
 } from '../../config/constants.js';
 
 export const fetchLatestMovies = async (req, res) => {
-  const page = req.query.page || 1;
+  const page = req.params.page || 1;
   try {
     const response = await axios.get(LATEST_MOVIES_URL + page);
     const movies = response.data.results.map(movie => ({
