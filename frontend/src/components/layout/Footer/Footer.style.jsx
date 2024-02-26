@@ -9,20 +9,21 @@ export const FooterContainer = styled.footer`
   background-color: var(--secondary-color-light);
   color: #fff;
   padding: 20px;
-  width: 100vw;
+  width: %100;
   height: 32px;
+ margin-top : 6px;
 `;
 
 export const FooterContent = styled.div`
   display: flex;
   margin-right: 25px;
   margin-left: 10px;
-  width: 200px;
+  width: 180px;
   height: 17px;
   align-items: center;
-  background-image: url(${TmdbSvg}); // Use the imported SVG as background image
-  background-size: contain; // Adjust background size as needed
-  background-repeat: no-repeat; // Prevent background image from repeating
+  background-image: url(${TmdbSvg});  
+  background-size: contain;  
+  background-repeat: no-repeat;  
   @media screen and (max-width: 768px) {
     margin-right: 15px;
     margin-left: 5px;

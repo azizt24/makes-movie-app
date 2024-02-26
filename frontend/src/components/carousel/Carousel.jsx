@@ -1,12 +1,10 @@
-import  { useState, useEffect } from 'react';
-import Slider from 'react-slick';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './carousel.styles.css'; 
-import Button from '../Button/Button'
+import { CarouselStyling, DetailsButton } from './carousel.styles';
 
 const CarouselComponent = () => {
   const [movies, setMovies] = useState([]);
-  const apiKey = '033a7d652a60b8f9fe88c99d78506501';  
+  const apiKey = '033a7d652a60b8f9fe88c99d78506501';
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -24,39 +22,42 @@ const CarouselComponent = () => {
   }, [apiKey]);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 3500,
     cssEase: 'linear',
   };
-  
 
   return (
-    <div className="carousel-wrapper">
-      <Slider {...settings}>
-        {movies.map((movie) => (
-          <div key={movie.id} className="carousel-slide">
-            <img
-              src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-              alt={movie.title}
-              className="carousel-image"
-            />
-            
-            <div className="carousel-caption">
-              <h3>{movie.title}</h3>
-              <p className="carousel-rating">{movie.vote_average} <span className="carousel-star">★</span></p>
-              <p>{movie.overview}</p>
-            <Button onClick={() => { alert('Details clicked!'); }} text="Details" />
+    <CarouselStyling {...settings}>
+      {movies.map((movie) => (
+        <div key={movie.id} className="carousel-slide">
+          <img
+            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+            alt={movie.title}
+            className="carousel-image"
+          />
+
+          <div className="carousel-caption">
+            <div className="movie-details-box">
+              <h3 className="carousel-title">{movie.title}</h3>
+              <p className="carousel-description">{movie.overview}</p>
+              <div className="details-footer">
+                <span className="year">{movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A'}</span>
+                <p className="carousel-rating">
+                  {movie.vote_average} <span className="carousel-star">★</span>
+                </p>
+                <DetailsButton onClick={() => { alert('Details clicked!'); }}>Details</DetailsButton>
+              </div>
             </div>
-            
           </div>
-        ))}
-      </Slider>
-    </div>
+        </div>
+      ))}
+    </CarouselStyling>
   );
 };
 

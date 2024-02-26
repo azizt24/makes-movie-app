@@ -1,45 +1,30 @@
-import  { useState } from 'react';
-import ReactCardFlip from 'react-card-flip';
-import './MovieCard.css';  
+import   { useState } from 'react';
+import { FlipCard,  FlipCardInner, FlipCardFront, FlipCardBack,  Poster, StarIcon, Year,  Rating,  Title,  DetailsButton,BackTitle} from './MovieCard.styles';  
 
 const MovieCard = ({ movie }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-
   const { title, backdrop_path, release_date, vote_average } = movie;
-  const posterUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
-  const defaultPoster = '/path/to/default/poster.jpg';  
-
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped);
-  };
+  const posterUrl = backdrop_path ? `https://image.tmdb.org/t/p/w500${backdrop_path}` : '/path/to/default/poster.jpg';
+  const year = release_date ? new Date(release_date).getFullYear() : 'N/A';
 
   return (
-    <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-      <div className="movie-card-front" onClick={handleFlip}>
-        <img 
-          src={backdrop_path ? posterUrl : defaultPoster} 
-          alt={title} 
-          className="movie-poster" 
-        />
-        <div className="movie-details">
-          <h3 className="movie-title">{title}</h3>
-          <p className="movie-release-date">{release_date}</p>
-          <div className="movie-rating">
-            <span>{vote_average}</span>
-            <span className="carousel-star">★</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="movie-card-back" onClick={handleFlip}>
-      <img 
-          src={backdrop_path ? posterUrl : defaultPoster} 
-          alt={title} 
-          className="movie-poster-back" 
-        />
-        <button className="details-button">Details</button>
-      </div>
-    </ReactCardFlip>
+    <FlipCard onMouseEnter={() => setIsFlipped(true)} onMouseLeave={() => setIsFlipped(false)}>
+      <FlipCardInner $isFlipped={isFlipped}>
+        <FlipCardFront>
+          <Poster src={posterUrl} alt={title} />
+          <Year>{year}</Year>
+          <Rating>
+  <StarIcon>★</StarIcon> {vote_average.toFixed(1)}
+          </Rating>
+          <Title>{title}</Title>
+        </FlipCardFront>
+        <FlipCardBack>
+          <Poster src={posterUrl} alt={title} style={{ filter: 'brightness(50%)' }} />
+          <DetailsButton>Details</DetailsButton>
+          <BackTitle>{title}</BackTitle>
+        </FlipCardBack>
+      </FlipCardInner>
+    </FlipCard>
   );
 };
 

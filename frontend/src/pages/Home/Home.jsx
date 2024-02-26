@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Carousel from '../../components/carousel/Carousel';
-import Button from '../../components/Button/Button';
 import MovieCard from '../../components/MovieCard/MovieCard';
-
-import './Home.css';
+import MoviesButtons from '../../components/Button/MoviesButtons';
+import Footer from '../../components/layout/Footer/Footer'; // Import Footer component
+import { Content, ButtonsContainer, MovieGrid, HomeContainer, Title, SubTitle } from './Home.styles';
 
 const Home = () => {
   const [latestMovies, setLatestMovies] = useState([]);
@@ -59,25 +59,23 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <div className="home">
-        <h1>Welcome to Movie Finder</h1>
-        <h2>Discover and watch</h2>
-        <div className="container">
-          <Carousel movies={displayLatest ? latestMovies : highestRatedMovies} />
-          <div className="movie-buttons">
-            <Button onClick={handleLatestClick} text="Latest Movies" />
-            <Button onClick={handleHighestRatedClick} text="Highest Rated" />
-          </div>
-          <div className="movie-grid">
-            {displayLatest
-              ? latestMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-              : highestRatedMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-            }
-          </div>
-        </div>
-      </div>
-    </div>
+    <HomeContainer>
+      <Content>
+        <Carousel movies={displayLatest ? latestMovies : highestRatedMovies} />
+        <Title>Welcome to Movie Finder</Title>
+        <SubTitle>Discover and watch</SubTitle>
+        <ButtonsContainer>
+          <MoviesButtons onLatestMovies={handleLatestClick} onHighestRated={handleHighestRatedClick} />
+        </ButtonsContainer>
+      </Content>
+      <MovieGrid>
+        {displayLatest
+          ? latestMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+          : highestRatedMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+        }
+      </MovieGrid>
+      <Footer /> {/* Include Footer component below the MovieGrid */}
+    </HomeContainer>
   );
 };
 
