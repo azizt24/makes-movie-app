@@ -10,14 +10,18 @@ const SharedLayout = () => {
 
 =======
 import { SharedLayout } from '../components';
+import { Error } from '../pages';
 
 //mock components
 
+<<<<<<< HEAD
 >>>>>>> f8b6c607ef4c77276e435f2cb8d8de4272e45ce8
 const Error = () => {
   return <div>Error</div>;
 };
 
+=======
+>>>>>>> 5c628011c90040233bfea66c51746cd399219a64
 const Home = () => {
   return <div>Home</div>;
 };
