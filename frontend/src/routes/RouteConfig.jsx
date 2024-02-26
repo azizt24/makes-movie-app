@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+<<<<<<< HEAD
 import MoviesPage from '../pages/MoviesPage/MoviesPage';
 
 //mock components
@@ -7,6 +8,12 @@ const SharedLayout = () => {
   return <div>SharedLayout</div>;
 };
 
+=======
+import { SharedLayout } from '../components';
+
+//mock components
+
+>>>>>>> f8b6c607ef4c77276e435f2cb8d8de4272e45ce8
 const Error = () => {
   return <div>Error</div>;
 };

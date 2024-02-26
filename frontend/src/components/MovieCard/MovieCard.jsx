@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
-import './MovieCard.css';
+import { Card, Poster, PosterBack, Details, Button } from './MovieCard.styles'; //
 
 const MovieCard = ({ movie }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -15,29 +15,25 @@ const MovieCard = ({ movie }) => {
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <div className="movie-card-front" onClick={handleFlip}>
-        <img
-          src={backdrop_path ? posterUrl : defaultPoster}
-          alt={title}
-          className="movie-poster"
-        />
-        <div className="movie-details">
-          <h3 className="movie-title">{title}</h3>
-          <p className="movie-release-date">{release_date}</p>
-          <div className="movie-rating">
+      <Card onClick={handleFlip}>
+        <Poster src={backdrop_path ? posterUrl : defaultPoster} alt={title} />
+        <Details>
+          <h3>{title}</h3>
+          <p>{release_date}</p>
+          <div>
             <span>{vote_average}</span>
-            <span className="carousel-star">★</span>
+            <span>★</span>
           </div>
-        </div>
-      </div>
-      <div className="movie-card-back" onClick={handleFlip}>
-        <img
+        </Details>
+      </Card>
+
+      <Card onClick={handleFlip}>
+        <PosterBack
           src={backdrop_path ? posterUrl : defaultPoster}
           alt={title}
-          className="movie-poster-back"
         />
-        <button className="details-button">Details</button>
-      </div>
+        <Button>Details</Button>
+      </Card>
     </ReactCardFlip>
   );
 };
