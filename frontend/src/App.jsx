@@ -1,4 +1,3 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/RouteConfig';
 import { Footer } from './components';
@@ -12,16 +11,13 @@ const errorHandler = (error, errorInfo) => {
   console.error('logging', error, errorInfo);
 };
 
-const queryClient = new QueryClient();
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <div>
-        <h1>Movie App</h1>
-        <Footer />
-        <RouterProvider router={router} />
-      </div>
-    </QueryClientProvider>
+    <div>
+      <h1>Movie App</h1>
+      <Footer />
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
