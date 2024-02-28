@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import {
   PaginationWrapper,
   PaginationButton,
@@ -15,36 +16,37 @@ const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
 
-const [displayLatest, setDisplayLatest] = useState(true);
+  const [displayLatest, setDisplayLatest] = useState(true);
 
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCurrentPage(1);
   }, [displayLatest]);
 
+  useEffect(() => {
+    const category = displayLatest ? 'latest' : 'highest-rated';
+    navigate(`movies/${category}/page/${currentPage}`);
+  }, [currentPage, displayLatest, navigate]);
 
-const fetchMovies = async (key, page = currentPage) => {
-  let apiUrl;
-  if (displayLatest) {
-    apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=033a7d652a60b8f9fe88c99d78506501&language=en-US&sort_by=vote_average.desc&vote_average.desc&vote_count.gte=1000&include_adult=false&include_video=false&page=${page}`;
-  } else {
-    apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=033a7d652a60b8f9fe88c99d78506501&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`;
-  }
-  const response = await fetch(apiUrl);
-  const data = await response.json();
-  setMovies(data.results);
-  return data;
-};
-
-
+  const fetchMovies = async (key, page = currentPage) => {
+    let apiUrl;
+    if (displayLatest) {
+      apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=033a7d652a60b8f9fe88c99d78506501&language=en-US&sort_by=vote_average.desc&vote_average.desc&vote_count.gte=1000&include_adult=false&include_video=false&page=${page}`;
+    } else {
+      apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=033a7d652a60b8f9fe88c99d78506501&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`;
+    }
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    setMovies(data.results);
+    return data;
+  };
 
   const { data, isLoading, isError } = useQuery(
     ['movies', currentPage, displayLatest],
     fetchMovies
   );
 
-   
   const totalPages = data ? 205 : 1;
 
   const isFirstPage = currentPage === 1;
@@ -74,7 +76,6 @@ const fetchMovies = async (key, page = currentPage) => {
     }
   };
 
-
   const handleLatestClick = () => {
     setDisplayLatest(true);
   };
@@ -83,9 +84,8 @@ const fetchMovies = async (key, page = currentPage) => {
     setDisplayLatest(false);
   };
 
-
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error fetching data</div>;
+  // if (isLoading) return <div>Loading...</div>;
+  // if (isError) return <div>Error fetching data</div>;
 
   return (
     <div>
@@ -115,12 +115,11 @@ const fetchMovies = async (key, page = currentPage) => {
             } else {
               pageNumber = currentPage - offset + i;
             }
-
             const isCurrentPage = pageNumber === currentPage;
 
             return (
               <NumberButton
-                key={pageNumber}
+                key={i}
                 onClick={() => setCurrentPage(pageNumber)}
                 disabled={pageNumber <= 0 || pageNumber > totalPages}
                 isCurrentPage={isCurrentPage}
@@ -150,8 +149,3 @@ const fetchMovies = async (key, page = currentPage) => {
 };
 
 export default Pagination;
-
-
-
-
-
