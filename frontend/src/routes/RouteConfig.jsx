@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+<<<<<<< HEAD
 import Home from '../pages/Home';
 //mock components
 
@@ -8,6 +9,15 @@ const SharedLayout = () => {
 
 const Error = () => {
   return <div>Error</div>;
+=======
+import { SharedLayout } from '../components';
+import { Error } from '../pages';
+
+//mock components
+
+const Home = () => {
+  return <div>Home</div>;
+>>>>>>> c3e38c50d7d710cd854f8c3d8706c1f1c521811f
 };
 
 const Movie = () => {
@@ -69,12 +79,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'movie/:id',
-        element: <Movie />,
-      },
-      {
         path: 'movies',
         children: [
+          {
+            path: ':id',
+            element: <Movie />,
+          },
           {
             path: ':category/page/:page',
             element: <Movies />,
