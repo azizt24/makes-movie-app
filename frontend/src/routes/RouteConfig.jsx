@@ -1,15 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error } from '../pages';
+import { Error, MoviePage } from '../pages';
 
 //mock components
 
 const Home = () => {
   return <div>Home</div>;
-};
-
-const Movie = () => {
-  return <div>Movie</div>;
 };
 
 const Movies = () => {
@@ -71,7 +67,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ':id',
-            element: <Movie />,
+            element: <MoviePage />,
           },
           {
             path: ':category/page/:page',
