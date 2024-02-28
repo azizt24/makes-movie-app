@@ -56,7 +56,7 @@ const AdvancedSearch = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <SharedLayout />,
     errorElement: <Error />,
     children: [
       {
