@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { CarouselStyling, DetailsButton } from './Carousel.styles';
+import {Content, CarouselStyling, DetailsButton } from './carousel.styles';
 
 const CarouselComponent = () => {
   const [movies, setMovies] = useState([]);
@@ -33,6 +33,7 @@ const CarouselComponent = () => {
   };
 
   return (
+  <Content> 
     <CarouselStyling {...settings}>
       {movies.map((movie) => (
         <div key={movie.id} className="carousel-slide">
@@ -42,22 +43,24 @@ const CarouselComponent = () => {
             className="carousel-image"
           />
 
-          <div className="carousel-caption">
-            <div className="movie-details-box">
-              <h3 className="carousel-title">{movie.title}</h3>
-              <p className="carousel-description">{movie.overview}</p>
-              <div className="details-footer">
-                <span className="year">{movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A'}</span>
-                <p className="carousel-rating">
-                  {movie.vote_average} <span className="carousel-star">★</span>
-                </p>
-                <DetailsButton onClick={() => { alert('Details clicked!'); }}>Details</DetailsButton>
-              </div>
-            </div>
-          </div>
-        </div>
+<div className="carousel-caption">
+  <div className="movie-details-box">
+    <h3 className="carousel-title">{movie.title}</h3>
+    <p className="carousel-description">{movie.overview}</p>
+  </div>
+  <div className="details-footer">
+    <DetailsButton onClick={() => { alert('Details clicked!'); }}>Details</DetailsButton>
+    <span className="year">{movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A'}</span>
+    <div className="carousel-rating">
+        <span className="carousel-star">★</span>{movie.vote_average}
+    </div>
+  </div>
+</div>
+
+ </div>
       ))}
-    </CarouselStyling>
+ </CarouselStyling>
+ </Content>
   );
 };
 

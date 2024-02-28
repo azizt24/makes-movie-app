@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Carousel from '../../components/carousel/Carousel';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import MoviesButtons from '../../components/Button/MoviesButtons';
-import Footer from '../../components/layout/Footer/Footer'; // Import Footer component
-import { Content, ButtonsContainer, MovieGrid, HomeContainer, Title, SubTitle } from './Home.styles';
+ 
+import {  ButtonsContainer, MovieGrid, HomeContainer, Title, SubTitle } from './Home.styles';
 
 const Home = () => {
   const [latestMovies, setLatestMovies] = useState([]);
@@ -60,21 +60,21 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      <Content>
+       
         <Carousel movies={displayLatest ? latestMovies : highestRatedMovies} />
         <Title>Welcome to Movie Finder</Title>
         <SubTitle>Discover and watch</SubTitle>
         <ButtonsContainer>
           <MoviesButtons onLatestMovies={handleLatestClick} onHighestRated={handleHighestRatedClick} />
         </ButtonsContainer>
-      </Content>
+       
       <MovieGrid>
         {displayLatest
           ? latestMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
           : highestRatedMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
         }
       </MovieGrid>
-      <Footer /> {/* Include Footer component below the MovieGrid */}
+  
     </HomeContainer>
   );
 };

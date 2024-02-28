@@ -2,15 +2,23 @@ import styled from 'styled-components';
 
 export const HomeContainer = styled.div`
   background-color: var(--secondary-color);
-`;
-
-export const Content = styled.div`
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 115vh; /* Adjust the minimum height as needed */
+  min-height: 115vh; 
+   
 `;
+
+// export const Content = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   min-height: 115vh; 
+ 
+// `;
 
 
 export const Title = styled.h1`
@@ -52,16 +60,7 @@ export const MovieCardContainer = styled.div`
   margin-bottom: 20px;
 `;
 
- 
 
- 
- 
-
- 
-
- 
-
- 
 export const CarouselContainer = styled.div`
   width: 100%;
   margin-top: 20px;

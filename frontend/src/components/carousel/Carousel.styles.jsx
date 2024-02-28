@@ -1,28 +1,31 @@
 import styled from 'styled-components';
 import Slider from 'react-slick';
 
+
+
 export const CarouselStyling = styled(Slider)`
-  max-width: 100%;
-  margin: auto;
-  padding: 5px 10%;
-  width: 1300px;
-  height: 400px;
+  width: 1506px;   
+  height: 500px;   
+
+
   margin-top: 2rem;
-  position: relative;  
+  position: relative;
+  overflow: hidden;  
 
   .carousel-slide {
     position: relative;
+     
   }
 
   .carousel-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
+    width: 100%;   
+    height: 400px;   
+    object-fit: cover;  
   }
 
   .carousel-caption {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.7);
@@ -30,11 +33,15 @@ export const CarouselStyling = styled(Slider)`
     padding: 20px;
     text-align: left;
     width: 700px;
+     
+    
   }
 
   .movie-details-box {
     display: flex;
     flex-direction: column;
+    overflow: auto;
+    word-wrap: break-word;
   }
 
   .carousel-title {
@@ -47,33 +54,46 @@ export const CarouselStyling = styled(Slider)`
   .carousel-description {
     font-size: 1.2rem;
     margin-top: 5px;
-    color: var(--text-white); /* Added color */
+    color: var(--text-white);
+    overflow : auto;
+    width: 660px;  
+  height: 40px;  
+  line-height: 30px;  
+  overflow: hidden;  
+  white-space: nowrap;  
+  text-overflow: ellipsis;  
+   
+  padding: 0 10px; 
   }
 
   .details-footer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    gap: 10px; 
   }
 
   .year {
     color: var(--text-white);
+    font-size: 1.5rem;
+    margin-top: 5px;
   }
 
   .carousel-rating {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-top: 5px;
+    margin-left : 5px
+    
   }
 
   .carousel-star {
     color: #ffd700;
     margin-right: 5px;
+    font-size: 2rem;
   }
 
   .slick-arrow {
     font-size: 2rem;
-    position: absolute;
+    position: ;
     top: 50%;
     z-index: 99;
   }
@@ -100,7 +120,10 @@ export const CarouselStyling = styled(Slider)`
 `;
 
 export const DetailsButton = styled.button`
-  border: none;
+height:37px;
+width:104px;
+
+border: none;
   background-color: var(--primary-color);
   color: ${props => props.white ? 'var(--text-white)' : 'var(--text-dark)'};
   font-weight: bold;
@@ -109,7 +132,7 @@ export const DetailsButton = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-
+  order: -1
   &:hover {
     background-color: var(--primary-color-light);
     transform: translateY(-1px);

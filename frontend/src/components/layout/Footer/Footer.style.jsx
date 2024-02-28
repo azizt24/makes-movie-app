@@ -13,7 +13,7 @@ export const FooterContainer = styled.footer`
       : 'var(--secondary-color-light)'};
   color: #fff;
   padding: 20px;
-  width: %100;
+  width: 100vw;
   height: 32px;
  margin-top : 6px;
 `;
