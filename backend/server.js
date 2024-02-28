@@ -4,6 +4,7 @@ import logger from './config/logger.js';
 import connectDB from './db/db.js';
 import errorHandler from './middleware/errorHandler.js';
 import morgan from 'morgan';
+import authRoutes from './routes/authRoutes.js'
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
@@ -15,6 +16,7 @@ connectDB();
 
 //MiddleWare
 app.use(express.json());
+app.use('/auth', authRoutes);
 
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
