@@ -1,14 +1,16 @@
 import express from 'express';
-import { fetchHomeCarouselMovies } from '../controllers/MovieCont/homeCarouselMovies.js';
-import { fetchHighestRatedMovies } from '../controllers/MovieCont/highestRatedMovies.js';
-import { fetchLatestMovies } from '../controllers/MovieCont/latestMovies.js';
+import {
+  fetchHomeCarouselMovies,
+  fetchHighestRatedMovies,
+  fetchLatestMovies,
+} from '../controllers/movies.js';
 
 const router = express.Router();
 
 router.get('/home-carousel', fetchHomeCarouselMovies);
 
-router.get('/highest-rated', fetchHighestRatedMovies);
+router.get('/highest-rated/page/:page', fetchHighestRatedMovies);
 
-router.get('/latest', fetchLatestMovies);
+router.get('/latest/page/:page', fetchLatestMovies);
 
 export default router;
