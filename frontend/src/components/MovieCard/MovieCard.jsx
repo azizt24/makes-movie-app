@@ -1,10 +1,10 @@
 import   { useState } from 'react';
-import { FlipCard,  FlipCardInner, FlipCardFront, FlipCardBack,  Poster, StarIcon, Year,  Rating,  Title,  DetailsButton,BackTitle} from './MovieCard.styles';  
+import { FlipCard,  FlipCardInner, FlipCardFront, FlipCardBack, PosterB,  Poster, StarIcon, Year,  Rating,  Title,  DetailsButton,BackTitle} from './MovieCard.styles';  
 
 const MovieCard = ({ movie }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const { title, backdrop_path, release_date, vote_average } = movie;
-  const posterUrl = backdrop_path ? `https://image.tmdb.org/t/p/w500${backdrop_path}` : '/path/to/default/poster.jpg';
+  const { title, poster_path , release_date, vote_average } = movie;
+  const posterUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : '/path/to/default/poster.jpg';
   const year = release_date ? new Date(release_date).getFullYear() : 'N/A';
 
   return (
@@ -19,7 +19,7 @@ const MovieCard = ({ movie }) => {
           <Title>{title}</Title>
         </FlipCardFront>
         <FlipCardBack>
-          <Poster src={posterUrl} alt={title} style={{ filter: 'brightness(50%)' }} />
+          <PosterB src={posterUrl} alt={title}  />
           <DetailsButton>Details</DetailsButton>
           <BackTitle>{title}</BackTitle>
         </FlipCardBack>

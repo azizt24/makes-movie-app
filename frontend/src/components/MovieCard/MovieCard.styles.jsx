@@ -23,12 +23,33 @@ export const FlipCardFront = styled.div`
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background-color: var(--primary-color);
+  box-shadow: 0 5px 15px var(--text-dark);
 `;
 
 export const FlipCardBack = styled(FlipCardFront)`
   transform: rotateY(180deg);
   background-color: var(--primary-color-light);
-  box-shadow: 0 5px 15px var(--primary-color-light);
+  box-shadow: 0 5px 15px var(--text-dark);
+   
+`;export const PosterB = styled.div`
+background-image: url(${props => props.src});
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 100%;  
+  height: 100%;  
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:var(--primary-color-light);
+    mix-blend-mode:  screen;
+    opacity: 0.9;
+  }
 `;
 
 export const Poster = styled.img`
@@ -71,19 +92,23 @@ export const StarIcon = styled.span`
 
 export const Title = styled.div`
   position: absolute;
-  bottom: 10px;
+  height: 27px;
+  bottom: 0px;
   width: 100%;
   background-color: var(--primary-color);
   color: var(--text-dark);
   color: bold;
-  padding: 5px;
+  padding: 2px;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  overflow: hidden;  
+  white-space: nowrap;  
+  text-overflow: ellipsis;
 `;
 
 export const BackTitle = styled(Title)`
   position: absolute;
-  padding: 7px 7px; 
+  padding: 2px 2px; 
 `;
 
 export const DetailsButton = styled.button`
@@ -102,10 +127,10 @@ export const DetailsButton = styled.button`
   right: 0;
   margin: 0 auto;  
   z-index: 1;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition effect for smooth color and position change */
+  transition: background-color 0.3s ease, transform 0.3s ease;  
 
   &:hover {
-    background-color: var(--primary-color-light); /* Change background color on hover */
-    transform: translateY(-1px); /* Move the button up by 1px when hovered over */
+    background-color: var(--primary-color-light);  
+    transform: translateY(-1px);  
   }
 `;

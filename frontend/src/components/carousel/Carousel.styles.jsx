@@ -4,11 +4,11 @@ import Slider from 'react-slick';
 
 
 export const CarouselStyling = styled(Slider)`
-  width: 1506px;   
+  width: 1206px;   
   height: 500px;   
-
-
-  margin-top: 2rem;
+  z-index: 0;
+  position: fixed;
+  margin-top: 10rem;
   position: relative;
   overflow: hidden;  
 
@@ -19,7 +19,7 @@ export const CarouselStyling = styled(Slider)`
 
   .carousel-image {
     width: 100%;   
-    height: 400px;   
+    height: 500px;   
     object-fit: cover;  
   }
 
@@ -92,20 +92,26 @@ export const CarouselStyling = styled(Slider)`
   }
 
   .slick-arrow {
-    font-size: 2rem;
-    position: ;
-    top: 50%;
-    z-index: 99;
+     
+     
+  position: absolute;
+  top: 50%;
+  z-index: 99;
+  transform: translateY(-50%);
+  
+   
+   
   }
 
   .slick-prev {
-    left: 5px;
-    transform: translateX(900%);
+    left: 25px;
+     
+    color: var(--primary-color);
   }
 
   .slick-next {
-    right: 15px;
-    transform: translateX(-900%);
+    right: 25px;
+    color: var(--primary-color);
   }
 
   .slick-prev::before,

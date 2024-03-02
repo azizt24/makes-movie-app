@@ -13,9 +13,10 @@ export const FooterContainer = styled.footer`
       : 'var(--secondary-color-light)'};
   color: #fff;
   padding: 20px;
-  width: 100vw;
+  width: 100%;
   height: 32px;
- margin-top : 6px;
+  
+ 
 `;
 
 export const FooterContent = styled.div`

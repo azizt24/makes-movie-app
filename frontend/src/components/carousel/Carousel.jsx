@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Content, CarouselStyling, DetailsButton } from './carousel.styles';
+import { CarouselStyling, DetailsButton } from './carousel.styles';
 
 const CarouselComponent = () => {
   const [movies, setMovies] = useState([]);
@@ -22,18 +22,18 @@ const CarouselComponent = () => {
   }, [apiKey]);
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3500,
-    cssEase: 'linear',
+     
   };
 
   return (
-  <Content> 
+   
     <CarouselStyling {...settings}>
       {movies.map((movie) => (
         <div key={movie.id} className="carousel-slide">
@@ -60,7 +60,7 @@ const CarouselComponent = () => {
  </div>
       ))}
  </CarouselStyling>
- </Content>
+  
   );
 };
 

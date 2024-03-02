@@ -10,7 +10,7 @@ const Home = () => {
   const [latestMovies, setLatestMovies] = useState([]);
   const [highestRatedMovies, setHighestRatedMovies] = useState([]);
   const [displayLatest, setDisplayLatest] = useState(true);
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = '033a7d652a60b8f9fe88c99d78506501';
 
   useEffect(() => {
     fetchLatestMovies();

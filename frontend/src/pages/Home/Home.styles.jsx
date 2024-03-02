@@ -2,26 +2,23 @@ import styled from 'styled-components';
 
 export const HomeContainer = styled.div`
   background-color: var(--secondary-color);
-  width: 100vw;
+  width: 100%;
+  height: auto; /* Adjust the height based on content */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 115vh; 
-   
-`;
+  min-height: 100vh; /* Minimum height to at least cover the viewport */
 
-// export const Content = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   min-height: 115vh; 
- 
-// `;
+  @media (max-width: 768px) {
+    min-height: auto; /* Allow container to adjust based on content */
+    padding: 20px;
+  }
+`;
 
 
 export const Title = styled.h1`
+margin-top: 5px;
   color: var(--text-white);
 `;
 
@@ -38,14 +35,18 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const MovieGrid = styled.div`
-  display: grid;
+display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 55px;
-  width: 100%;
+  gap: 50px;
+  width: 90%;
   margin-top: 20px;
+  margin-bottom: 20px;
   background-color: var(--secondary-color);
-  position: center;
- 
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
 `;
 
 export const Link = styled.a`
