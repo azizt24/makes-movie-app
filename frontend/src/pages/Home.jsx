@@ -10,7 +10,7 @@ const Home = () => {
     error,
   } = useFetch(HIGHEST_RATED_MOVIES);
 
-  if (isPending) return <div>Loading...</div>;
+  if (isPending) return <div>Pending...</div>;
   if (isError) return <div>Error fetching movies: {error.message}</div>;
 
   return (

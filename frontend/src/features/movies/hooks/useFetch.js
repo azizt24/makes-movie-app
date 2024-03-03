@@ -8,10 +8,10 @@ export const useFetch = (url, queryKey = '') => {
   validateUrl(url);
   validateQueryKey(queryKey, queryKeyTags);
 
-  const { isLoading, data, isError, error } = useQuery(queryKey, async () => {
+  const { isPending, data, isError, error } = useQuery(queryKey, async () => {
     const response = await axios.get(url);
     return response.data;
   });
 
-  return { isLoading, isError, data, error };
+  return { isPending, isError, data, error };
 };
