@@ -1,48 +1,5 @@
 import styled from 'styled-components';
 
-// export const OverlayContainer = styled.div`
-//   height: 50vh;
-//   position: relative;
-//   z-index: 1;
-//   transform: skewY(2.5deg) translateY(-30px);
-//   color: var(--text-white);
-//   display: flex;
-//   justify-content: center;
-
-//   @media screen and (max-width: 500px) {
-//     height: 45vh;
-//   }
-
-//   &:after {
-//     content: '';
-//     position: absolute;
-//     height: 100%;
-//     width: 100%;
-//     top: 0;
-//     left: 0;
-//     /* z-index: -1; */
-//     overflow: hidden;
-//     background: ${props => `url(${props.Poster})`};
-
-//     /* background: red; */
-//     /* background: ${props => props.Poster}; */
-//     background-size: 100% 100%;
-//     background-repeat: cover;
-//     background-attachment: inherit;
-//   }
-
-//   /* position: absolute;
-//   width: 42%;
-//   height: 35%;
-//   top: 0;
-//   margin-top: 0;
-//   padding-top: 2%;
-//   color: #69bada;
-//   background: rgba(0, 0, 0, 0.5);
-//   border-radius: 8px;
-//   margin-left: 13%; */
-// `;
-
 export const DetailContainer = styled.div`
   transform: skewY(-2.5deg);
   background: rgba(0, 0, 0, 0.5);
