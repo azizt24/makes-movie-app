@@ -1,12 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
+import Home from '../pages/Home/Home.jsx'
 import { SharedLayout } from '../components';
 import { Error } from '../pages';
 
 //mock components
-
-const Home = () => {
-  return <div>Home</div>;
-};
 
 const Movie = () => {
   return <div>Movie</div>;
