@@ -1,11 +1,4 @@
 import winston from 'winston';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-// To handle __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 // Define your custom logging levels
 const customLevels = {
@@ -51,27 +44,7 @@ const logger = winston.createLogger({
     new winston.transports.Console({
       level: 'debug', // Log only if info.level less than or equal to this level
     }),
-    // File transport for logging
-    new winston.transports.File({
-      filename: path.join(__dirname, 'logs/error.log'),
-      level: 'error', // Log only if info.level less than or equal to this level
-      format: winston.format.combine(
-        winston.format.uncolorize(), // Remove color codes for file logging
-        logFormat
-      ),
-    }),
-    new winston.transports.File({
-      filename: path.join(__dirname, 'logs/combined.log'),
-    }),
   ],
 });
-
-// Stream object with a write function that will be used by morgan
-logger.stream = {
-  write: function (message) {
-    // Use the 'info' log level so the output will be picked up by both transports (console and file)
-    logger.info(message.trim());
-  },
-};
 
 export default logger;
