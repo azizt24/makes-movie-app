@@ -1,6 +1,16 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 import asyncHandler from '../middleware/asyncHandler.js';
-import { CAST_QUERY_URL, MOVIE_SMALL_IMAGE } from '../config/constants.js';
+import {
+  HIGHEST_RATED_MOVIES,
+  HOME_CAROUSEL_MOVIES,
+  LATEST_MOVIES_URL,
+  MOVIE_BIG_IMAGE,
+  MOVIE_SMALL_IMAGE,
+  CAST_QUERY_URL,
+} from '../config/constants.js';
+
+dotenv.config({ path: './config/config.env' });
 
 const API_KEY = process.env.TMDB_API_KEY;
 
