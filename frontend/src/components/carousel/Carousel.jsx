@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { CarouselStyling, DetailsButton } from './carousel.styles';
+import { CarouselStyling, DetailsButton } from './Carousel.styles';
 
 const CarouselComponent = () => {
   const [movies, setMovies] = useState([]);
