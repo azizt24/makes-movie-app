@@ -13,3 +13,6 @@ export const LATEST_MOVIES_URL = 'https://api.themoviedb.org/3/movie/popular';
 export const MOVIE_SMALL_IMAGE = 'https://image.tmdb.org/t/p/w185/';
 
 export const MOVIE_BIG_IMAGE = 'https://image.tmdb.org/t/p/w1280/';
+
+export const CAST_QUERY_URL = (name, page) =>
+  `https://api.themoviedb.org/3/search/person?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(name)}&page=${page}&include_adult=false`;
