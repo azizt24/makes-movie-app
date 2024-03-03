@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 
 
 export const CarouselStyling = styled(Slider)`
-  width: 1206px;   
+  width: 1506px;   
   height: 500px;   
   z-index: 0;
   position: fixed;
