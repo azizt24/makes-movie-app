@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 import asyncHandler from '../middleware/asyncHandler.js';
 import {
   HIGHEST_RATED_MOVIES,
@@ -7,11 +8,14 @@ import {
   MOVIE_BIG_IMAGE,
   MOVIE_SMALL_IMAGE,
 } from '../config/constants.js';
-import logger from '../config/logger.js';
 
+dotenv.config({ path: './config/config.env' });
 
-export const fetchHomeCarouselMovies = asyncHandler(async (req, res) => {
+const API_KEY = process.env.TMDB_API_KEY;
+
+export const fetchHomeCarouselMovies = asyncHandler(async (_, res) => {
   const response = await axios.get(HOME_CAROUSEL_MOVIES);
+
   const movies = response.data.results.slice(0, 5).map(movie => ({
     image: `${MOVIE_BIG_IMAGE}${movie.backdrop_path}`,
     title: movie.title,
@@ -20,20 +24,28 @@ export const fetchHomeCarouselMovies = asyncHandler(async (req, res) => {
     rating: movie.vote_average,
     id: movie.id,
   }));
+
   res.json(movies);
 });
 
 export const fetchHighestRatedMovies = asyncHandler(async (req, res) => {
+  const page = req.params.page || 1;
 
-  const page = req.params.page || 1; 
-
-  const { data } = await axios.get(HIGHEST_RATED_MOVIES + page);
+  const { data } = await axios.get(HIGHEST_RATED_MOVIES, {
+    params: {
+      api_key: API_KEY,
+      sort_by: 'vote_average.desc',
+      'vote_count.gte': 1000,
+      include_adult: false,
+      page,
+    },
+  });
 
   const movies = data.results.map(movie => ({
     image: `${MOVIE_SMALL_IMAGE}${movie.poster_path}`,
     title: movie.title,
     year: movie.release_date.slice(0, 4),
-    rating: movie.vote_average,
+    rating: movie.vote_average.toFixed(1),
     id: movie.id,
   }));
 
@@ -46,19 +58,26 @@ export const fetchHighestRatedMovies = asyncHandler(async (req, res) => {
 
 export const fetchLatestMovies = asyncHandler(async (req, res) => {
   const page = req.params.page || 1;
-  const url = new URL(LATEST_MOVIES_URL);
-  logger.info(url);  
-  url.searchParams.set('page', page.toString());  
 
-  const { data } = await axios.get(url.toString());
+  const { data } = await axios.get(LATEST_MOVIES_URL, {
+    params: {
+      api_key: API_KEY,
+      language: 'en-US',
+      page,
+    },
+  });
+
   const movies = data.results.map(movie => ({
     image: `${MOVIE_SMALL_IMAGE}${movie.poster_path}`,
     title: movie.title,
-    year:  movie.release_date.slice(0,4),
-    rating: movie.vote_average,
+    year: movie.release_date.slice(0, 4),
+    rating: movie.vote_average.toFixed(1),
     id: movie.id,
   }));
 
-  res.json({ movies, currentPage: page, totalPages: data.total_pages });
-
+  res.json({
+    currentPage: page,
+    totalPages: data.total_pages,
+    movies,
+  });
 });
