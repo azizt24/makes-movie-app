@@ -1,14 +1,19 @@
 import styled from 'styled-components';
-import Modal from 'react-modal';
 
 export const WidgetContainer = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url(${props => props.backgroundImage});
   background-size: contain;
   background-repeat: no-repeat;
-  width: 200px;
-  height: 250px;
-  margin-top: -500px;
-  margin-left: 1100px;
+  width: 20rem;
+  height: 23rem;
+  top: 70%;
+  left: 83%;
+
+  z-index: 1;
   transition: transform 0.5s ease;
   transform-origin: top center;
   transform: translate(-50%, -50%);
@@ -16,20 +21,35 @@ export const WidgetContainer = styled.div`
   &:hover {
     transform: translate(-50%, -50%) rotate(10deg) scale(1.2);
   }
+  @media screen and (max-width: 500px) {
+    top: 400px;
+    left: 73%;
+  }
 `;
 export const Arrow = styled.div`
-  width: 50px;
+  margin-right: 2.3vw;
+  width: 45%;
+  height: 30%;
   font-size: 30px;
   color: #79d3f3;
-  position: absolute;
-  top: 35%;
-  left: 30%;
+  cursor: pointer;
+  position: relative;
   transition: color 0.5s ease;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
 
   &:hover {
     color: #042d49;
+  }
+  &:after {
+    content: '▶';
+    position: absolute;
+    font-size: 4rem;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s;
   }
 `;
 

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -15,13 +14,13 @@ import {
   CloseButton,
 } from './TrailerWidgetStyles';
 
-const TrailerWidget = ({ movie }) => {
+const TrailerWidget = ({ movie, id }) => {
   const [Trailers, setTrailers] = useState([]);
 
   const [isOpen, setIsOpen] = useState(false);
 
   // const url=`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${themoviedb_API_KEY}&language=en-US`;
-  const url2 = `https://api.themoviedb.org/3/movie/tt2527338/videos?api_key=2a5b2bfab3731d2da0e262fb42a86194&language=en-US`;
+  const url2 = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=2a5b2bfab3731d2da0e262fb42a86194&language=en-US`;
 
   useEffect(() => {
     fetch(url2)
@@ -41,7 +40,7 @@ const TrailerWidget = ({ movie }) => {
   return (
     <>
       <WidgetContainer backgroundImage={movie.Poster} onClick={openModal}>
-        <Arrow>▶</Arrow>
+        <Arrow></Arrow>
       </WidgetContainer>
 
       {isOpen && (

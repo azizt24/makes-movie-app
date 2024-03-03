@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CastCard = styled.div`
-  margin-top: 300px;
+  margin-top: 200px;
   width: 160px;
   height: 330px;
   background-color: #49bcec;
@@ -38,7 +38,7 @@ export const Castimg = styled.img`
 export const arrowStyles = {
   position: 'absolute',
   zIndex: 2,
-  top: 'calc(52% + 30px)',
+  top: 'calc(60% - 30px)',
 
   width: 30,
   height: 30,

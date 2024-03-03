@@ -10,10 +10,9 @@ import {
   Castimg,
   arrowStyles,
 } from './MovieCastCarouelStyles';
-const MovieCastCarouel = ({ movie }) => {
+const MovieCastCarouel = ({ id }) => {
   const [Cast, setCast] = useState([]);
-
-  const url = `https://api.themoviedb.org/3/movie/tt2527338/credits?api_key=2a5b2bfab3731d2da0e262fb42a86194&language=en-US`;
+  const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=2a5b2bfab3731d2da0e262fb42a86194&language=en-US`;
   useEffect(() => {
     fetch(url)
       .then(response => response.json())

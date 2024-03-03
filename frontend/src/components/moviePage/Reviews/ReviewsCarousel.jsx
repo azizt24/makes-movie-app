@@ -23,7 +23,7 @@ const ReviewsCarousel = ({ reviews }) => {
     position: 'absolute',
     zIndex: 2,
 
-    top: 'calc(52% - 25px)',
+    top: '60% ',
 
     width: 30,
     height: 30,
@@ -48,7 +48,7 @@ const ReviewsCarousel = ({ reviews }) => {
             type="button"
             onClick={onClickHandler}
             title={label}
-            style={{ ...arrowStyles, left: 15 }}
+            style={{ ...arrowStyles, left: 18 }}
           >
             &lt;
           </button>
@@ -60,7 +60,7 @@ const ReviewsCarousel = ({ reviews }) => {
             type="button"
             onClick={onClickHandler}
             title={label}
-            style={{ ...arrowStyles, right: 15 }}
+            style={{ ...arrowStyles, right: 18 }}
           >
             &gt;
           </button>

@@ -1,6 +1,6 @@
 .carousel-slide {
   margin-top: 100px;
-  margin-left: 45px;
+  margin-left: 35px;
   padding: 20px;
   text-align: left;
   position: relative;
@@ -8,7 +8,7 @@
   color: #2a6496;
   font-size: 15px;
   font-weight: 400;
-  width: 90%;
+  width: 80%;
 }
 .carousel-slide p {
   margin-left: 50px;
@@ -16,6 +16,10 @@
   border-right: 2px solid #49bcec;
   padding-left: 20px;
   padding-right: 20px;
+  @media screen and (max-width: 500px) {
+    font-size: 1.3rem;
+    margin-left: 0;
+  }
 }
 .show-more {
   background: none;

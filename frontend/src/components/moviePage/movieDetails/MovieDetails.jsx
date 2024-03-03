@@ -9,7 +9,9 @@ import {
   RatingPair,
   LogoImage,
   RatingRow,
-  OverlayContainer,
+  MovieTitle,
+  SubTitle,
+  DetailContainer,
 } from './movieDetailsStyles';
 
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
@@ -40,54 +42,61 @@ const MovieDetails = ({ movie }) => {
     return () => clearInterval(interval);
   }, [targetProgress]);
   return (
-    <OverlayContainer>
-      <h2>{movie.Title}</h2>
-      {movie.Genre} | {movie.Runtime} | {movie.Language}
-      <RatingRow>
-        {movie.Ratings &&
-          movie.Ratings.map((rating, index) => (
-            <RatingPair key={index}>
-              <LogoImage
-                src={ratingSources[rating.Source]}
-                alt={rating.Source}
-              />
-              <RatingText>{rating.Value}</RatingText>
-            </RatingPair>
-          ))}
+    <>
+      <DetailContainer>
+        <MovieTitle>
+          {movie.Title} ({movie.Year})
+        </MovieTitle>
+        <SubTitle>
+          {movie.Genre} | {movie.Runtime} | {movie.Language}
+        </SubTitle>
 
-        <div
-          style={{
-            width: 80,
-            height: 80,
-            overflow: 'hidden',
-            backgroundColor: 'rgb(110, 202, 238)',
-            borderRadius: '50%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <CircularProgressbarWithChildren
-            value={progress}
-            styles={{
-              root: {},
-              path: {
-                stroke: `rgba(50, 170, 222, ${progress / 100})`,
-                strokeWidth: '40',
-              },
-              trail: {
-                stroke: '#0c3675',
-                strokeWidth: '40',
-              },
+        <RatingRow>
+          {movie.Ratings &&
+            movie.Ratings.map((rating, index) => (
+              <RatingPair key={index}>
+                <LogoImage
+                  src={ratingSources[rating.Source]}
+                  alt={rating.Source}
+                />
+                <RatingText>{rating.Value}</RatingText>
+              </RatingPair>
+            ))}
+
+          <div
+            style={{
+              width: 80,
+              height: 80,
+              overflow: 'hidden',
+              backgroundColor: 'rgb(110, 202, 238)',
+              borderRadius: '50%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
-            <strong style={{ color: 'rgb(6, 57, 117)', fontSize: '1.8rem' }}>
-              {progress}%
-            </strong>
-          </CircularProgressbarWithChildren>
-        </div>
-      </RatingRow>
-    </OverlayContainer>
+            <CircularProgressbarWithChildren
+              value={progress}
+              styles={{
+                root: {},
+                path: {
+                  stroke: `rgba(50, 170, 222, ${progress / 100})`,
+                  strokeWidth: '40',
+                },
+                trail: {
+                  stroke: '#0c3675',
+                  strokeWidth: '40',
+                },
+              }}
+            >
+              <strong style={{ color: 'rgb(6, 57, 117)', fontSize: '1.8rem' }}>
+                {progress}%
+              </strong>
+            </CircularProgressbarWithChildren>
+          </div>
+        </RatingRow>
+      </DetailContainer>
+    </>
   );
 };
 
