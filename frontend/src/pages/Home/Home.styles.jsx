@@ -3,15 +3,15 @@ import styled from 'styled-components';
 export const HomeContainer = styled.div`
   background-color: var(--secondary-color);
   width: 100%;
-  height: auto; /* Adjust the height based on content */
+  height: auto;  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Minimum height to at least cover the viewport */
+  min-height: 100vh;  
 
   @media (max-width: 768px) {
-    min-height: auto; /* Allow container to adjust based on content */
+    min-height: auto;  
     padding: 20px;
   }
 `;

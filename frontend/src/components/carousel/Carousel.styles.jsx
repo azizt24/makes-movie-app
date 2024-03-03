@@ -31,8 +31,9 @@ export const CarouselStyling = styled(Slider)`
     background: rgba(0, 0, 0, 0.7);
     color: var(--text-white);
     padding: 20px;
+    border-radius: 8px;
     text-align: left;
-    width: 700px;
+    width: 80%;
      
     
   }
@@ -56,7 +57,7 @@ export const CarouselStyling = styled(Slider)`
     margin-top: 5px;
     color: var(--text-white);
     overflow : auto;
-    width: 660px;  
+    width: 100%;  
   height: 40px;  
   line-height: 30px;  
   overflow: hidden;  
