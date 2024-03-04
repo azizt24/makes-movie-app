@@ -11,7 +11,6 @@ export const useFetch = (url, queryKey = '') => {
   const { isPending, data, isError, error } = useQuery({
     queryKey: [queryKey],
     queryFn: async () => {
-      console.log(url);
       const { data } = await axios.get(url);
       return data;
     },

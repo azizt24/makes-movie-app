@@ -1,51 +1,42 @@
 import { useState } from 'react';
 import Carousel from '../../components/carousel/Carousel';
-import MovieCard from '../../components/MovieCard/MovieCard';
 import MoviesButtons from '../../components/Button/MoviesButtons';
 import { useFetch } from '../../features/movies/hooks/useFetch';
 import {
   ButtonsContainer,
-  MovieGrid,
   HomeContainer,
   Title,
   SubTitle,
 } from './Home.styles';
+import MoviesList from '../../features/movies/components/MoviesList';
 
 const Home = () => {
   const [displayLatest, setDisplayLatest] = useState(true);
 
-  const {
-    data: latestMoviesData,
-    isPending: isPendingLatest,
-    isError: latestIsError,
-    error: latestError,
-  } = useFetch(
+  const { data: carouselMovies, isPending: isPendingCarousel } = useFetch(
+    `${import.meta.env.VITE_BACKEND_URL}movies/home-carousel`,
+    'home-carousel'
+  );
+  const { data: latestMovies, isPending: isPendingLatest } = useFetch(
     `${import.meta.env.VITE_BACKEND_URL}movies/latest/page/1`,
     'latestMovies'
   );
-  const {
-    data: highestRatedMoviesData,
-    isPending: isPendingHighestRated,
-    isError: highestIsError,
-    error: highestError,
-  } = useFetch(
-    `${import.meta.env.VITE_BACKEND_URL}movies/highest-rated/page/1`,
-    'highestRatedMovies'
-  );
-
-  const { latestMovies } = latestMoviesData;
-  const { highestRatedMovies } = highestRatedMoviesData;
+  const { data: highestRatedMovies, isPending: isPendingHighestRated } =
+    useFetch(
+      `${import.meta.env.VITE_BACKEND_URL}movies/highest-rated/page/1`,
+      'highestRatedMovies'
+    );
 
   const handleLatestClick = () => setDisplayLatest(true);
   const handleHighestRatedClick = () => setDisplayLatest(false);
 
-  if (isPendingLatest || isPendingHighestRated) {
+  if (isPendingLatest || isPendingHighestRated || isPendingCarousel) {
     return <div>Pending...</div>;
   }
 
   return (
     <HomeContainer>
-      <Carousel movies={displayLatest ? latestMovies : highestRatedMovies} />
+      <Carousel movies={carouselMovies} />
       <Title>Welcome to Movie Finder</Title>
       <SubTitle>Discover and watch</SubTitle>
       <ButtonsContainer>
@@ -54,11 +45,11 @@ const Home = () => {
           onHighestRated={handleHighestRatedClick}
         />
       </ButtonsContainer>
-      <MovieGrid>
-        {(displayLatest ? latestMovies : highestRatedMovies)?.map(movie => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </MovieGrid>
+      {displayLatest
+        ? latestMovies && <MoviesList movies={latestMovies.movies} />
+        : highestRatedMovies && (
+            <MoviesList movies={highestRatedMovies.movies} />
+          )}
     </HomeContainer>
   );
 };
