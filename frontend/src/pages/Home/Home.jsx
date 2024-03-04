@@ -14,15 +14,27 @@ import {
 const Home = () => {
   const [displayLatest, setDisplayLatest] = useState(true);
 
-  const { data: latestMovies, isPending: isPendingLatest } = useFetch(
-    'http://localhost:5000/latest/page/1',
+  const {
+    data: latestMoviesData,
+    isPending: isPendingLatest,
+    isError: latestIsError,
+    error: latestError,
+  } = useFetch(
+    `${import.meta.env.VITE_BACKEND_URL}movies/latest/page/1`,
     'latestMovies'
   );
-  const { data: highestRatedMovies, isPending: isPendingHighestRated } =
-    useFetch(
-      'http://localhost:5000/highest-rated/page/1',
-      'highestRatedMovies'
-    );
+  const {
+    data: highestRatedMoviesData,
+    isPending: isPendingHighestRated,
+    isError: highestIsError,
+    error: highestError,
+  } = useFetch(
+    `${import.meta.env.VITE_BACKEND_URL}movies/highest-rated/page/1`,
+    'highestRatedMovies'
+  );
+
+  const { latestMovies } = latestMoviesData;
+  const { highestRatedMovies } = highestRatedMoviesData;
 
   const handleLatestClick = () => setDisplayLatest(true);
   const handleHighestRatedClick = () => setDisplayLatest(false);
