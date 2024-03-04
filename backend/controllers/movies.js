@@ -7,6 +7,8 @@ import {
   LATEST_MOVIES_URL,
   MOVIE_BIG_IMAGE,
   MOVIE_SMALL_IMAGE,
+  SEARCH_MOVIE_URL,
+  SEARCH_PERSON_URL
 } from '../config/constants.js';
 
 dotenv.config({ path: './config/config.env' });
@@ -80,4 +82,59 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
     totalPages: data.total_pages,
     movies,
   });
+});
+
+export const searchMoviesAndCast = asyncHandler(async (req, res) => {
+  
+  await query('query', 'Search query cannot be empty').notEmpty().run(req);
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+   
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { query } = req.query;
+
+  try {
+   
+    const moviesResponse = await axios.get(SEARCH_MOVIE_URL, {
+      params: {
+        api_key: API_KEY,
+        query: query,
+        page: 1
+      },
+    });
+   
+    const movies = moviesResponse.data.results.slice(0, 4).map(movie => ({
+      title: movie.title,
+      image: `${MOVIE_SMALL_IMAGE}${movie.poster_path}`,
+      year: movie.release_date.slice(0, 4),
+      rating: movie.vote_average.toFixed(1),
+      id: movie.id,
+    }));
+
+   
+    const peopleResponse = await axios.get(SEARCH_PERSON_URL, {
+      params: {
+        api_key: API_KEY,
+        query: query,
+        page: 1
+      },
+    });
+   
+    const people = peopleResponse.data.results.slice(0, 2).map(person => ({
+      name: person.name,
+      profile_path: `${MOVIE_SMALL_IMAGE}${person.profile_path}`,
+      popularity: person.popularity,
+      id: person.id,
+    }));
+
+   
+    res.json({ movies, people });
+  } catch (error) {
+   
+    console.error(`Error fetching data from TMDB: ${error.message}`);
+    res.status(500).json({ message: 'Server error while processing your request' });
+  }
 });
