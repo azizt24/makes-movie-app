@@ -25,6 +25,7 @@ const slideIn = keyframes`
   to {
     transform: translateX(0);
   }
+   
 `;
 
 const slideOut = keyframes`
@@ -34,12 +35,11 @@ const slideOut = keyframes`
   to {
     transform: translateX(-120%);
   }
-
-
 `;
 
 export const MenuBox = styled.div`
   position: absolute;
+  z-index: 10;
   top: 100%;
   background-color: ${props =>
     props.isToggled
@@ -136,6 +136,7 @@ export const ToggleButton = styled.button`
 export const HamburgerIcon = styled.div`
   width: 70px;
   height: 60px;
+
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -147,7 +148,7 @@ export const HamburgerIcon = styled.div`
       : 'var(--secondary-color-light)'};
   align-items: center;
   transition: transform 0.3s ease;
-
+  z-index: 10;
   span {
     width: 100%;
     height: 4px;

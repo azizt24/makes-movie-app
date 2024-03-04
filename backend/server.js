@@ -2,8 +2,10 @@ import express from 'express';
 import dotenv from 'dotenv';
 import logger from './config/logger.js';
 import connectDB from './db/db.js';
+import movieRoutes from './routes/movieRoutes.js';
 import errorHandler from './middleware/errorHandler.js';
 import morgan from 'morgan';
+
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
@@ -21,6 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Routes
+app.use('/api/v1/movies', movieRoutes);
 
 app.use(errorHandler);
 
