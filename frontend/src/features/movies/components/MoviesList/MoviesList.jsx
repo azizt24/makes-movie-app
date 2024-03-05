@@ -1,5 +1,5 @@
-import MovieCard from '../../../components/MovieCard/MovieCard';
 import { MovieGrid } from './MoviesList.styles';
+import MovieCard from '../MovieCard/MovieCard';
 
 const MoviesList = ({ movies }) => {
   return (

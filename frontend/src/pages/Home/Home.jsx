@@ -1,14 +1,12 @@
-import { useState } from 'react';
-import Carousel from '../../components/carousel/Carousel';
-import MoviesButtons from '../../components/Button/MoviesButtons';
+import { MoviesList, MoviesButtons, Carousel } from '../../features/movies';
 import { useFetch } from '../../features/movies/hooks/useFetch';
+import { useState } from 'react';
 import {
   ButtonsContainer,
   HomeContainer,
   Title,
   SubTitle,
 } from './Home.styles';
-import MoviesList from '../../features/movies/components/MoviesList';
 
 const Home = () => {
   const [displayLatest, setDisplayLatest] = useState(true);
