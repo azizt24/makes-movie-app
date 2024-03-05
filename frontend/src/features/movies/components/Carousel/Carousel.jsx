@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { CarouselStyling, DetailsButton } from './Carousel.styles';
 
 const CarouselComponent = ({ movies }) => {
+  const navigate = useNavigate();
+
   const settings = {
     dots: true,
     infinite: true,
@@ -30,7 +33,7 @@ const CarouselComponent = ({ movies }) => {
               <div className="details-footer">
                 <DetailsButton
                   onClick={() => {
-                    alert('Details clicked!');
+                    navigate(`/movies/${movie.id}`);
                   }}
                 >
                   Details
