@@ -55,7 +55,7 @@ export const fetchHighestRatedMovies = asyncHandler(async (req, res) => {
   res.json({
     page: parseInt(page, 10),
     total_pages: data.total_pages,
-    data: movies,
+    movies,
   });
 });
 
@@ -79,7 +79,7 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
   }));
 
   res.json({
-    currentPage: page,
+    page: parseInt(page, 10),
     totalPages: data.total_pages,
     movies,
   });
