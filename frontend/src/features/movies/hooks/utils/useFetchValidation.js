@@ -13,9 +13,9 @@ export const validateQueryKey = (queryKey, queryKeyTags) => {
       `Query key must be a valid string, received: ${typeof queryKey}`
     );
   }
-  // if (!queryKeyTags.includes(queryKey) && queryKeyTags.length === 0) {
-  //   throw new Error(
-  //     `Query key '${queryKey}' isn't included in the predefined tags: ${queryKeyTags.join(', ')}`
-  //   );
-  // }
+  if (!queryKeyTags.includes(queryKey) && queryKeyTags.length === 0) {
+    throw new Error(
+      `Query key '${queryKey}' isn't included in the predefined tags: ${queryKeyTags.join(', ')}`
+    );
+  }
 };
