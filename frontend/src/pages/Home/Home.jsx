@@ -29,6 +29,7 @@ const Home = () => {
   const handleHighestRatedClick = () => setDisplayLatest(false);
 
   if (isPendingLatest || isPendingHighestRated || isPendingCarousel) {
+    // TODO - show spinner
     return <div>Pending...</div>;
   }
 
