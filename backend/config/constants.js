@@ -21,3 +21,9 @@ export const PROFILE_IMG = 'https://image.tmdb.org/t/p/w500';
 export const YOUTUBE = 'https://www.youtube.com/watch?v=';
 export const  getTmbdbUrl = (movieId) => `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,credits,reviews`;
 export const getOmdbUrl = (movieId) => `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movieId}`;
+
+export const CAST_QUERY_URL = (name, page) =>
+  `https://api.themoviedb.org/3/search/person?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(name)}&page=${page}&include_adult=false`;
+
+  export const MOVIES_FETCHER = id =>
+    `https://api.themoviedb.org/3/person/${id}/movie_credits`;

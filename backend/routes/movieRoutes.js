@@ -7,6 +7,7 @@ import {
   fetchLatestMovies,
   fetchMovieDetails,
   
+  fetchMoviesByCast,
 } from '../controllers/movies.js';
 
 const router = express.Router();
@@ -19,4 +20,5 @@ router.get('/latest/page/:page', fetchLatestMovies);
 
 router.get('/movie/:id',  fetchMovieDetails);
 
+router.get('/actors/:name/page/:page', fetchMoviesByCast);
 export default router;
