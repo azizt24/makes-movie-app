@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 export const TagPlotContainer = styled.div`
-  margin: 3rem;
-  margin-top: 8rem;
+  margin: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
   display: block;
   width: 70%;
   padding: 2rem;

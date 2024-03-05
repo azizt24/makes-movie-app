@@ -23,7 +23,7 @@ const ReviewsCarousel = ({ reviews }) => {
     position: 'absolute',
     zIndex: 2,
 
-    top: '60% ',
+    top: '50% ',
 
     width: 30,
     height: 30,

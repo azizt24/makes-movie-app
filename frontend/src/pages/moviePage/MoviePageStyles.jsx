@@ -22,7 +22,7 @@ export const MovieContainer = styled.div`
 `;
 
 export const OverlayContainer = styled.div`
-  height: 60vh;
+  height: 50vh;
   position: relative;
   transform: skewY(2.5deg) translateY(-30px);
   color: var(--text-white);
