@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { validationResult } from 'express-validator';
-import { aggregateData } from '../utils/aggregateData.js';
+import  aggregateData  from '../utils/aggregateData.js';
+import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/asyncHandler.js';
 import {
   HIGHEST_RATED_MOVIES,
@@ -9,7 +9,6 @@ import {
   LATEST_MOVIES_URL,
   MOVIE_BIG_IMAGE,
   MOVIE_SMALL_IMAGE,
-  REVIEWS,
   getOmdbUrl ,
   getTmbdbUrl,
 } from '../config/constants.js';
@@ -90,47 +89,25 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
 
 
 export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
-  // CR - do the error as I showed
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array({ onlyFirstError: true }).map(error => ({
-        type: 'field',
-        msg: error.msg,
-        path: error.param,
-        location: error.location,
-      })),
-    });
+  const { id: movieId } = req.params;
+  const tmdbResponsePromise = axios.get(getTmbdbUrl(movieId));
+  const tmdbResponse = await tmdbResponsePromise.then(response => response).catch(error => null);
+
+  if (!tmdbResponse || tmdbResponse.status !== 200) {
+    return next(new ErrorResponse('Error fetching data from TMDB', 500));
   }
-  const movieId = req.params.id;
-  const [tmdbResponse, omdbResponse] = await Promise.all([
-    axios.get(getTmbdbUrl(movieId)),
-    axios.get(getOmdbUrl(movieId)),
-  ]);
 
-  const movieData = aggregateData(tmdbResponse.data, omdbResponse.data);
-  res.json(movieData);
-});
+  const omdbResponsePromise = axios.get(getOmdbUrl(tmdbResponse.data.imdb_id));
+  const omdbResponse = await omdbResponsePromise.then(response => response).catch(error => null);
 
+  if (!omdbResponse || omdbResponse.status !== 200) {
+    return next(new ErrorResponse('Error fetching data from OMDB', 500));
+  }
 
+  const movieData = aggregateData(tmdbResponse.data, omdbResponse.data, tmdbResponse.data.reviews);
 
-export const fetchMovieReviews = asyncHandler(async (req, res) => {
-  const movieId = req.params.id; 
-
-  const response = await axios.get(`${REVIEWS}/movie/${movieId}/reviews`, {
-    params: { api_key: API_KEY,
-      language: 'en-US',
-      page: 1
-     }
-  });
-
-  // Assuming the response structure has a 'results' array containing the reviews
-  const reviews = response.data.results;
-
-  // Send the reviews back in the response
   res.json({
     success: true,
-    count: reviews.length,
-    data: reviews
+    data: movieData
   });
 });
