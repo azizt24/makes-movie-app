@@ -7,6 +7,7 @@ export const DirectorWriters = styled.div`
   font-size: var(--paragraph);
   color: #0c3675;
   text-align: left;
+  margin-top: 1rem;
 `;
 export const Plot = styled.p`
   margin-top: 25px;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CastCard = styled.div`
-  margin-top: 7rem;
+  margin-top: 3rem;
   width: 160px;
   height: 330px;
   background-color: #49bcec;
