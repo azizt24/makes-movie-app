@@ -12,15 +12,17 @@ export const FooterContainer = styled.footer`
       : 'var(--secondary-color-light)'};
   color: #fff;
   padding: 20px;
-  width: 100vw;
+  width: 100%;
   height: 32px;
+  
+ 
 `;
 
 export const FooterContent = styled.div`
   display: flex;
   margin-right: 25px;
   margin-left: 10px;
-  width: 200px;
+  width: 180px;
   height: 17px;
   align-items: center;
   background-image: url(${TmdbSvg});

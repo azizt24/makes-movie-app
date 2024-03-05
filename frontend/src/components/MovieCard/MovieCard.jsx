@@ -1,44 +1,53 @@
 import { useState } from 'react';
-import ReactCardFlip from 'react-card-flip';
-import './MovieCard.css';
+import { useNavigate } from 'react-router-dom';
+import {
+  FlipCard,
+  FlipCardInner,
+  FlipCardFront,
+  FlipCardBack,
+  PosterB,
+  Poster,
+  StarIcon,
+  Year,
+  Rating,
+  Title,
+  DetailsButton,
+  BackTitle,
+} from './MovieCard.styles';
 
 const MovieCard = ({ movie }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-
-  const { title, backdrop_path, release_date, vote_average } = movie;
-  const posterUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
-  const defaultPoster = '/path/to/default/poster.jpg';
-
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+  const navigate = useNavigate();
+  const { id, title, poster_path, release_date, vote_average } = movie;
+  const posterUrl = poster_path
+    ? `https://image.tmdb.org/t/p/w500${poster_path}`
+    : '/path/to/default/poster.jpg';
+  const year = release_date ? new Date(release_date).getFullYear() : 'N/A';
+  const navigateToMovie = () => {
+    navigate(`/movies/${id}`);
   };
-
   return (
-    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <div className="movie-card-front" onClick={handleFlip}>
-        <img
-          src={backdrop_path ? posterUrl : defaultPoster}
-          alt={title}
-          className="movie-poster"
-        />
-        <div className="movie-details">
-          <h3 className="movie-title">{title}</h3>
-          <p className="movie-release-date">{release_date}</p>
-          <div className="movie-rating">
-            <span>{vote_average}</span>
-            <span className="carousel-star">★</span>
-          </div>
-        </div>
-      </div>
-      <div className="movie-card-back" onClick={handleFlip}>
-        <img
-          src={backdrop_path ? posterUrl : defaultPoster}
-          alt={title}
-          className="movie-poster-back"
-        />
-        <button className="details-button">Details</button>
-      </div>
-    </ReactCardFlip>
+    <FlipCard
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+    >
+      <FlipCardInner $isFlipped={isFlipped}>
+        <FlipCardFront>
+          <Poster src={posterUrl} alt={title} />
+          <Year>{year}</Year>
+          <Rating>
+            <StarIcon>★</StarIcon> {vote_average.toFixed(1)}
+          </Rating>
+          <Title>{title}</Title>
+        </FlipCardFront>
+        <FlipCardBack>
+          <PosterB src={posterUrl} alt={title} />
+          {/* CR - add an onClick function to navigate to the movie page */}
+          <DetailsButton onClick={navigateToMovie}>Details</DetailsButton>
+          <BackTitle>{title}</BackTitle>
+        </FlipCardBack>
+      </FlipCardInner>
+    </FlipCard>
   );
 };
 
