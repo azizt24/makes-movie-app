@@ -90,19 +90,22 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
 
 
 export const fetchMovieDetails = asyncHandler(async (req, res) => {
+  // CR - do the error as I showed
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array({ onlyFirstError: true }).map(error => ({
-        type: "field",
+    return res.status(400).json({
+      errors: errors.array({ onlyFirstError: true }).map(error => ({
+        type: 'field',
         msg: error.msg,
         path: error.param,
-        location: error.location
-    })) });
+        location: error.location,
+      })),
+    });
   }
   const movieId = req.query.id;
   const [tmdbResponse, omdbResponse] = await Promise.all([
     axios.get(getTmbdbUrl(movieId)),
-    axios.get(getOmdbUrl(movieId))
+    axios.get(getOmdbUrl(movieId)),
   ]);
 
   const movieData = aggregateData(tmdbResponse.data, omdbResponse.data);

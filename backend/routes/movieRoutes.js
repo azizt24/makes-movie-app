@@ -1,5 +1,5 @@
 import express from 'express';
-import { movieValidation } from '../utils/validation.js';
+import { movieValidation } from '../utils/movieValidation.js';
 
 import {
   fetchHomeCarouselMovies,
