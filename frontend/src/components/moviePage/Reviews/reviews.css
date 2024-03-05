@@ -1,7 +1,7 @@
 .carousel-slide {
-  margin: 4rem;
+  margin: 2rem;
 
-  padding: 20px;
+  padding-left: 2rem;
   text-align: left;
   position: relative;
   min-height: 100px;

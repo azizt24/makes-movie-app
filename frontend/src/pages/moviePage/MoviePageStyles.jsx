@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const PageContainer = styled.div`
-  padding: 0vw 15vw;
+  padding: 0vw 10vw;
   overflow: hidden;
   background: linear-gradient(to right, #141e30, #456181);
   @media screen and (max-width: 1200px) {
