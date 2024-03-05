@@ -1,7 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './styles/global.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './styles/global.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -13,4 +13,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <App />
     </QueryClientProvider>
   </React.StrictMode>
-);;
+);
