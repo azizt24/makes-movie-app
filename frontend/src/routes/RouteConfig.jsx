@@ -75,7 +75,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'actors/:name/page/:page',
-            element: <ActorMovies />,
+            element: <Movies />,
           },
         ],
       },
