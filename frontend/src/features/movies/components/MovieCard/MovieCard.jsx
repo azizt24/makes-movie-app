@@ -18,11 +18,7 @@ import {
 const MovieCard = ({ movie }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const navigate = useNavigate();
-  const { id, title, poster_path, release_date, vote_average } = movie;
-  const posterUrl = poster_path
-    ? `https://image.tmdb.org/t/p/w500${poster_path}`
-    : '/path/to/default/poster.jpg';
-  const year = release_date ? new Date(release_date).getFullYear() : 'N/A';
+  const { id, title, image, year, rating } = movie;
   const navigateToMovie = () => {
     navigate(`/movies/${id}`);
   };
@@ -33,16 +29,15 @@ const MovieCard = ({ movie }) => {
     >
       <FlipCardInner $isFlipped={isFlipped}>
         <FlipCardFront>
-          <Poster src={posterUrl} alt={title} />
+          <Poster src={image} alt={title} />
           <Year>{year}</Year>
           <Rating>
-            <StarIcon>★</StarIcon> {vote_average.toFixed(1)}
+            <StarIcon>★</StarIcon> {rating}
           </Rating>
           <Title>{title}</Title>
         </FlipCardFront>
         <FlipCardBack>
-          <PosterB src={posterUrl} alt={title} />
-          {/* CR - add an onClick function to navigate to the movie page */}
+          <PosterB src={image} alt={title} />
           <DetailsButton onClick={navigateToMovie}>Details</DetailsButton>
           <BackTitle>{title}</BackTitle>
         </FlipCardBack>
