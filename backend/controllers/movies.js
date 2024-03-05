@@ -89,7 +89,7 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
 
 
 
-export const fetchMovieDetails = asyncHandler(async (req, res) => {
+export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
   // CR - do the error as I showed
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -102,7 +102,7 @@ export const fetchMovieDetails = asyncHandler(async (req, res) => {
       })),
     });
   }
-  const movieId = req.query.id;
+  const movieId = req.params.id;
   const [tmdbResponse, omdbResponse] = await Promise.all([
     axios.get(getTmbdbUrl(movieId)),
     axios.get(getOmdbUrl(movieId)),

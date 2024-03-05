@@ -18,7 +18,7 @@ router.get('/highest-rated/page/:page', fetchHighestRatedMovies);
 router.get('/latest/page/:page', fetchLatestMovies);
 //Example how to see Movie
 //http://localhost:5000/api/v1/movies/movie?id=438631
-router.get('/movie', movieValidation, fetchMovieDetails);
+router.get('/movie/:id', movieValidation, fetchMovieDetails);
 //Example how to see Rev 
 //http://localhost:5000/api/v1/movies/movie/787699/reviews
 router.get('/movie/:id/reviews', movieValidation, fetchMovieReviews);
