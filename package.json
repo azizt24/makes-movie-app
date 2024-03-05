@@ -20,5 +20,10 @@
     "concurrently": "^8.2.2",
     "husky": "^9.0.6",
     "lint-staged": "^15.2.0"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.1",
+    "react-error-boundary": "^4.0.13",
+    "react-toastify": "^10.0.4"
   }
 }

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Home from '../pages/Home/Home.jsx'
+import Home from '../pages/Home/Home.jsx';          
 import { SharedLayout } from '../components';
 import { Error } from '../pages';
 
