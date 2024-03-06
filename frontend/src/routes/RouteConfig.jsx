@@ -104,7 +104,7 @@ const router = createBrowserRouter([
         element: <Watch />,
       },
       {
-        path: 'savedmovies',
+        path: 'saved-movies',
         element: <SavedMovies />,
       },
       {
