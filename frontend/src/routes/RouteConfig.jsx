@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import MoviePage from '../pages/moviePage/MoviePage';
-import { Error, Home } from '../pages';
+import { Error, Home, MoviePage } from '../pages';
 
 //mock components
 
