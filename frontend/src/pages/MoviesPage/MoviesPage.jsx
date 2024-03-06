@@ -13,12 +13,12 @@ const MoviesPage = () => {
   const [displayLatest, setDisplayLatest] = useState(true);
 
   const { data: latestMovies, isPending: isPendingLatest } = useFetch(
-    CONSTANTS.LATEST_MOVIES_URL,
+    CONSTANTS.LATEST_MOVIES_URL + 1,
     CONSTANTS.LATEST_MOVIES_QUERY_KEY
   );
   const { data: highestRatedMovies, isPending: isPendingHighestRated } =
     useFetch(
-      CONSTANTS.HIGHEST_MOVIES_URL,
+      CONSTANTS.HIGHEST_MOVIES_URL + 1,
       CONSTANTS.HIGHEST_RATED_MOVIES_QUERY_KEY
     );
 

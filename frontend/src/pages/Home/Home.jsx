@@ -1,6 +1,6 @@
 import { MoviesList, MoviesButtons, Carousel } from '../../features/movies';
-import { CONSTANTS } from '../../features/movies/hooks/utils/constants/constants.js';
-import { useFetch } from '../../features/movies/hooks/useFetch';
+import { CONSTANTS } from '../../features/movies/utils/constants/constants.js';
+import { useFetch } from '../../hooks/useFetch.js';
 import { useState } from 'react';
 import {
   ButtonsContainer,
@@ -14,16 +14,19 @@ const Home = () => {
 
   const { data: carouselMovies, isPending: isPendingCarousel } = useFetch(
     CONSTANTS.CAROUSEL_URL,
-    CONSTANTS.HOME_CAROUSEL_QUERY_KEY
+    CONSTANTS.HOME_CAROUSEL_QUERY_KEY,
+    CONSTANTS.QUERY_KEY_TAGS
   );
   const { data: latestMovies, isPending: isPendingLatest } = useFetch(
-    CONSTANTS.LATEST_MOVIES_URL,
-    CONSTANTS.LATEST_MOVIES_QUERY_KEY
+    CONSTANTS.LATEST_MOVIES_URL + 1,
+    CONSTANTS.LATEST_MOVIES_QUERY_KEY,
+    CONSTANTS.QUERY_KEY_TAGS
   );
   const { data: highestRatedMovies, isPending: isPendingHighestRated } =
     useFetch(
-      CONSTANTS.HIGHEST_MOVIES_URL,
-      CONSTANTS.HIGHEST_RATED_MOVIES_QUERY_KEY
+      CONSTANTS.HIGHEST_MOVIES_URL + 1,
+      CONSTANTS.HIGHEST_RATED_MOVIES_QUERY_KEY,
+      CONSTANTS.QUERY_KEY_TAGS
     );
 
   const handleLatestClick = () => setDisplayLatest(true);
