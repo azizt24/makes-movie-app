@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
 import '../../styles/global.css';
-import MovieDetails from '../../components/moviePage/movieDetails/MovieDetails';
-import TagLineAndPlot from '../../components/moviePage/tagLineAndPlot/TagLineAndPlot';
 
 import {
   PageContainer,
   MovieContainer,
   OverlayContainer,
 } from './MoviePageStyles';
-import Reviews from '../../components/moviePage/Reviews/Reviews';
-import DirectorAndWriters from '../../components/moviePage/DirectorAndWriters/DirectorAndWriters';
-import TrailerWidget from '../../components/moviePage/TrailerWidget/TrailerWidget';
-import MovieCastCarouel from '../../components/moviePage/MovieCastCarouel/MovieCastCarouel';
+
 import { useParams } from 'react-router-dom';
+import {
+  DirectorAndWriters,
+  MovieCastCarouel,
+  MovieDetails,
+  Reviews,
+  TagLineAndPlot,
+  TrailerWidget,
+} from '../../features/movies';
 const MoviePage = () => {
   const [movie, setMovie] = useState({});
   const [movieByrthem, setmovieByrthem] = useState({});
