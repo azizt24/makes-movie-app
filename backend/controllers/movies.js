@@ -8,9 +8,9 @@ import {
   MOVIE_BIG_IMAGE,
   MOVIE_SMALL_IMAGE,
   SEARCH_MOVIE_URL,
-  SEARCH_PERSON_URL
+  SEARCH_CAST_URL,
 } from '../config/constants.js';
-
+import ErrorResponse from '../utils/errorResponse.js';
 dotenv.config({ path: './config/config.env' });
 
 const API_KEY = process.env.TMDB_API_KEY;
@@ -84,57 +84,43 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
   });
 });
 
-export const searchMoviesAndCast = asyncHandler(async (req, res) => {
-  
-  await query('query', 'Search query cannot be empty').notEmpty().run(req);
+export const searchMoviesAndCast = asyncHandler(async (req, res, next) => {
+  const inputSearch = req.params.query;
 
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-   
-    return res.status(400).json({ errors: errors.array() });
+  if (!inputSearch) {
+    return next(new ErrorResponse('Search query is required', 400));
   }
 
-  const { query } = req.query;
+  const moviesResponse = await axios.get(SEARCH_MOVIE_URL, {
+    params: {
+      api_key: API_KEY,
+      query: inputSearch,
+      include_adult: false,
+      page:1,
+    },
+  });
+  const movies = moviesResponse.data.results.slice(0, 4).map(movie => ({
+    title: movie.title,
+    year: movie.release_date ? movie.release_date.slice(0, 4) : 'Unknown',
+    rating: movie.vote_average,
+    id: movie.id,
+  }));
 
-  try {
-   
-    const moviesResponse = await axios.get(SEARCH_MOVIE_URL, {
-      params: {
-        api_key: API_KEY,
-        query: query,
-        page: 1
-      },
-    });
-   
-    const movies = moviesResponse.data.results.slice(0, 4).map(movie => ({
-      title: movie.title,
-      image: `${MOVIE_SMALL_IMAGE}${movie.poster_path}`,
-      year: movie.release_date.slice(0, 4),
-      rating: movie.vote_average.toFixed(1),
-      id: movie.id,
-    }));
+  const castResponse = await axios.get(SEARCH_CAST_URL, {
+    params: {
+      api_key: API_KEY,
+      query: inputSearch,
+      page:1,
+    },
+  });
+  const cast = castResponse.data.results.slice(0, 2).map(person => ({
+    name: person.name,
+    known_for: person.known_for_department,
+    id: person.id,
+  }));
 
-   
-    const peopleResponse = await axios.get(SEARCH_PERSON_URL, {
-      params: {
-        api_key: API_KEY,
-        query: query,
-        page: 1
-      },
-    });
-   
-    const people = peopleResponse.data.results.slice(0, 2).map(person => ({
-      name: person.name,
-      profile_path: `${MOVIE_SMALL_IMAGE}${person.profile_path}`,
-      popularity: person.popularity,
-      id: person.id,
-    }));
-
-   
-    res.json({ movies, people });
-  } catch (error) {
-   
-    console.error(`Error fetching data from TMDB: ${error.message}`);
-    res.status(500).json({ message: 'Server error while processing your request' });
-  }
+  res.json({
+    movies,
+    cast,
+  });
 });

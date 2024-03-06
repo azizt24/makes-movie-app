@@ -16,4 +16,4 @@ export const MOVIE_BIG_IMAGE = 'https://image.tmdb.org/t/p/w1280/';
 
 
 export const SEARCH_MOVIE_URL = 'https://api.themoviedb.org/3/search/movie';
-export const SEARCH_PERSON_URL = 'https://api.themoviedb.org/3/search/person';
+export const SEARCH_CAST_URL = 'https://api.themoviedb.org/3/search/person';
