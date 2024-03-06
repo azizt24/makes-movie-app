@@ -1,47 +1,5 @@
 import styled from 'styled-components';
 
-<<<<<<< HEAD
-export const Card = styled.div`
-  width: 150px;
-  height: 250px;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  perspective: 1000px;
-`;
-
-export const Poster = styled.img`
-  width: 150px;
-  height: 250px;
-`;
-
-export const PosterBack = styled(Poster)`
-  display: block;
-  margin: 0 auto;
-  width: 150px;
-  height: 250px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
-`;
-
-export const Details = styled.div`
-  padding: 10px;
-  color: white;
-`;
-
-export const Button = styled.button`
-  border: none;
-  background-color: #007bff;
-  color: white;
-  padding: 5px 10px;
-  text-transform: uppercase;
-  border-radius: 5px;
-  cursor: pointer;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translate(-50%, 8px);
-`;
-=======
 export const FlipCard = styled.div`
   perspective: 1000px;
   width: 200px;
@@ -55,7 +13,8 @@ export const FlipCardInner = styled.div`
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  transform: ${({ $isFlipped }) => $isFlipped ? 'rotateY(180deg)' : 'rotateY(0)'};
+  transform: ${({ $isFlipped }) =>
+    $isFlipped ? 'rotateY(180deg)' : 'rotateY(0)'};
 `;
 
 export const FlipCardFront = styled.div`
@@ -72,14 +31,14 @@ export const FlipCardBack = styled(FlipCardFront)`
   transform: rotateY(180deg);
   background-color: var(--primary-color-light);
   box-shadow: 0 5px 15px var(--text-dark);
-   
-`;export const PosterB = styled.div`
-background-image: url(${props => props.src});
+`;
+export const PosterB = styled.div`
+  background-image: url(${props => props.src});
   background-size: cover;
   background-position: center;
   position: relative;
-  width: 100%;  
-  height: 100%;  
+  width: 100%;
+  height: 100%;
 
   &::after {
     content: '';
@@ -88,8 +47,8 @@ background-image: url(${props => props.src});
     left: 0;
     right: 0;
     bottom: 0;
-    background-color:var(--primary-color-light);
-    mix-blend-mode:  screen;
+    background-color: var(--primary-color-light);
+    mix-blend-mode: screen;
     opacity: 0.9;
   }
 `;
@@ -128,9 +87,8 @@ export const Rating = styled.div`
 
 export const StarIcon = styled.span`
   color: yellow;
-  margin-right: 3px;  
+  margin-right: 3px;
 `;
-
 
 export const Title = styled.div`
   position: absolute;
@@ -143,14 +101,14 @@ export const Title = styled.div`
   padding: 2px;
   text-align: center;
   font-size: 1.5rem;
-  overflow: hidden;  
-  white-space: nowrap;  
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 `;
 
 export const BackTitle = styled(Title)`
   position: absolute;
-  padding: 2px 2px; 
+  padding: 2px 2px;
 `;
 
 export const DetailsButton = styled.button`
@@ -158,7 +116,7 @@ export const DetailsButton = styled.button`
   background-color: var(--primary-color);
   color: var(--text-dark);
   color: bold;
-  padding: 7px 7px; 
+  padding: 7px 7px;
   width: 95px;
   border-radius: 0px;
   text-transform: uppercase;
@@ -167,13 +125,14 @@ export const DetailsButton = styled.button`
   bottom: 150px;
   left: 0;
   right: 0;
-  margin: 0 auto;  
+  margin: 0 auto;
   z-index: 1;
-  transition: background-color 0.3s ease, transform 0.3s ease;  
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 
   &:hover {
-    background-color: var(--primary-color-light);  
-    transform: translateY(-1px);  
+    background-color: var(--primary-color-light);
+    transform: translateY(-1px);
   }
 `;
->>>>>>> bb90b1ecba24f5e300258f29b84c2630b2007314

@@ -4,10 +4,6 @@ import { Error, Home } from '../pages';
 
 //mock components
 
-const Home = () => {
-  return <div>Home</div>;
-};
-
 const Movie = () => {
   return <div>Movie</div>;
 };
@@ -59,12 +55,12 @@ const AdvancedSearch = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MoviesPage />,
+    element: <SharedLayout />,
     errorElement: <Error />,
     children: [
       {
         index: true,
-        element: <MoviesPage />,
+        element: <Home />,
       },
       {
         path: 'movies',
