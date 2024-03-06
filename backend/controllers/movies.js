@@ -1,13 +1,16 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
+import  aggregateData  from '../utils/aggregateData.js';
+import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/asyncHandler.js';
-import ErrorResponse from './../utils/errorResponse.js';
 import {
   HIGHEST_RATED_MOVIES,
   HOME_CAROUSEL_MOVIES,
   LATEST_MOVIES_URL,
   MOVIE_BIG_IMAGE,
   MOVIE_SMALL_IMAGE,
+  getOmdbUrl ,
+  getTmbdbUrl,
   CAST_QUERY_URL,
   MOVIES_FETCHER,
 } from '../config/constants.js';
@@ -84,6 +87,33 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
     movies,
   });
 });
+
+export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
+  const { id: movieId } = req.params;
+
+  const tmdbResponse = await axios.get(getTmbdbUrl(movieId));
+  if (tmdbResponse.status !== 200 || !tmdbResponse.data) {
+    return next(new ErrorResponse(`Error fetching data from TMDB: Status code ${tmdbResponse.status}`, 500));
+  }
+  const tmdbData = tmdbResponse.data;
+
+  const omdbResponse = await axios.get(getOmdbUrl(tmdbData.imdb_id));
+
+  if (omdbResponse.status !== 200 || !omdbResponse.data) {
+    return next(
+      new ErrorResponse(
+        `Error fetching data from OMDB: Status code ${omdbResponse.status}`,
+        500
+      )
+    );
+  }
+  const omdbData = omdbResponse.data;
+
+  const movieData = aggregateData(tmdbData, omdbData, tmdbData.reviews);
+
+  res.json(movieData);
+});
+
 
 export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
   const { name, page } = req.params;
