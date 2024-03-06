@@ -6,6 +6,7 @@ export const TitleContainer = styled.div`
   padding-top: 14.4px;
   padding-bottom: 14.4px;
   letter-spacing: 5px;
+  padding-top: 80px;
 `;
 
 export const FirstTitleLetter = styled.span`

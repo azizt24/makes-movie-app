@@ -1,24 +1,34 @@
-import { useState } from 'react'; // Import useState from React
-import MoviesButtons from '../../components/MoviesButtons/MoviesButtons';
-import MoviesTitle from '../../components/MoviesTitle/MoviesTitle';
-import Pagination from '../../components/Pagination/Pagination';
-import MovieCard from '../../components/MovieCard/MovieCard';
-import { MoviesContainer, MovieGrid } from './MoviesPage.style';
-import { HighestRatedMovies } from './../../data/HighestRatedMovies';
-import { latestMovies } from './../../data/latestMovies';
+import { CONSTANTS } from '../../features/movies/hooks/utils/constants/constants.js';
+import {
+  MoviesList,
+  MoviesButtons,
+  MoviesTitle,
+  Pagination,
+} from '../../features/movies';
+import { useFetch } from '../../features/movies/hooks/useFetch';
+import { MoviesContainer } from './MoviesPage.style';
+import { useState } from 'react';
 
 const MoviesPage = () => {
   const [displayLatest, setDisplayLatest] = useState(true);
 
-  const handleLatestClick = () => {
-    setDisplayLatest(true);
-  };
+  const { data: latestMovies, isPending: isPendingLatest } = useFetch(
+    CONSTANTS.LATEST_MOVIES_URL,
+    CONSTANTS.LATEST_MOVIES_QUERY_KEY
+  );
+  const { data: highestRatedMovies, isPending: isPendingHighestRated } =
+    useFetch(
+      CONSTANTS.HIGHEST_MOVIES_URL,
+      CONSTANTS.HIGHEST_RATED_MOVIES_QUERY_KEY
+    );
 
-  const handleHighestRatedClick = () => {
-    setDisplayLatest(false);
-  };
+  const handleLatestClick = () => setDisplayLatest(true);
+  const handleHighestRatedClick = () => setDisplayLatest(false);
 
-  const moviesToDisplay = displayLatest ? latestMovies : HighestRatedMovies;
+  if (isPendingLatest || isPendingHighestRated) {
+    // TODO - show spinner
+    return <div>Pending...</div>;
+  }
 
   return (
     <MoviesContainer>
@@ -28,11 +38,11 @@ const MoviesPage = () => {
         onHighestRated={handleHighestRatedClick}
       />
       <Pagination />
-      <MovieGrid className="movie-grid">
-        {moviesToDisplay.map(movie => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </MovieGrid>
+      {displayLatest
+        ? latestMovies && <MoviesList movies={latestMovies.movies} />
+        : highestRatedMovies && (
+            <MoviesList movies={highestRatedMovies.movies} />
+          )}
     </MoviesContainer>
   );
 };
