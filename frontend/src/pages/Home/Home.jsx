@@ -1,80 +1,58 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import Carousel from '../../components/carousel/Carousel';
-import MovieCard from '../../components/MovieCard/MovieCard';
-import MoviesButtons from '../../components/Button/MoviesButtons';
- 
-import {  ButtonsContainer, MovieGrid, HomeContainer, Title, SubTitle } from './Home.styles';
+import { MoviesList, MoviesButtons, Carousel } from '../../features/movies';
+import { CONSTANTS } from '../../features/movies/utils/constants/constants.js';
+import { useFetch } from '../../hooks/useFetch.js';
+import { useState } from 'react';
+import {
+  ButtonsContainer,
+  HomeContainer,
+  Title,
+  SubTitle,
+} from './Home.styles';
 
 const Home = () => {
-  const [latestMovies, setLatestMovies] = useState([]);
-  const [highestRatedMovies, setHighestRatedMovies] = useState([]);
   const [displayLatest, setDisplayLatest] = useState(true);
-  const apiKey = '033a7d652a60b8f9fe88c99d78506501';
 
-  useEffect(() => {
-    fetchLatestMovies();
-  }, []);
+  const { data: carouselMovies, isPending: isPendingCarousel } = useFetch(
+    CONSTANTS.CAROUSEL_URL,
+    CONSTANTS.HOME_CAROUSEL_QUERY_KEY,
+    CONSTANTS.QUERY_KEY_TAGS
+  );
+  const { data: latestMovies, isPending: isPendingLatest } = useFetch(
+    CONSTANTS.LATEST_MOVIES_URL + 1,
+    CONSTANTS.LATEST_MOVIES_QUERY_KEY,
+    CONSTANTS.QUERY_KEY_TAGS
+  );
+  const { data: highestRatedMovies, isPending: isPendingHighestRated } =
+    useFetch(
+      CONSTANTS.HIGHEST_MOVIES_URL + 1,
+      CONSTANTS.HIGHEST_RATED_MOVIES_QUERY_KEY,
+      CONSTANTS.QUERY_KEY_TAGS
+    );
 
-  const fetchLatestMovies = async () => {
-    try {
-      const result = await axios.get('https://api.themoviedb.org/3/movie/popular', {
-        params: {
-          api_key: apiKey,
-          language: 'en-US',
-          page: 1
-        }
-      });
-      setLatestMovies(result.data.results);
-    } catch (error) {
-      console.error("Error fetching latest movies:", error);
-    }
-  };
+  const handleLatestClick = () => setDisplayLatest(true);
+  const handleHighestRatedClick = () => setDisplayLatest(false);
 
-  const fetchHighestRatedMovies = async () => {
-    try {
-      const result = await axios.get('https://api.themoviedb.org/3/discover/movie', {
-        params: {
-          api_key: apiKey,
-          sort_by: 'vote_average.desc',
-          'vote_count.gte': 1000,
-          include_adult: false,
-          page: 1
-        }
-      });
-      setHighestRatedMovies(result.data.results);
-    } catch (error) {
-      console.error("Error fetching highest rated movies:", error);
-    }
-  };
-
-  const handleLatestClick = async () => {
-    await fetchLatestMovies();
-    setDisplayLatest(true);
-  };
-
-  const handleHighestRatedClick = async () => {
-    await fetchHighestRatedMovies();
-    setDisplayLatest(false);
-  };
+  if (isPendingLatest || isPendingHighestRated || isPendingCarousel) {
+    // TODO - show spinner
+    return <div>Pending...</div>;
+  }
 
   return (
     <HomeContainer>
-       
-        <Carousel movies={displayLatest ? latestMovies : highestRatedMovies} />
-        <Title>Welcome to Movie Finder</Title>
-        <SubTitle>Discover and watch</SubTitle>
-        <ButtonsContainer>
-          <MoviesButtons onLatestMovies={handleLatestClick} onHighestRated={handleHighestRatedClick} />
-        </ButtonsContainer>
-       
-      <MovieGrid>
-        {displayLatest
-          ? latestMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-          : highestRatedMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-        }
-      </MovieGrid>
-  
+      <Carousel movies={carouselMovies} />
+      <Title>Welcome to Movie Finder</Title>
+      <SubTitle>Discover and watch</SubTitle>
+      <ButtonsContainer>
+        <MoviesButtons
+          onLatestMovies={handleLatestClick}
+          onHighestRated={handleHighestRatedClick}
+        />
+      </ButtonsContainer>
+      {displayLatest
+        ? latestMovies && <MoviesList movies={latestMovies.movies} />
+        : highestRatedMovies && (
+            <MoviesList movies={highestRatedMovies.movies} />
+          )}
     </HomeContainer>
   );
 };
