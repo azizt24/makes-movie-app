@@ -90,29 +90,54 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
 
 
 
+// export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
+//   const { id: movieId } = req.params;
+//   const tmdbResponsePromise = axios.get(getTmbdbUrl(movieId));
+//   const tmdbResponse = await tmdbResponsePromise.then(response => response).catch(error => null);
+
+//   if (!tmdbResponse || tmdbResponse.status !== 200) {
+//     return next(new ErrorResponse('Error fetching data from TMDB', 500));
+//   }
+
+//   const omdbResponsePromise = axios.get(getOmdbUrl(tmdbResponse.data.imdb_id));
+//   const omdbResponse = await omdbResponsePromise.then(response => response).catch(error => null);
+
+//   if (!omdbResponse || omdbResponse.status !== 200) {
+//     return next(new ErrorResponse('Error fetching data from OMDB', 500));
+//   }
+
+//   const movieData = aggregateData(tmdbResponse.data, omdbResponse.data, tmdbResponse.data.reviews);
+
+//   res.json({
+//     success: true,
+//     data: movieData
+//   });
+// });
+
 export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
   const { id: movieId } = req.params;
-  const tmdbResponsePromise = axios.get(getTmbdbUrl(movieId));
-  const tmdbResponse = await tmdbResponsePromise.then(response => response).catch(error => null);
 
-  if (!tmdbResponse || tmdbResponse.status !== 200) {
-    return next(new ErrorResponse('Error fetching data from TMDB', 500));
+  const tmdbResponse = await axios.get(getTmbdbUrl(movieId));
+  if (tmdbResponse.status !== 200 || !tmdbResponse.data) {
+    return next(new ErrorResponse(`Error fetching data from TMDB: Status code ${tmdbResponse.status}`, 500));
   }
+  const tmdbData = tmdbResponse.data;
 
-  const omdbResponsePromise = axios.get(getOmdbUrl(tmdbResponse.data.imdb_id));
-  const omdbResponse = await omdbResponsePromise.then(response => response).catch(error => null);
-
-  if (!omdbResponse || omdbResponse.status !== 200) {
-    return next(new ErrorResponse('Error fetching data from OMDB', 500));
+  const omdbResponse = await axios.get(getOmdbUrl(tmdbData.imdb_id));
+  if (omdbResponse.status !== 200 || !omdbResponse.data) {
+    return next(new ErrorResponse(`Error fetching data from OMDB: Status code ${omdbResponse.status}`, 500));
   }
+  const omdbData = omdbResponse.data;
 
-  const movieData = aggregateData(tmdbResponse.data, omdbResponse.data, tmdbResponse.data.reviews);
+  const movieData = aggregateData(tmdbData, omdbData, tmdbData.reviews);
 
   res.json({
     success: true,
     data: movieData
   });
 });
+
+
 export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
   const { name, page } = req.params;
 
