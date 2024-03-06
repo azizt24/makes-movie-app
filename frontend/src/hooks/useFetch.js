@@ -1,10 +1,11 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { validateUrl, validateQueryKey } from './utils/useFetchValidation';
+import {
+  validateQueryKey,
+  validateUrl,
+} from './../features/movies/utils/useFetchValidation';
 
-const queryKeyTags = ['movies'];
-
-export const useFetch = (url, queryKey = '') => {
+export const useFetch = (url, queryKey = '', queryKeyTags) => {
   validateUrl(url);
   validateQueryKey(queryKey, queryKeyTags);
 
