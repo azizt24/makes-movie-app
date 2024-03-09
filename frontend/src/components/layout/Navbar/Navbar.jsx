@@ -1,7 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { NavbarContainer, LeftSide, RightSide, SearchResultsBox,   SearchInputWrapper,SearchResultItem,  StarIcon ,  SearchResultImage,SearchResultText,SearchResultTitle, SearchResultSubText,SearchResultRating,} from './Navbar.styles';
+import {
+  NavbarContainer,
+  LeftSide,
+  RightSide,
+  SearchResultsBox,
+  SearchInputWrapper,
+  SearchResultItem,
+  StarIcon,
+  SearchResultImage,
+  SearchResultText,
+  SearchResultTitle,
+  SearchResultSubText,
+  SearchResultRating,
+} from './Navbar.styles';
 
 import HamburgerIconComponent from './HamburgerIconComponent';
 import GoogleButtonComponent from './GoogleButtonComponent';
@@ -16,11 +29,10 @@ import { Link } from 'react-router-dom';
 const Navbar = ({ isToggled, setIsToggled }) => {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchResults, setSearchResults] = useState(null); // Initialize searchResults state
   const navigate = useNavigate();
 
   // Use the custom hook for debounced search
-  const { query, setQuery } = useDebouncedSearch('', setSearchResults);
+  const { query, setQuery, results: searchResults } = useDebouncedSearch('');
 
   useEffect(() => {
     const handleResize = () => setIsMobileView(window.innerWidth <= 768);
@@ -30,7 +42,8 @@ const Navbar = ({ isToggled, setIsToggled }) => {
 
   const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
   const handleToggle = () => setIsToggled(!isToggled);
-  const handleSearch = () => navigate(`/search?q=${query}`);
+  
+  const handleSearch = () => navigate(`/movies/search/${encodeURIComponent(query)}/page/1`);
 
   return (
     <>
@@ -57,38 +70,33 @@ const Navbar = ({ isToggled, setIsToggled }) => {
       </NavbarContainer>
       {!isMobileView && searchResults && (
         <SearchResultsBox>
-      {searchResults.actorsAndDirectors && searchResults.actorsAndDirectors.map((person) => (
-  <SearchResultItem key={person.id}>
+          {searchResults.actorsAndDirectors?.map((person) => (
+            <SearchResultItem key={person.id}>
+              <Link to={`/movies/actors/${encodeURIComponent(person.name)}/page/1`}>
+                <SearchResultImage src={person.profileImg} alt={person.name} />
+                <SearchResultText>
+                  <SearchResultTitle>{person.name}</SearchResultTitle>
+                  <SearchResultSubText>{person.knownFor}</SearchResultSubText>
+                </SearchResultText>
+              </Link>
+            </SearchResultItem>
+          ))}
 
-    <Link to={`/movies/actors/${encodeURIComponent(person.name)}/page/1`}>
-
-      <SearchResultImage src={person.profileImg} alt={person.name} />
-      <SearchResultText>
-        <SearchResultTitle>{person.name}</SearchResultTitle>
-        <SearchResultSubText>{person.knownFor}</SearchResultSubText>
-      </SearchResultText>
-    </Link>
-  </SearchResultItem>
-))}
-
-         
-{searchResults.movies && searchResults.movies.map((movie) => (
-  <SearchResultItem key={movie.id}>
-
-    <Link to={`/movies/${movie.id}`}>
-
-      <SearchResultImage src={movie.posterImg} alt={movie.title} />
-      <SearchResultText>
-        <SearchResultTitle>{movie.title}</SearchResultTitle>
-        <SearchResultSubText>({movie.releaseYear})</SearchResultSubText>
-        <SearchResultRating>
-          <StarIcon />
-          {movie.rating}
-        </SearchResultRating>
-      </SearchResultText>
-    </Link>
-  </SearchResultItem>
-))}
+          {searchResults.movies?.map((movie) => (
+            <SearchResultItem key={movie.id}>
+              <Link to={`/movies/${movie.id}`}>
+                <SearchResultImage src={movie.posterImg} alt={movie.title} />
+                <SearchResultText>
+                  <SearchResultTitle>{movie.title}</SearchResultTitle>
+                  <SearchResultSubText>({movie.releaseYear})</SearchResultSubText>
+                  <SearchResultRating>
+                    <StarIcon />
+                    {movie.rating}
+                  </SearchResultRating>
+                </SearchResultText>
+              </Link>
+            </SearchResultItem>
+          ))}
         </SearchResultsBox>
       )}
     </>
