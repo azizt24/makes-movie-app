@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Home from '../pages/Home/Home.jsx';          
 import { SharedLayout } from '../components';
-import { Error } from '../pages';
+import { Error, Home,Settings } from '../pages';
 
 //mock components
 
@@ -45,9 +44,9 @@ const SavedMovies = () => {
   return <div>Saved Movies</div>;
 };
 
-const Settings = () => {
-  return <div>Settings</div>;
-};
+// const Settings = () => {
+//   return <div>Settings</div>;
+// };
 
 const AdvancedSearch = () => {
   return <div>Advanced Search</div>;
@@ -76,7 +75,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'actors/:name/page/:page',
-            element: <ActorMovies />,
+            element: <Movies />,
           },
         ],
       },

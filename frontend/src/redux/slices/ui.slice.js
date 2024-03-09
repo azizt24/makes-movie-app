@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   theme: 'default', // 'default' or 'dark'
-  spinner: false,
+  spinner: 'spin',
 };
 
 export const uiSlice = createSlice({
