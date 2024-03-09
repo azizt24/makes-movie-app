@@ -1,8 +1,8 @@
 import { MenuBox } from './Navbar.styles';
-import SettingIconComponnent from './SettingIconComponnent';
-import ToggleButtonComponnent from './ToggleButtonComponnent';
-import SearchButtonComponnent from './SearchButtonComponnent';
-import SearchInputComponnent from './SearchInputComponnent';
+import SettingIconComponnent from './SettingIconComponent';
+import ToggleButtonComponnent from './ToggleButtonComponent';
+import SearchButtonComponnent from './SearchButtonComponent';
+import SearchInputComponnent from './SearchInputComponent';
 
 import { FlexContainerAbove } from './Navbar.styles';
 import { FlexContainerBelow } from './Navbar.styles';

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import  aggregateData  from '../utils/aggregateData.js';
+import aggregateData from '../utils/aggregateData.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/asyncHandler.js';
 import {
@@ -9,10 +9,12 @@ import {
   LATEST_MOVIES_URL,
   MOVIE_BIG_IMAGE,
   MOVIE_SMALL_IMAGE,
-  getOmdbUrl ,
+  getOmdbUrl,
   getTmbdbUrl,
   CAST_QUERY_URL,
   MOVIES_FETCHER,
+  MOVIE_SEARCH_URL,
+  PROFILE_IMG,
 } from '../config/constants.js';
 
 dotenv.config({ path: './config/config.env' });
@@ -93,7 +95,12 @@ export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
 
   const tmdbResponse = await axios.get(getTmbdbUrl(movieId));
   if (tmdbResponse.status !== 200 || !tmdbResponse.data) {
-    return next(new ErrorResponse(`Error fetching data from TMDB: Status code ${tmdbResponse.status}`, 500));
+    return next(
+      new ErrorResponse(
+        `Error fetching data from TMDB: Status code ${tmdbResponse.status}`,
+        500
+      )
+    );
   }
   const tmdbData = tmdbResponse.data;
 
@@ -113,7 +120,6 @@ export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
 
   res.json(movieData);
 });
-
 
 export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
   const { name, page } = req.params;
@@ -157,4 +163,41 @@ export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
     totalPages: Math.ceil(movies.length / 20),
     movies: paginatedMovies,
   });
+});
+
+export const searchMoviesAndPeople = asyncHandler(async (req, res, next) => {
+  const { query } = req.params; // Or req.query for query params
+  const page = 1; // Starting with the first page, or get from req.params if pagination is implemented
+
+  try {
+    // Search for actors/directors
+    const peopleResponse = await axios.get(CAST_QUERY_URL(query, page));
+    const peopleResults = peopleResponse.data.results
+      .slice(0, 2)
+      .map(person => ({
+        name: person.name,
+        profileImg: `${PROFILE_IMG}${person.profile_path}`,
+        knownFor: person.known_for_department,
+        id: person.id,
+      }));
+
+    // Search for movies
+    const moviesResponse = await axios.get(MOVIE_SEARCH_URL(query, page));
+    const movieResults = moviesResponse.data.results.slice(0, 4).map(movie => ({
+      title: movie.title,
+      posterImg: `${MOVIE_SMALL_IMAGE}${movie.poster_path}`,
+      releaseYear: movie.release_date.slice(0, 4),
+      rating: movie.vote_average,
+      id: movie.id,
+    }));
+
+    // Combine results and send the response
+    res.json({
+      actorsAndDirectors: peopleResults,
+      movies: movieResults,
+    });
+  } catch (error) {
+    // Handle any errors
+    next(error);
+  }
 });

@@ -1,20 +1,22 @@
 import styled, { keyframes } from 'styled-components';
+import { MdLocalMovies } from 'react-icons/md';
+import { RxAvatar } from "react-icons/rx";
+import { FaStar } from 'react-icons/fa';
 
 
 export const NavbarContainer = styled.nav`
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: ${props =>
-    props.isToggled
-      ? 'var(--DarkModePurplelight)'
-      : 'var(--secondary-color-light)'};
+  background-color: ${props => (props.isToggled ? 'var(--DarkModePurplelight)' : 'var(--secondary-color-light)')};
   color: #fff;
   width: 100%;
-  height: 67px; 
+  height: 67px;
   z-index: 10;
-  position: fixed;  
+  position: fixed;
+
  
   
   @media (max-width: 768px) {
@@ -105,7 +107,7 @@ export const SearchInput = styled.input`
   padding: 0.5rem;
   border: 3px solid;
   border-color: ${props =>
-    props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+    props.$isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
   margin-right: 1rem;
   height: 36px;
   width: 180px;
@@ -283,4 +285,115 @@ export const MobileFlex = styled.div`
 export const MobileList = styled.div`
   font-size: 14px;
   height: 140px;
+`;
+ 
+ 
+
+export const SearchInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const SearchResultsBox = styled.div`
+  position: absolute;
+  top: 68px;
+  right: 0;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 330px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+export const SearchResultItem = styled.div`
+  display: flex;
+  flex-direction: column;  
+  align-items: center;  
+  margin-bottom: 0.5rem;
+  text-align: center;  
+`;
+
+export const Avatar = styled.img`
+  width: 40px;  
+  height: 40px;  
+  margin-right: 10px;
+`;
+
+export const MoviePoster = styled.img`
+  width: 40px;  
+  height: 60px;  
+  margin-right: 10px;
+`;
+
+export const ActorOrDirector = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+`;
+
+export const MovieTitle = styled.div`
+  margin-right: 5px;
+`;
+
+export const MovieYear = styled.div`
+  margin-right: 5px;
+`;
+
+export const MovieRating = styled.div`
+  margin-right: 5px;
+`;
+
+export const IconWrapper = styled.div`
+  margin-right: 5px;
+`;
+
+export const MovieIcon = styled(MdLocalMovies)`
+  margin-right: 1px;
+`;
+
+export const AvatarIcon = styled(RxAvatar)`
+  margin-right: 1px;
+`;
+
+export const StarIcon = styled(FaStar)`
+  margin-right: 1px;
+` ;
+
+export const AvatarImage = styled.img`
+width: 40px;  
+  height: 60px;  
+  margin-right: 10px;
+  
+`;
+export const SearchResultImage = styled.img`
+  width: 30%;
+   
+  object-fit: cover;  
+  height:60px;  
+`;
+
+export const SearchResultRating = styled.span`
+  display: block;
+  color: #ffb400;  
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+`;
+
+export const SearchResultSubText = styled.span`
+  display: block;
+  color: #666;
+  font-size: 0.8rem;
+`;
+
+export const SearchResultText = styled.div`
+  width: 100%;
+  margin-top: 0.5rem;
+  text-align: center;
+`;
+
+export const SearchResultTitle = styled.h3`
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
 `;
