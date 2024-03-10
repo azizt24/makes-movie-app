@@ -8,22 +8,33 @@ import {
 import { useFetch } from '../../features/movies/hooks/useFetch';
 import { MoviesContainer } from './MoviesPage.style';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MoviesPage = () => {
   const [displayLatest, setDisplayLatest] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const navigate = useNavigate();
 
   const { data: latestMovies, isPending: isPendingLatest } = useFetch(
-    CONSTANTS.LATEST_MOVIES_URL + 1,
-    CONSTANTS.LATEST_MOVIES_QUERY_KEY
+    CONSTANTS.LATEST_MOVIES_URL + currentPage,
+    CONSTANTS.LATEST_MOVIES_QUERY_KEY,
+    CONSTANTS.QUERY_KEY_TAGS
   );
   const { data: highestRatedMovies, isPending: isPendingHighestRated } =
     useFetch(
-      CONSTANTS.HIGHEST_MOVIES_URL + 1,
-      CONSTANTS.HIGHEST_RATED_MOVIES_QUERY_KEY
+      CONSTANTS.HIGHEST_MOVIES_URL + currentPage,
+      CONSTANTS.HIGHEST_RATED_MOVIES_QUERY_KEY,
+      CONSTANTS.QUERY_KEY_TAGS
     );
 
-  const handleLatestClick = () => setDisplayLatest(true);
-  const handleHighestRatedClick = () => setDisplayLatest(false);
+  const handleLatestClick = () => {
+    navigate('/movies/latest/page/1');
+    setDisplayLatest(true);
+  };
+  const handleHighestRatedClick = () => {
+    setDisplayLatest(false);
+  };
 
   if (isPendingLatest || isPendingHighestRated) {
     // TODO - show spinner

@@ -32,19 +32,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     }
   };
 
-  // const pageButtons = [];
-  // for (let i = 1; i <= totalPages; i++) {
-  //   pageButtons.push(
-  //     <PaginationButton
-  //       key={i}
-  //       onClick={() => handlePageChange(i)}
-  //       active={i === currentPage}
-  //     >
-  //       {i}
-  //     </PaginationButton>
-  //   );
-  // }
-
   return (
     <PaginationWrapper>
       <PaginationButton onClick={handlePrevPage} disabled={isFirstPage}>
