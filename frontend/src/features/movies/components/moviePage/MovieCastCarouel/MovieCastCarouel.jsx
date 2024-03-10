@@ -10,19 +10,8 @@ import {
   Castimg,
   arrowStyles,
 } from './MovieCastCarouelStyles';
-const MovieCastCarouel = ({ id }) => {
-  const [Cast, setCast] = useState([]);
-  const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=2a5b2bfab3731d2da0e262fb42a86194&language=en-US`;
-  useEffect(() => {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const castArray = data.cast;
-        //console.log(castArray);
-        setCast(castArray);
-      })
-      .catch(error => console.error(error));
-  }, []);
+const MovieCastCarouel = ({ movie }) => {
+  const [Cast, setCast] = useState(movie.actors);
 
   const imageBaseURL = 'https://image.tmdb.org/t/p/w200';
 
@@ -73,7 +62,7 @@ const MovieCastCarouel = ({ id }) => {
                 <Link to="">
                   <CastCard>
                     <Castimg
-                      src={`${imageBaseURL}${element.profile_path}`}
+                      src={`${imageBaseURL}${element.image}`}
                       alt={element.name}
                     />
                     <CastName>{element.name}</CastName>

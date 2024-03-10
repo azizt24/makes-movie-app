@@ -14,32 +14,17 @@ import {
   CloseButton,
 } from './TrailerWidgetStyles';
 
-const TrailerWidget = ({ movie, id }) => {
-  const [Trailers, setTrailers] = useState([]);
+const TrailerWidget = ({ movie }) => {
+  const [Trailers, setTrailers] = useState(movie.trailers);
 
   const [isOpen, setIsOpen] = useState(false);
-
-  // const url=`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${themoviedb_API_KEY}&language=en-US`;
-  const url2 = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=2a5b2bfab3731d2da0e262fb42a86194&language=en-US`;
-
-  useEffect(() => {
-    fetch(url2)
-      .then(response => response.json())
-      .then(data => {
-        const trailersArray = data.results.filter(
-          video => video.site === 'YouTube'
-        );
-        setTrailers(trailersArray);
-      })
-      .catch(error => console.error(error));
-  }, [movie.id]);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
   return (
     <>
-      <WidgetContainer backgroundImage={movie.Poster} onClick={openModal}>
+      <WidgetContainer backgroundImage={movie.poster} onClick={openModal}>
         <Arrow></Arrow>
       </WidgetContainer>
 

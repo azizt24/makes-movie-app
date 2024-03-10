@@ -1,9 +1,9 @@
 import { TagPlotContainer, Plot, TagLine } from './TagLineAndPlotStyles';
-const TagLineAndPlot = ({ movie, moviebythembd }) => {
+const TagLineAndPlot = ({ movie }) => {
   return (
     <TagPlotContainer>
-      <TagLine>“ {moviebythembd.tagline} “</TagLine>
-      <Plot>{movie.Plot}</Plot>
+      <TagLine>“ {movie.tagline} “</TagLine>
+      <Plot>{movie.plot}</Plot>
     </TagPlotContainer>
   );
 };

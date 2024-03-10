@@ -24,7 +24,7 @@ const ratingSources = {
 };
 
 const MovieDetails = ({ movie }) => {
-  const targetProgress = parseFloat(movie.imdbRating) * 10;
+  const targetProgress = parseFloat(movie.rating.imdb) * 10;
 
   const [progress, setProgress] = useState(0);
 
@@ -45,21 +45,21 @@ const MovieDetails = ({ movie }) => {
     <>
       <DetailContainer>
         <MovieTitle>
-          {movie.Title} ({movie.Year})
+          {movie.title} ({movie.year})
         </MovieTitle>
         <SubTitle>
-          {movie.Genre} | {movie.Runtime} | {movie.Language}
+          {movie.genre} | {movie.runtime} | {movie.language}
         </SubTitle>
 
         <RatingRow>
-          {movie.Ratings &&
-            movie.Ratings.map((rating, index) => (
+          {movie.ratings &&
+            movie.ratings.map((rating, index) => (
               <RatingPair key={index}>
                 <LogoImage
                   src={ratingSources[rating.Source]}
                   alt={rating.Source}
                 />
-                <RatingText>{rating.Value}</RatingText>
+                <RatingText>{rating}</RatingText>
               </RatingPair>
             ))}
 
