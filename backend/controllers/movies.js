@@ -166,11 +166,11 @@ export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
 });
 
 export const searchMoviesAndPeople = asyncHandler(async (req, res, next) => {
-  const { query } = req.params; // Or req.query for query params
-  const page = 1; // Starting with the first page, or get from req.params if pagination is implemented
+  const { query } = req.params;
+  const page = 1;
 
   try {
-    // Search for actors/directors
+    //* SEarch For Actor ANd Directorss //
     const peopleResponse = await axios.get(CAST_QUERY_URL(query, page));
     const peopleResults = peopleResponse.data.results
       .slice(0, 2)
@@ -181,7 +181,7 @@ export const searchMoviesAndPeople = asyncHandler(async (req, res, next) => {
         id: person.id,
       }));
 
-    // Search for movies
+    // Searching for Moviess //
     const moviesResponse = await axios.get(MOVIE_SEARCH_URL(query, page));
     const movieResults = moviesResponse.data.results.slice(0, 4).map(movie => ({
       title: movie.title,
@@ -191,13 +191,12 @@ export const searchMoviesAndPeople = asyncHandler(async (req, res, next) => {
       id: movie.id,
     }));
 
-    // Combine results and send the response
+    //combinig the twooo results //
     res.json({
       actorsAndDirectors: peopleResults,
       movies: movieResults,
     });
   } catch (error) {
-    // Handle any errors
     next(error);
   }
 });

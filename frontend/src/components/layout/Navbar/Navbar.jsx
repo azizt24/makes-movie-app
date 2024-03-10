@@ -16,11 +16,11 @@ import { useDebouncedSearch } from '../../../hooks/useDebouncedSearch';
 const Navbar = ({ isToggled, setIsToggled }) => {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 300);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchResults, setSearchResults] = useState(null); // Define the state here
+  const [searchResults, setSearchResults] = useState(null);  
   const navigate = useNavigate();
 
   const handleResults = (results) => {
-    setSearchResults(results); // Now setSearchResults is defined and can be used
+    setSearchResults(results);  
   };
 
   const { query, setQuery } = useDebouncedSearch('', handleResults);
@@ -34,7 +34,7 @@ const Navbar = ({ isToggled, setIsToggled }) => {
   const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
   const handleToggle = () => setIsToggled(!isToggled);
 
-  const handleSearch = () => navigate(`/search/${encodeURIComponent(query)}/page/1`);
+  const handleSearch = () => navigate(`/movies/search/${encodeURIComponent(query)}/page/1`);
 
   return (
      <>
@@ -105,7 +105,7 @@ const Navbar = ({ isToggled, setIsToggled }) => {
          </SearchResultText>
 
           </Link>
-          
+
             </SearchResultItem>
           ))}
         </SearchResultsBox>)}
