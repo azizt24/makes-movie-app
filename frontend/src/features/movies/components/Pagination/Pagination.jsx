@@ -1,62 +1,59 @@
-import {
-  PaginationWrapper,
-  PaginationButton,
-  NumberButton,
-  NumberContainer,
-} from './Pagination.style';
+import 'react';
+import { PaginationWrapper, PaginationButton, NumberButton, NumberContainer } from './Pagination.style';
+
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const isFirstPage = currentPage === 1;
-  const isLastPage = currentPage === totalPages;
+  const pagesToShow = Math.min(9, totalPages); // Show up to 9 pages, but not more than the total number of pages
+  const maxPageLimit = 250;
+  let startPage, endPage;
 
-  const handleFirstPage = () => {
-    if (!isFirstPage) {
-      onPageChange(1);
-    }
-  };
+  const effectiveTotalPages = Math.min(totalPages, maxPageLimit);
 
-  const handlePrevPage = () => {
-    if (!isFirstPage) {
-      onPageChange(currentPage - 1);
-    }
-  };
+  if (totalPages <= pagesToShow) {
+    // Total pages are less than or equal to the pages we want to show
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Total pages are more than the pages we want to show
+    const maxPagesBeforeCurrentPage = Math.floor(pagesToShow / 2);
+    const maxPagesAfterCurrentPage = Math.ceil(pagesToShow / 2) - 1;
 
-  const handleNextPage = () => {
-    if (!isLastPage) {
-      onPageChange(currentPage + 1);
+    if (currentPage <= maxPagesBeforeCurrentPage) {
+      // Current page is among the first set of pages
+      startPage = 1;
+      endPage = pagesToShow;
+    } else if (currentPage + maxPagesAfterCurrentPage >= effectiveTotalPages) {
+      // Current page is among the last set of pages
+      startPage = effectiveTotalPages - pagesToShow + 1;
+      endPage = effectiveTotalPages;
+    } else {
+      // Current page is somewhere in the middle
+      startPage = currentPage - maxPagesBeforeCurrentPage;
+      endPage = currentPage + maxPagesAfterCurrentPage;
     }
-  };
+  }
 
-  const handleLastPage = () => {
-    if (!isLastPage) {
-      onPageChange(totalPages);
-    }
-  };
+  const handlePageChange = (page) => onPageChange(page);
 
   return (
     <PaginationWrapper>
-      <PaginationButton onClick={handlePrevPage} disabled={isFirstPage}>
-        Prev
-      </PaginationButton>
-      <PaginationButton onClick={handleFirstPage} disabled={isFirstPage}>
+      <PaginationButton onClick={() => handlePageChange(1)} disabled={currentPage === 1}>
         First
       </PaginationButton>
-      <NumberContainer>
-        <NumberButton>1</NumberButton>
-        <NumberButton>2</NumberButton>
-        <NumberButton>3</NumberButton>
-        <NumberButton>4</NumberButton>
-        <NumberButton>5</NumberButton>
-        <NumberButton>6</NumberButton>
-        <NumberButton>7</NumberButton>
-        <NumberButton>8</NumberButton>
-        <NumberButton>9</NumberButton>
-      </NumberContainer>
-
-      <PaginationButton onClick={handleLastPage} disabled={isLastPage}>
-        Last
+      <PaginationButton onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+        Prev
       </PaginationButton>
-      <PaginationButton onClick={handleNextPage} disabled={isLastPage}>
+      <NumberContainer>
+        {Array.from({ length: (endPage + 1) - startPage }, (_, i) => startPage + i).map(page => (
+          <NumberButton key={page} onClick={() => handlePageChange(page)} disabled={currentPage === page}>
+            {page}
+          </NumberButton>
+        ))}
+      </NumberContainer>
+      <PaginationButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage >= effectiveTotalPages}>
         Next
+      </PaginationButton>
+      <PaginationButton onClick={() => handlePageChange(effectiveTotalPages)} disabled={currentPage >= effectiveTotalPages}>
+        Last
       </PaginationButton>
     </PaginationWrapper>
   );
