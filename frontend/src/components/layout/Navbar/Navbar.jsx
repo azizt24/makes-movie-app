@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import noImagePlaceholder from '../../../../public/images/No-Image-Placeholder.svg.png';
 
-import {NavbarContainer,LeftSide,RightSide,SearchInputWrapper,SearchResultsBox,SearchResultItem,SearchResultImage,SearchResultText,
+import {NavbarContainer,LeftSide,RightSide,SearchResultContent,SearchInputWrapper,SearchResultsBox,SearchResultItem,SearchResultImage,SearchResultText,
 SearchResultTitle,SearchResultSubText,SearchResultRating,StarIcon,} from './Navbar.styles';
 
 import HamburgerIconComponent from './HamburgerIconComponent';
@@ -69,26 +70,30 @@ const Navbar = ({ isToggled, setIsToggled }) => {
         <SearchResultsBox>
           {searchResults.actorsAndDirectors?.map((person) => (
             <SearchResultItem key={person.id}>
+           
+            <Link to={`/movies/actors/${encodeURIComponent(person.name)}/page/1`}>
+              
+              <SearchResultImage src={person.profileImg || noImagePlaceholder} alt={person.name} />
+              
+              
+              <SearchResultContent>
 
-              <Link to={`/movies/actors/${encodeURIComponent(person.name)}/page/1`}>
+                <SearchResultTitle>{person.name}</SearchResultTitle>
+                <SearchResultSubText>{person.knownFor}</SearchResultSubText>
+              
+              </SearchResultContent>
+              
+            </Link>
 
-             
-             <SearchResultImage src={person.profileImg} alt={person.name} />
-            <SearchResultText>
-
-               <SearchResultTitle>{person.name}</SearchResultTitle>
-               <SearchResultSubText>{person.knownFor}</SearchResultSubText>
-
-                </SearchResultText>
-              </Link>
-            </SearchResultItem>
+          </SearchResultItem>
           ))}
           {searchResults.movies?.map((movie) => (
             <SearchResultItem key={movie.id}>
 
               <Link to={`/movies/${movie.id}`}>
 
-          <SearchResultImage src={movie.posterImg} alt={movie.title} />
+              <SearchResultImage src={movie.posterImg||noImagePlaceholder} alt={movie.title} />
+
 
           <SearchResultText>
 

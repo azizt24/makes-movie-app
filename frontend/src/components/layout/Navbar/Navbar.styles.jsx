@@ -287,113 +287,82 @@ export const MobileList = styled.div`
   height: 140px;
 `;
  
- 
+ // search baar styless//
 
 export const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-
 export const SearchResultsBox = styled.div`
-  position: absolute;
-  top: 68px;
+  position: fixed;
+  top: 68px; 
   right: 0;
   z-index: 10;
-  background-color: white;
+  background-color: var(--secondary-color, #524763);
   border: 1px solid #ccc;
   padding: 10px;
   width: 330px;
+  max-height: 50vh; /* 50% of the viewport height */
+  overflow-y: auto; /* Allow scrolling for overflow content */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 export const SearchResultItem = styled.div`
   display: flex;
-  flex-direction: column;  
-  align-items: center;  
+  align-items: flex-start; /* Align items at the start vertically */
   margin-bottom: 0.5rem;
-  text-align: center;  
-`;
-
-export const Avatar = styled.img`
-  width: 40px;  
-  height: 40px;  
-  margin-right: 10px;
-`;
-
-export const MoviePoster = styled.img`
-  width: 40px;  
-  height: 60px;  
-  margin-right: 10px;
-`;
-
-export const ActorOrDirector = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-`;
-
-export const MovieTitle = styled.div`
-  margin-right: 5px;
-`;
-
-export const MovieYear = styled.div`
-  margin-right: 5px;
-`;
-
-export const MovieRating = styled.div`
-  margin-right: 5px;
-`;
-
-export const IconWrapper = styled.div`
-  margin-right: 5px;
-`;
-
-export const MovieIcon = styled(MdLocalMovies)`
-  margin-right: 1px;
-`;
-
-export const AvatarIcon = styled(RxAvatar)`
-  margin-right: 1px;
-`;
-
-export const StarIcon = styled(FaStar)`
-  margin-right: 1px;
-` ;
-
-export const AvatarImage = styled.img`
-width: 40px;  
-  height: 60px;  
-  margin-right: 10px;
-  
-`;
-export const SearchResultImage = styled.img`
-  width: 30%;
-   
-  object-fit: cover;  
-  height:60px;  
-`;
-
-export const SearchResultRating = styled.span`
-  display: block;
-  color: #ffb400;  
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
-`;
-
-export const SearchResultSubText = styled.span`
-  display: block;
-  color: #666;
-  font-size: 0.8rem;
-`;
-
-export const SearchResultText = styled.div`
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
   width: 100%;
-  margin-top: 0.5rem;
-  text-align: center;
+`;
+
+export const SearchResultImage = styled.img`
+  flex-shrink: 0; /* Prevent the image from shrinking */
+  width: 20%;
+  height: auto;
+  margin-right: 10px; /* Space between image and title */
+`;
+
+export const SearchResultContent = styled.div`
+  display: flex;
+  flex-direction: column; /* Stack title and subtext vertically */
+  justify-content: flex-start; /* Align content to the top */
+  width: 80%; /* Remaining width */
 `;
 
 export const SearchResultTitle = styled.h3`
   font-size: 1rem;
-  color: #333;
-  margin: 0.5rem 0;
+  color: var(--primary-color, #333);
+  margin: 0; /* Remove margin to align title at the top */
 `;
+
+export const SearchResultText = styled.div`
+  width: 100%;
+`;
+export const SearchResultSubText = styled.span`
+  display: block;
+  color: #666;
+  font-size: 0.8rem;
+  margin-top: 5px;  
+`;
+
+export const SearchResultRating = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 5px;  
+`;
+
+export const StarIcon = styled(FaStar)`
+  color: #ffb400; 
+  margin-right: 5px;
+`;
+
+
+ 
+ 
+ 
+
+ 
+ 
+ 

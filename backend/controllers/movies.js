@@ -2,6 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import aggregateData from '../utils/aggregateData.js';
 import ErrorResponse from '../utils/errorResponse.js';
+
 import asyncHandler from '../middleware/asyncHandler.js';
 import {
   HIGHEST_RATED_MOVIES,
@@ -170,32 +171,34 @@ export const searchMoviesAndPeople = asyncHandler(async (req, res, next) => {
   const page = 1;
 
   try {
-    //* SEarch For Actor ANd Directorss //
+    const response = {};
     const peopleResponse = await axios.get(CAST_QUERY_URL(query, page));
     const peopleResults = peopleResponse.data.results
       .slice(0, 2)
       .map(person => ({
         name: person.name,
-        profileImg: `${PROFILE_IMG}${person.profile_path}`,
+        profileImg: person.profile_path
+          ? `${PROFILE_IMG}${person.profile_path}`
+          : null,
         knownFor: person.known_for_department,
         id: person.id,
       }));
 
-    // Searching for Moviess //
     const moviesResponse = await axios.get(MOVIE_SEARCH_URL(query, page));
     const movieResults = moviesResponse.data.results.slice(0, 4).map(movie => ({
       title: movie.title,
-      posterImg: `${MOVIE_SMALL_IMAGE}${movie.poster_path}`,
-      releaseYear: movie.release_date.slice(0, 4),
+      posterImg: movie.poster_path
+        ? `${MOVIE_SMALL_IMAGE}${movie.poster_path}`
+        : null,
+      releaseYear: movie.release_date ? movie.release_date.slice(0, 4) : 'N/A',
       rating: movie.vote_average,
       id: movie.id,
     }));
 
-    //combinig the twooo results //
-    res.json({
-      actorsAndDirectors: peopleResults,
-      movies: movieResults,
-    });
+    response.actorsAndDirectors = peopleResults.length > 0 ? peopleResults : [];
+    response.movies = movieResults.length > 0 ? movieResults : [];
+
+    res.json(response);
   } catch (error) {
     next(error);
   }
