@@ -1,5 +1,5 @@
 export const CONSTANTS = {
-  HIGHEST_MOVIES_URL: `${import.meta.env.VITE_BACKEND_URL}movies/highest-rated/p/`,
+  HIGHEST_MOVIES_URL: `${import.meta.env.VITE_BACKEND_URL}movies/highest-rated/page/`,
   LATEST_MOVIES_URL: `${import.meta.env.VITE_BACKEND_URL}movies/latest/page/`,
   CAROUSEL_URL: `${import.meta.env.VITE_BACKEND_URL}movies/home-carousel`,
   QUERY_KEY_TAGS: ['movies'],
