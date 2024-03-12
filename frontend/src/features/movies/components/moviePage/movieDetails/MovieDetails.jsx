@@ -17,16 +17,13 @@ import {
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const ratingSources = {
-  'Internet Movie Database': imdbIcon,
-  'Rotten Tomatoes': redTomatoesIcon,
-  Metacritic: metaIcon,
-};
 
-const MovieDetails = ({ movie }) => {
-  const targetProgress = parseFloat(movie.rating.imdb) * 10;
 
+const MovieDetails = ({ movie }) => { 
   const [progress, setProgress] = useState(0);
+  const targetProgress = parseFloat(movie.ratings.imdb) * 10 || 0;
+
+ 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,62 +37,60 @@ const MovieDetails = ({ movie }) => {
     }, 20);
 
     return () => clearInterval(interval);
-  }, [targetProgress]);
+  }, [targetProgress,progress]);
+
+ 
   return (
     <>
-      <DetailContainer>
-        <MovieTitle>
-          {movie.title} ({movie.year})
-        </MovieTitle>
-        <SubTitle>
-          {movie.genre} | {movie.runtime} | {movie.language}
-        </SubTitle>
-
-        <RatingRow>
-          {movie.ratings &&
-            movie.ratings.map((rating, index) => (
-              <RatingPair key={index}>
-                <LogoImage
-                  src={ratingSources[rating.Source]}
-                  alt={rating.Source}
-                />
-                <RatingText>{rating}</RatingText>
-              </RatingPair>
-            ))}
-
-          <div
-            style={{
-              width: 80,
-              height: 80,
-              overflow: 'hidden',
-              backgroundColor: 'rgb(110, 202, 238)',
-              borderRadius: '50%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+    <DetailContainer>
+      <MovieTitle>{movie.title} ({movie.year})</MovieTitle>
+      <SubTitle>{movie.genre} | {movie.runTime} mins | {movie.language}</SubTitle>
+      <RatingRow>
+      <RatingPair>
+          <LogoImage src={imdbIcon} alt="IMDb" />
+          <RatingText>{movie.ratings.imdb}</RatingText>
+        </RatingPair>
+        <RatingPair>
+          <LogoImage src={redTomatoesIcon} alt="Rotten Tomatoes" />
+          <RatingText>{movie.ratings.tmdb}</RatingText>
+        </RatingPair>
+        <RatingPair>
+          <LogoImage src={metaIcon} alt="Metacritic" />
+          <RatingText>{movie.ratings.metaCritic}</RatingText>
+        </RatingPair>
+        <div
+          style={{
+            width: 80,
+            height: 80,
+            overflow: 'hidden',
+            backgroundColor: 'rgb(110, 202, 238)',
+            borderRadius: '50%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <CircularProgressbarWithChildren
+            value={progress}
+            styles={{
+              path: {
+                stroke: `rgba(50, 170, 222, ${progress / 100})`,
+                strokeWidth: '40',
+              },
+              trail: {
+                stroke: '#0c3675',
+                strokeWidth: '40',
+              },
             }}
           >
-            <CircularProgressbarWithChildren
-              value={progress}
-              styles={{
-                root: {},
-                path: {
-                  stroke: `rgba(50, 170, 222, ${progress / 100})`,
-                  strokeWidth: '40',
-                },
-                trail: {
-                  stroke: '#0c3675',
-                  strokeWidth: '40',
-                },
-              }}
-            >
-              <strong style={{ color: 'rgb(6, 57, 117)', fontSize: '1.8rem' }}>
-                {progress}%
-              </strong>
-            </CircularProgressbarWithChildren>
-          </div>
-        </RatingRow>
-      </DetailContainer>
+            <strong style={{ color: 'rgb(6, 57, 117)', fontSize: '1.8rem' }}>
+              {progress}%
+            </strong>
+          </CircularProgressbarWithChildren>
+        </div>
+      </RatingRow>
+    </DetailContainer>
+    
     </>
   );
 };

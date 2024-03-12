@@ -28,24 +28,27 @@ const MoviePage = () => {
     CONSTANTS.QUERY_KEY_TAGS
   );
   if (isPendingMovie) {
-    return <div>Pending...</div>;
+    return <div>Pending... </div>;
   }
   return (
-    <PageContainer>
-      <TrailerWidget movie={Movie} />
-      <MovieContainer>
-        <OverlayContainer poster={Movie.backdrop}>
-          <MovieDetails movie={Movie} />
-        </OverlayContainer>
-
-        <TagLineAndPlot movie={Movie} />
-
-        <Reviews id={id} />
-        <DirectorAndWriters movie={Movie} />
-
-        <MovieCastCarouel movie={Movie} />
-      </MovieContainer>
-    </PageContainer>
+    <div>
+      
+        {Movie && (
+        <PageContainer>
+          <TrailerWidget movie={Movie} />
+          <MovieContainer>
+          <OverlayContainer poster={Movie.backdrop}>
+            <MovieDetails movie={Movie} />
+            </OverlayContainer>
+            <TagLineAndPlot movie={Movie} />
+            <Reviews movie={Movie}/>
+            <DirectorAndWriters movie={Movie} />
+            <MovieCastCarouel movie={Movie} />
+          </MovieContainer>
+        </PageContainer>
+      )}
+     
+    </div>
   );
 };
 

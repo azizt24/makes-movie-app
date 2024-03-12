@@ -13,6 +13,7 @@ export const useFetch = (url, queryKey = '', queryKeyTags) => {
     queryKey: [queryKey],
     queryFn: async () => {
       const { data } = await axios.get(url);
+
       return data;
     },
   });
