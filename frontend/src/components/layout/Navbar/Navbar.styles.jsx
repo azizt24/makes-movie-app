@@ -6,10 +6,7 @@ export const NavbarContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: ${props =>
-    props.isToggled
-      ? 'var(--DarkModePurplelight)'
-      : 'var(--secondary-color-light)'};
+  background-color: var(--secondary-color-light); 
   color: #fff;
   width: 100%;
   height: 67px; 
@@ -52,10 +49,7 @@ export const MenuBox = styled.div`
   position: absolute;
   z-index: 10;
   top: 100%;
-  background-color: ${props =>
-    props.isToggled
-      ? 'var(--DarModeBodyColor)'
-      : 'var(--secondary-color-light)'};
+  background-color: var(--secondary-color-light); 
   color: #fff;
   width: 267px;
   height: 235px;
@@ -63,8 +57,7 @@ export const MenuBox = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 3px solid;
-  border-color: ${props =>
-    props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+  border-color:var(--primary-color);
   border-radius: 20px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -104,8 +97,7 @@ export const MenuBox = styled.div`
 export const SearchInput = styled.input`
   padding: 0.5rem;
   border: 3px solid;
-  border-color: ${props =>
-    props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+  border-color: var(--primary-color);
   margin-right: 1rem;
   height: 36px;
   width: 180px;
@@ -124,8 +116,7 @@ export const RightSide = styled.div`
 export const ToggleButton = styled.button`
   border: none;
   cursor: pointer;
-  background-color: ${props =>
-    props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+  background-color: var(--primary-color); 
   border: 1px solid;
   border-radius: 18px;
   height: 28px; 
@@ -155,18 +146,14 @@ export const HamburgerIcon = styled.div`
   flex-direction: column;
   justify-content: space-around;
   cursor: pointer;
-  background-color: ${props =>
-    props.isToggled
-      ? 'var(--DarkModePurplelight)'
-      : 'var(--secondary-color-light)'};
+  background-color: var(--secondary-color-light);
   align-items: center;
   transition: transform 0.3s ease;
   z-index: 10;
   span {
     width: 100%;
     height: 4px;
-    background-color: ${props =>
-      props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+    background-color:var(--primary-color);
     transition: all 0.3s ease;
   }
 
@@ -200,8 +187,7 @@ export const SearchButton = styled.button`
   align-content: center;
   justify-content: center;
   padding: 0.5rem 1rem;
-  background-color: ${props =>
-    props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+  background-color: var(--primary-color);
   color: #111010;
   border: none;
   border-radius: 5px;

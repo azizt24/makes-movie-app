@@ -18,7 +18,7 @@ const errorHandler = (error, errorInfo) => {
 function App() {
 
   const theme = useSelector((state) => state.ui.theme); 
-  const spinner = useSelector((state) => state.ui.spinner); 
+  document.documentElement.setAttribute('data-theme', theme);
 
   return (
 

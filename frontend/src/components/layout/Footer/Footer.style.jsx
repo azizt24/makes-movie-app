@@ -7,10 +7,7 @@ export const FooterContainer = styled.footer`
   justify-content: flex-end;
   align-items: center;
   /* background-color: var(--secondary-color-light); */
-  background-color: ${props =>
-    props.isToggled
-      ? 'var(--DarModeBodyColor)'
-      : 'var(--secondary-color-light)'};
+  background-color:var(--secondary-color-light); 
   color: #fff;
   padding: 20px;
   width: 100%;
