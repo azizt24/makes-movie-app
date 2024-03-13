@@ -21,7 +21,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 const MovieDetails = ({ movie }) => { 
   const [progress, setProgress] = useState(0);
-  const targetProgress = parseFloat(movie.ratings.imdb) * 10 || 0;
+  const targetProgress = parseFloat(movie.ratings.tmdb) * 10 || 0;
 
  
 
@@ -45,20 +45,24 @@ const MovieDetails = ({ movie }) => {
     <DetailContainer>
       <MovieTitle>{movie.title} ({movie.year})</MovieTitle>
       <SubTitle>{movie.genre} | {movie.runTime} mins | {movie.language}</SubTitle>
+    
+   {movie.ratings && ( 
       <RatingRow>
-      <RatingPair>
+    {movie.ratings.imdb && (  <RatingPair>
           <LogoImage src={imdbIcon} alt="IMDb" />
           <RatingText>{movie.ratings.imdb}</RatingText>
-        </RatingPair>
-        <RatingPair>
+        </RatingPair>)}
+
+      {movie.ratings.tmdb && (  <RatingPair>
           <LogoImage src={redTomatoesIcon} alt="Rotten Tomatoes" />
           <RatingText>{movie.ratings.tmdb}</RatingText>
-        </RatingPair>
-        <RatingPair>
+        </RatingPair>)}
+
+       {movie.ratings.metaCritic && ( <RatingPair>
           <LogoImage src={metaIcon} alt="Metacritic" />
           <RatingText>{movie.ratings.metaCritic}</RatingText>
-        </RatingPair>
-        <div
+        </RatingPair>)}
+       {movie.ratings.imdb && ( <div
           style={{
             width: 80,
             height: 80,
@@ -87,8 +91,8 @@ const MovieDetails = ({ movie }) => {
               {progress}%
             </strong>
           </CircularProgressbarWithChildren>
-        </div>
-      </RatingRow>
+        </div>)}
+      </RatingRow>)}
     </DetailContainer>
     
     </>

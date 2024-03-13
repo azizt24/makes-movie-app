@@ -2,8 +2,8 @@ import { TagPlotContainer, Plot, TagLine } from './TagLineAndPlotStyles';
 const TagLineAndPlot = ({ movie }) => {
   return (
     <TagPlotContainer>
-      <TagLine>“ {movie.tagline} “</TagLine>
-      <Plot>{movie.plot}</Plot>
+    {movie.tagline && (  <TagLine>“ {movie.tagline} “</TagLine>)}
+     {movie.plot &&( <Plot>{movie.plot}</Plot>)}
     </TagPlotContainer>
   );
 };
