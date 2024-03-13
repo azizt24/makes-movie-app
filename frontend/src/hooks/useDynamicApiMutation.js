@@ -1,17 +1,14 @@
 import { validateUrl } from './utils/useFetchValidation';
-import {
-  useMutation as useReactQueryMutation,
-  useQueryClient,
-} from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const useDynamicApiMutation = (url, method, data = {}, queryKey) => {
+export const useDynamicApiMutation = (url, method, queryKey, data = {}) => {
   const queryClient = useQueryClient();
 
   validateUrl(url);
 
-  const { mutate, isLoading } = useReactQueryMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: () => {
       return axios[method](url, data);
     },

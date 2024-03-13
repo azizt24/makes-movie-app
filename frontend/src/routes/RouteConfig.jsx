@@ -79,10 +79,6 @@ const router = createBrowserRouter([
         element: <TvShows />,
       },
       {
-        path: 'search/:type/:query/page/:page',
-        element: <MovieListSearch />,
-      },
-      {
         path: 'popular-actors/page/:page',
         element: <PopularActors />,
       },
@@ -99,7 +95,7 @@ const router = createBrowserRouter([
         element: <Watch />,
       },
       {
-        path: 'savedmovies',
+        path: 'saved-movies',
         element: <SavedMovies />,
       },
       {
