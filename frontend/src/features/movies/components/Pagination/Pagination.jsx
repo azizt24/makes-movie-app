@@ -1,38 +1,36 @@
-import 'react';
+import React from 'react';
 import { PaginationWrapper, PaginationButton, NumberButton, NumberContainer } from './Pagination.style';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const pagesToShow = Math.min(9, totalPages); // Show up to 9 pages, but not more than the total number of pages
-  const maxPageLimit = 250;
+  if (totalPages <= 1) return null;  // Hide pagination if there's only one page
+
+
+  
+  const pagesToShow = Math.min(9, totalPages);
   let startPage, endPage;
 
-  const effectiveTotalPages = Math.min(totalPages, maxPageLimit);
-
   if (totalPages <= pagesToShow) {
-    // Total pages are less than or equal to the pages we want to show
     startPage = 1;
     endPage = totalPages;
   } else {
-    // Total pages are more than the pages we want to show
     const maxPagesBeforeCurrentPage = Math.floor(pagesToShow / 2);
     const maxPagesAfterCurrentPage = Math.ceil(pagesToShow / 2) - 1;
 
     if (currentPage <= maxPagesBeforeCurrentPage) {
-      // Current page is among the first set of pages
       startPage = 1;
       endPage = pagesToShow;
-    } else if (currentPage + maxPagesAfterCurrentPage >= effectiveTotalPages) {
-      // Current page is among the last set of pages
-      startPage = effectiveTotalPages - pagesToShow + 1;
-      endPage = effectiveTotalPages;
+    } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
+      startPage = totalPages - pagesToShow + 1;
+      endPage = totalPages;
     } else {
-      // Current page is somewhere in the middle
       startPage = currentPage - maxPagesBeforeCurrentPage;
       endPage = currentPage + maxPagesAfterCurrentPage;
     }
   }
 
-  const handlePageChange = (page) => onPageChange(page);
+  const handlePageChange = (page) => {
+    onPageChange(Math.min(Math.max(1, page), totalPages));   
+  };
 
   return (
     <PaginationWrapper>
@@ -49,10 +47,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           </NumberButton>
         ))}
       </NumberContainer>
-      <PaginationButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage >= effectiveTotalPages}>
+      <PaginationButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage >= totalPages}>
         Next
       </PaginationButton>
-      <PaginationButton onClick={() => handlePageChange(effectiveTotalPages)} disabled={currentPage >= effectiveTotalPages}>
+      <PaginationButton onClick={() => handlePageChange(totalPages)} disabled={currentPage >= totalPages}>
         Last
       </PaginationButton>
     </PaginationWrapper>
