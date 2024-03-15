@@ -1,0 +1,126 @@
+.register-container {
+    display: flex;
+    width: 100vw;
+    height: 85.6vh;
+    background-color: #f0f2f5;
+    position: relative;
+  }
+  
+  .illustration-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e8ef;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /* Add subtle gradient overlay */
+    background-image: linear-gradient(to bottom right, #e0e8ef 0%, #e7edf2 70%, #e0e8ef 100%);
+    /* Animation for a gentle "breathing" effect */
+    animation: breathe 4s infinite ease-in-out;
+  }
+  
+  @keyframes breathe {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 10px 10px;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  .placeholder {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .placeholder svg {
+    width: 100px;
+    height: 100px;
+    fill: #ddd;
+    /* Animate the path stroke for a pulsing effect */
+    animation: pulse 1s infinite ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% {
+      stroke: #ddd;
+    }
+    50% {
+      stroke: #bbb;
+    }
+    100% {
+      stroke: #ddd;
+    }
+  }
+  
+  .placeholder p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .form-container {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    /* Add a subtle box-shadow for depth */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .form-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* Add a subtle focus effect */
+    transition: border-color 0.2s ease-in-out;
+    &:focus {
+      border-color: #428bca;
+    }
+  }
+  
+  .form-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #428bca;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    /* Animate the button on hover */
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+      background-color: #337ab7;
+    }
+  }
+  

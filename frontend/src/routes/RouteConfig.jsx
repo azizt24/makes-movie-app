@@ -1,9 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Home from '../pages/Home/Home.jsx'
 import { SharedLayout } from '../components';
 import { Error } from '../pages';
+import Register from '../pages/Register/Register';
+import useAuth from './../components/useAuth/index';
 
 //mock components
+
+const Home = () => {
+  return <div>Home</div>;
+};
 
 const Movie = () => {
   return <div>Movie</div>;
@@ -81,6 +86,11 @@ const router = createBrowserRouter([
         ],
       },
       {
+        
+        path: 'Register',
+        element: <Register />,
+      },
+      {
         path: 'tv/:category/page/:page',
         element: <TvShows />,
       },
@@ -116,6 +126,11 @@ const router = createBrowserRouter([
         path: 'advanced-search',
         element: <AdvancedSearch />,
       },
+      // {
+      //   path: 'login',
+      //   element: <useAuth/>,
+      // },
+
     ],
   },
 ]);

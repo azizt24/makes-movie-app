@@ -1,29 +1,53 @@
-import styled, { keyframes } from 'styled-components';
-
+import styled, { keyframes } from "styled-components";
 
 export const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.isToggled
-      ? 'var(--DarkModePurplelight)'
-      : 'var(--secondary-color-light)'};
+      ? "var(--DarkModePurplelight)"
+      : "var(--secondary-color-light)"};
   color: #fff;
-  width: 100%;
-  height: 67px; 
-  z-index: 10;
-  position: fixed;  
- 
-  
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
-  }
-   
+  width: 100vw;
+  height: 67px;
 `;
 
+export const LoginBtn = styled.button`
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 5px 15px;
+  border-radius: 10px 20px;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+  font-weight: 700;
+  margin-inline: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #fff;
+    color: var(--primary-color);
+    border-radius: 20px 10px;
+  }
+`;
+export const LogoutBtn = styled.button`
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 5px 15px;
+  border-radius: 20px 10px;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+  font-weight: 700;
+  margin-inline: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #fff;
+    color: var(--primary-color);
+    border-radius: 10px 20px;
+  }
+`;
 export const LeftSide = styled.div`
   position: relative;
 `;
@@ -35,7 +59,6 @@ const slideIn = keyframes`
   to {
     transform: translateX(0);
   }
-   
 `;
 
 const slideOut = keyframes`
@@ -45,17 +68,15 @@ const slideOut = keyframes`
   to {
     transform: translateX(-120%);
   }
-   
 `;
 
 export const MenuBox = styled.div`
   position: absolute;
-  z-index: 10;
   top: 100%;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.isToggled
-      ? 'var(--DarModeBodyColor)'
-      : 'var(--secondary-color-light)'};
+      ? "var(--DarModeBodyColor)"
+      : "var(--secondary-color-light)"};
   color: #fff;
   width: 267px;
   height: 235px;
@@ -63,15 +84,15 @@ export const MenuBox = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 3px solid;
-  border-color: ${props =>
-    props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+  border-color: ${(props) =>
+    props.isToggled ? "var(--DarkMOdePurple)" : "var(--primary-color)"};
   border-radius: 20px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;
-  animation:
-    ${props => (props.isMenuOpen ? slideIn : slideOut)} 0.5s ease-out forwards;
-    
+  animation: ${(props) => (props.isMenuOpen ? slideIn : slideOut)} 0.5s ease-out
+    forwards;
+
   font-size: large;
 
   ul {
@@ -84,19 +105,18 @@ export const MenuBox = styled.div`
     margin-bottom: 0.5rem;
     cursor: pointer;
 
-    a{
+    a {
       color: white;
-      
+
       &:hover {
         color: var(--primary-color);
       }
     }
   }
 
-
   @media (max-width: 768px) {
     width: 270px;
-    height: 260px; 
+    height: 260px;
     margin-left: -2rem;
   }
 `;
@@ -104,14 +124,14 @@ export const MenuBox = styled.div`
 export const SearchInput = styled.input`
   padding: 0.5rem;
   border: 3px solid;
-  border-color: ${props =>
-    props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+  border-color: ${(props) =>
+    props.isToggled ? "var(--DarkMOdePurple)" : "var(--primary-color)"};
   margin-right: 1rem;
   height: 36px;
   width: 180px;
   @media (max-width: 768px) {
     width: 130px;
-    height: 27px; 
+    height: 27px;
   }
 `;
 
@@ -124,12 +144,12 @@ export const RightSide = styled.div`
 export const ToggleButton = styled.button`
   border: none;
   cursor: pointer;
-  background-color: ${props =>
-    props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+  background-color: ${(props) =>
+    props.isToggled ? "var(--DarkMOdePurple)" : "var(--primary-color)"};
   border: 1px solid;
   border-radius: 18px;
-  height: 28px; 
-  width: 60px; 
+  height: 28px;
+  width: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,38 +160,35 @@ export const ToggleButton = styled.button`
   }
   @media (max-width: 768px) {
     width: 40px;
-    height: 20px; 
+    height: 20px;
     margin-right: 2rem;
   }
 `;
 
-
 export const HamburgerIcon = styled.div`
   width: 70px;
   height: 60px;
-  
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   cursor: pointer;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.isToggled
-      ? 'var(--DarkModePurplelight)'
-      : 'var(--secondary-color-light)'};
+      ? "var(--DarkModePurplelight)"
+      : "var(--secondary-color-light)"};
   align-items: center;
   transition: transform 0.3s ease;
-  z-index: 10;
+
   span {
     width: 100%;
     height: 4px;
-    background-color: ${props =>
-      props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+    background-color: ${(props) =>
+      props.isToggled ? "var(--DarkMOdePurple)" : "var(--primary-color)"};
     transition: all 0.3s ease;
   }
 
-
-  ${props =>
+  ${(props) =>
     props.isOpen &&
     `
     span:nth-child(1) {
@@ -193,26 +210,25 @@ export const HamburgerLines = styled.span`
   transition: all 0.3s ease;
 `;
 
-
 export const SearchButton = styled.button`
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
   padding: 0.5rem 1rem;
-  background-color: ${props =>
-    props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
+  background-color: ${(props) =>
+    props.isToggled ? "var(--DarkMOdePurple)" : "var(--primary-color)"};
   color: #111010;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   width: 123px;
   transition: transform 0.5s ease;
-  height: 37px; 
+  height: 37px;
   img {
     width: 20px;
-    height: 20px; 
-    margin-right: 5px; 
+    height: 20px;
+    margin-right: 5px;
   }
   &:hover {
     background-color: #eae6e6;
@@ -220,7 +236,7 @@ export const SearchButton = styled.button`
   }
   @media (max-width: 768px) {
     width: 90px;
-    height: 27px; 
+    height: 27px;
   }
 `;
 
@@ -232,15 +248,13 @@ export const GoogleButton = styled.button`
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  height: 44px; 
+  height: 44px;
   width: 199px;
   margin-right: 1.5rem;
   &:hover {
     background-color: #eae6e6;
   }
 `;
-
-
 
 export const SettingIcon = styled.img`
   width: 28px;
