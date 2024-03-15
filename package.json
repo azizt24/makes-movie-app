@@ -20,5 +20,8 @@
     "concurrently": "^8.2.2",
     "husky": "^9.0.6",
     "lint-staged": "^15.2.0"
+  },
+  "dependencies": {
+    "redux": "^5.0.1"
   }
 }
