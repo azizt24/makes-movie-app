@@ -298,67 +298,95 @@ export const SearchResultsBox = styled.div`
   top: 68px; 
   right: 0;
   z-index: 10;
-  background-color: var(--secondary-color, #524763);
+  background-color: var(--secondary-color, #524763);  
   border: 1px solid #ccc;
   padding: 10px;
   width: 330px;
-  max-height: 50vh; /* 50% of the viewport height */
-  overflow-y: auto; /* Allow scrolling for overflow content */
+  max-height: 50%;
+  overflow-y: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &::-webkit-scrollbar {
+    width: 0px;   
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--secondary-color, #524763);;  
+    border-radius: 0px; 
+    width: 0px;   
+  }
 `;
 
+// Individual Search Result Item
 export const SearchResultItem = styled.div`
-  display: flex;
-  align-items: flex-start; /* Align items at the start vertically */
-  margin-bottom: 0.5rem;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  width: 100%;
+display: flex;
+width: 100%;
+background: var(--secondary-color-light);
+padding: 1rem;
+font-size: 1.7rem;
+color: var(--text-white);
+border-bottom: 1px solid white;
+transition: all 0.3s ease 0s;
+cursor: pointer;
+
 `;
 
+// Search Result Image
 export const SearchResultImage = styled.img`
-  flex-shrink: 0; /* Prevent the image from shrinking */
+  flex-shrink: 0;
   width: 20%;
   height: auto;
-  margin-right: 10px; /* Space between image and title */
+  margin-right: 10px;
 `;
 
+// Content area for text and icons in a search result
 export const SearchResultContent = styled.div`
-  display: flex;
-  flex-direction: column; /* Stack title and subtext vertically */
-  justify-content: flex-start; /* Align content to the top */
-  width: 80%; /* Remaining width */
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
 `;
 
+// Title in a search result (e.g., name or movie title)
 export const SearchResultTitle = styled.h3`
-  font-size: 1rem;
-  color: var(--primary-color, #333);
-  margin: 0; /* Remove margin to align title at the top */
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
 `;
 
-export const SearchResultText = styled.div`
-  width: 100%;
-`;
+// Subtext in a search result (e.g., known for, year)
 export const SearchResultSubText = styled.span`
-  display: block;
-  color: #666;
-  font-size: 0.8rem;
-  margin-top: 5px;  
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
 `;
 
+// Rating area in a search result (for movies)
 export const SearchResultRating = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 5px;  
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
 `;
 
+// Styled MdLocalMovies icon for movie results
+export const MdLocalMoviesIcon = styled(MdLocalMovies)`
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+`;
+
+// Styled RxAvatar icon for actor results
+export const RxAvatarIcon = styled(RxAvatar)`  
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+`;
+
+// Styled star icon for movie ratings
 export const StarIcon = styled(FaStar)`
-  color: #ffb400; 
-  margin-right: 5px;
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
 `;
-
-
  
  
  

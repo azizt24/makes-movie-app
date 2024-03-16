@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import noImagePlaceholder from '../../../../public/images/No-Image-Placeholder.svg.png';
 
-import {NavbarContainer,LeftSide,RightSide,SearchResultContent,SearchInputWrapper,SearchResultsBox,SearchResultItem,SearchResultImage,SearchResultText,
-SearchResultTitle,SearchResultSubText,SearchResultRating,StarIcon,} from './Navbar.styles';
+import {NavbarContainer,LeftSide,RightSide,SearchResultContent,SearchInputWrapper,SearchResultsBox,SearchResultItem,SearchResultImage,SearchResultTitle,SearchResultSubText,SearchResultRating,MdLocalMoviesIcon,RxAvatarIcon,StarIcon} from './Navbar.styles';
 
 import HamburgerIconComponent from './HamburgerIconComponent';
 import GoogleButtonComponent from './GoogleButtonComponent';
@@ -68,52 +67,36 @@ const Navbar = ({ isToggled, setIsToggled }) => {
       </NavbarContainer>
       {!isMobileView && searchResults && (
         <SearchResultsBox>
-          {searchResults.actorsAndDirectors?.map((person) => (
-            <SearchResultItem key={person.id}>
-           
+        {searchResults.actorsAndDirectors?.map((person) => (
+          <SearchResultItem key={person.id}>
             <Link to={`/movies/actors/${encodeURIComponent(person.name)}/page/1`}>
-              
               <SearchResultImage src={person.profileImg || noImagePlaceholder} alt={person.name} />
-              
-              
               <SearchResultContent>
-
                 <SearchResultTitle>{person.name}</SearchResultTitle>
-                <SearchResultSubText>{person.knownFor}</SearchResultSubText>
-              
+                <SearchResultSubText>
+                  <RxAvatarIcon /> Actor
+                </SearchResultSubText>
               </SearchResultContent>
-              
             </Link>
-
           </SearchResultItem>
-          ))}
-          {searchResults.movies?.map((movie) => (
-            <SearchResultItem key={movie.id}>
-
-              <Link to={`/movies/${movie.id}`}>
-
-              <SearchResultImage src={movie.posterImg||noImagePlaceholder} alt={movie.title} />
-
-
-          <SearchResultText>
-
-              <SearchResultTitle>{movie.title}</SearchResultTitle>
-            <SearchResultSubText>({movie.releaseYear})</SearchResultSubText>
-
-            <SearchResultRating>
-
-              <StarIcon />
-               {movie.rating}
-
-             </SearchResultRating>
-
-         </SearchResultText>
-
-          </Link>
-
-            </SearchResultItem>
-          ))}
-        </SearchResultsBox>)}
+        ))}
+        {searchResults.movies?.map((movie) => (
+          <SearchResultItem key={movie.id}>
+            <Link to={`/movies/${movie.id}`}>
+              <SearchResultImage src={movie.posterImg || noImagePlaceholder} alt={movie.title} />
+              <SearchResultContent>
+                <SearchResultTitle>{movie.title}</SearchResultTitle>
+                <SearchResultSubText>
+                  <MdLocalMoviesIcon /> {movie.releaseYear}
+                </SearchResultSubText>
+                <SearchResultRating>
+                  <StarIcon /> {movie.rating}
+                </SearchResultRating>
+              </SearchResultContent>
+            </Link>
+          </SearchResultItem>
+        ))}
+      </SearchResultsBox>)}
     </>
   );};
 
