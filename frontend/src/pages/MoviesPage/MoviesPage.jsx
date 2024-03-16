@@ -13,8 +13,7 @@ const MoviesPage = () => {
    
   const {
     data: latestMoviesData,
-    isPending: isPendingLatest,
-    isError: isErrorLatest,
+     
   } = useFetch(
     `${CONSTANTS.LATEST_MOVIES_URL}${currentPage}`,
     `${CONSTANTS.LATEST_MOVIES_QUERY_KEY}-${currentPage}`,
@@ -24,8 +23,7 @@ const MoviesPage = () => {
    
   const {
     data: highestRatedMoviesData,
-    isPending: isPendingHighestRated,
-    isError: isErrorHighestRated,
+    
   } = useFetch(
     `${CONSTANTS.HIGHEST_MOVIES_URL}${currentPage}`,
     `${CONSTANTS.HIGHEST_RATED_MOVIES_QUERY_KEY}-${currentPage}`,
@@ -34,14 +32,7 @@ const MoviesPage = () => {
   const maxPages = 205;
   const totalPagesLatest = Math.min(latestMoviesData?.totalPages || 0, maxPages);
    
-  const totalPages = displayLatest 
-    ? latestMoviesData?.totalPages 
-    : highestRatedMoviesData?.total_pages;
-
    
-  const isPending = displayLatest ? isPendingLatest : isPendingHighestRated;
-  const isError = displayLatest ? isErrorLatest : isErrorHighestRated;
-
    
   const moviesData = displayLatest ? latestMoviesData : highestRatedMoviesData;
 
@@ -57,8 +48,7 @@ const MoviesPage = () => {
     }
   };
 
-  if (isPending) return <div>Loading...</div>;
-  if (isError) return <div>Error occurred while fetching the movies.</div>;
+   
   if (!moviesData?.movies) return <div>No movies found.</div>;
 
   return (

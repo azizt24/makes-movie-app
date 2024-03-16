@@ -1,8 +1,9 @@
-import React from 'react';
-import { PaginationWrapper, PaginationButton, NumberButton, NumberContainer } from './Pagination.style';
+import 'react';
+import { HiArrowSmallLeft , HiArrowSmallRight} from 'react-icons/hi2';
+import { PaginationWrapper, PaginationButton, NumberButton, NumberContainer, } from './Pagination.style';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  if (totalPages <= 1) return null;  // Hide pagination if there's only one page
+  if (totalPages <= 1) return null; 
 
 
   
@@ -35,23 +36,31 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <PaginationWrapper>
       <PaginationButton onClick={() => handlePageChange(1)} disabled={currentPage === 1}>
-        First
+      <HiArrowSmallLeft/>
+      Prev
       </PaginationButton>
       <PaginationButton onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-        Prev
+        
+       First
       </PaginationButton>
       <NumberContainer>
-        {Array.from({ length: (endPage + 1) - startPage }, (_, i) => startPage + i).map(page => (
-          <NumberButton key={page} onClick={() => handlePageChange(page)} disabled={currentPage === page}>
-            {page}
-          </NumberButton>
-        ))}
-      </NumberContainer>
+  {Array.from({ length: (endPage + 1) - startPage }, (_, i) => startPage + i).map(page => (
+    <NumberButton
+      key={page}
+      onClick={() => handlePageChange(page)}
+      disabled={currentPage === page}
+      isCurrentPage={currentPage === page}
+    >
+      {page}
+    </NumberButton>
+  ))}
+</NumberContainer>
       <PaginationButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage >= totalPages}>
         Next
       </PaginationButton>
       <PaginationButton onClick={() => handlePageChange(totalPages)} disabled={currentPage >= totalPages}>
-        Last
+      
+        Last<HiArrowSmallRight/>
       </PaginationButton>
     </PaginationWrapper>
   );
