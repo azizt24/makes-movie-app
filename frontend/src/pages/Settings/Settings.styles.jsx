@@ -8,7 +8,7 @@ export const Container = styled.div`
   background-color: var(--secondary-color);
   padding-bottom: 60px;
   color: white;
-  height: 700px;
+  height: 95vh;
 `;
 
 export const Header = styled.h1`
@@ -30,9 +30,8 @@ export const OptionsContainer = styled.div`
 `;
 export const OptionButton = styled.div`
   font-size: 15px;
-  border: var(--primary-color) 3px solid;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
   width: 140px;
+  margin-bottom: 10px;
+  cursor: pointer;
 `;

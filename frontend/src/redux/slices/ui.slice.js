@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  theme: 'default', // 'default' or 'dark'
-  spinner: 'spin',
+  theme: 'Default-Theme',
+  spinner: 'Spin',
 };
 
 export const uiSlice = createSlice({

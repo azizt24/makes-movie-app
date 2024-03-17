@@ -1,15 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { setTheme, setSpinner } from '../../redux/slices/ui.slice';
-import {
-  Container,
-  Header,
-  OptionsContainer,
-  OptionButton,
-} from './Settings.styles';
+import { Container, Header, OptionsContainer } from './Settings.styles';
 import { useState } from 'react';
 import SettingsOption from './SettingsOption';
 import Overlay from './Overlay';
 import { TitleContainer } from '../../components/layout/Title/Title.style';
+import SlidingAnimation from '../../components/ui/animation/SlidingAnimation';
 
 const Settings = () => {
   const dispatch = useDispatch();
@@ -28,7 +24,6 @@ const Settings = () => {
   });
   const [option1Open, setOption1Open] = useState(false);
   const [option2Open, setOption2Open] = useState(false);
-  const [isLoading, setLoading] = useState(true);
 
   const toggleOption1 = () => {
     setOption1Open(!option1Open);
@@ -49,11 +44,14 @@ const Settings = () => {
   };
 
   const handleSave = () => {
-    if (showOverlay.content === 'dark' || showOverlay.content === 'default') {
+    if (
+      showOverlay.content === 'Dark-Theme' ||
+      showOverlay.content === 'Default-Theme'
+    ) {
       handleThemeChange(showOverlay.content);
     } else if (
-      showOverlay.content === 'spin' ||
-      showOverlay.content === 'camera'
+      showOverlay.content === 'Spin' ||
+      showOverlay.content === 'Camera'
     ) {
       handleSpinnerChange(showOverlay.content);
     }
@@ -75,36 +73,22 @@ const Settings = () => {
           isOpen={option1Open}
           onClick={toggleOption1}
         >
-          <OptionButton>
-            <SettingsOption
-              onClick={() => handleOpenOverlay('spin')}
-              label="Spin"
-            />
-          </OptionButton>
-          <OptionButton>
-            <SettingsOption
-              onClick={() => handleOpenOverlay('camera')}
-              label="Camera"
-            />
-          </OptionButton>
+          <SlidingAnimation
+            option1="Spin"
+            handleOpen={handleOpenOverlay}
+            option2="Camera"
+          />
         </SettingsOption>
         <SettingsOption
           label="Themes"
           isOpen={option2Open}
           onClick={toggleOption2}
         >
-          <OptionButton>
-            <SettingsOption
-              onClick={() => handleOpenOverlay('default')}
-              label="Default-Theme"
-            />
-          </OptionButton>
-          <OptionButton>
-            <SettingsOption
-              onClick={() => handleOpenOverlay('dark')}
-              label="Dark-Theme"
-            />
-          </OptionButton>
+          <SlidingAnimation
+            option1="Default-Theme"
+            handleOpen={handleOpenOverlay}
+            option2="Dark-Theme"
+          />
         </SettingsOption>
       </OptionsContainer>
       {showOverlay.status && (

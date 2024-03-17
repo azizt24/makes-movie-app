@@ -16,10 +16,6 @@ export const Container = styled.div`
   margin-top: 30px;
 `;
 export const SpinContainer = styled.div`
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; */
   width: 8vmax;
   height: 8vmax;
   border-right: 4px solid var(--primary-color);

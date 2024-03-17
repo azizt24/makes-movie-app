@@ -18,7 +18,7 @@ import {
   ThemeContainer,
 } from './Overlay.styles';
 import { TitleContainer } from '../../components/layout/Title/Title.style';
-import XIcon from '../../components/Spinners/XIcon';
+import XIcon from '../../components/ui/animation/XIcon';
 
 const Overlay = ({ onClose, onSave, onCancel, content }) => {
   return (
@@ -30,9 +30,9 @@ const Overlay = ({ onClose, onSave, onCancel, content }) => {
         <CloseButton onClick={onClose}>
           <XIcon />
         </CloseButton>
-        {content === 'spin' && <Spin />}
-        {content === 'camera' && <Film />}
-        {content === 'default' && (
+        {content === 'Spin' && <Spin />}
+        {content === 'Camera' && <Film />}
+        {content === 'Default-Theme' && (
           <TheContainer>
             <ThemeTitle>{content} Theme</ThemeTitle>
             <ThemeContainer>
@@ -47,7 +47,7 @@ const Overlay = ({ onClose, onSave, onCancel, content }) => {
             </ThemeContainer>
           </TheContainer>
         )}
-        {content === 'dark' && (
+        {content === 'Dark-Theme' && (
           <TheContainer>
             <ThemeTitle>{content} Theme</ThemeTitle>
             <ThemeContainer>
