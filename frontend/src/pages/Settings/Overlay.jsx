@@ -34,7 +34,7 @@ const Overlay = ({ onClose, onSave, onCancel, content }) => {
         {content === 'Camera' && <Film />}
         {content === 'Default-Theme' && (
           <TheContainer>
-            <ThemeTitle>{content} Theme</ThemeTitle>
+            <ThemeTitle>Default Theme</ThemeTitle>
             <ThemeContainer>
               <OptionTheme>
                 <ColorHead>primary color</ColorHead>
@@ -49,7 +49,7 @@ const Overlay = ({ onClose, onSave, onCancel, content }) => {
         )}
         {content === 'Dark-Theme' && (
           <TheContainer>
-            <ThemeTitle>{content} Theme</ThemeTitle>
+            <ThemeTitle>Dark Theme</ThemeTitle>
             <ThemeContainer>
               <OptionTheme>
                 <ColorHead>primary color</ColorHead>
