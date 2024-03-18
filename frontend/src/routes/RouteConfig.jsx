@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error, Home, MoviesPage } from '../pages';
+import { Error, Home, MoviesPage, MoviePage } from '../pages';
 //mock components
 
 const TvShows = () => {
