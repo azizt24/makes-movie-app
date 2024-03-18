@@ -1,6 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error, Home } from '../pages';
+import { Error, Home  } from '../pages';
+ 
+import AdvancedSearch from '../pages/AdvancedSearch/Advanced-Search.jsx';
+
+
+
 
 //mock components
 
@@ -48,9 +53,8 @@ const Settings = () => {
   return <div>Settings</div>;
 };
 
-const AdvancedSearch = () => {
-  return <div>Advanced Search</div>;
-};
+ 
+
 
 const router = createBrowserRouter([
   {
