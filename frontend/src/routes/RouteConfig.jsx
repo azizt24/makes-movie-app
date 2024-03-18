@@ -1,12 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error, Home, MoviePage } from '../pages';
-
+import { Error, Home, MoviesPage } from '../pages';
 //mock components
-
-const Movies = () => {
-  return <div>Movies</div>;
-};
 
 const TvShows = () => {
   return <div>Tv Shows</div>;
@@ -67,11 +62,11 @@ const router = createBrowserRouter([
           },
           {
             path: ':category/page/:page',
-            element: <Movies />,
+            element: <MoviesPage />,
           },
           {
             path: 'actors/:name/page/:page',
-            element: <Movies />,
+            element: <MoviesPage />,
           },
         ],
       },
