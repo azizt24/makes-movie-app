@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import  aggregateData  from '../utils/aggregateData.js';
+import aggregateData from '../utils/aggregateData.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/asyncHandler.js';
 import {
@@ -74,7 +74,11 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
     },
   });
 
-  const movies = data.results.map(movie => ({
+  const sortedMovies = data.results.sort((a, b) =>
+    b.release_date.localeCompare(a.release_date)
+  );
+
+  const movies = sortedMovies.map(movie => ({
     image: `${MOVIE_SMALL_IMAGE}${movie.poster_path}`,
     title: movie.title,
     year: movie.release_date.slice(0, 4),
@@ -137,7 +141,12 @@ export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
 
   const tmdbResponse = await axios.get(getTmbdbUrl(movieId));
   if (tmdbResponse.status !== 200 || !tmdbResponse.data) {
-    return next(new ErrorResponse(`Error fetching data from TMDB: Status code ${tmdbResponse.status}`, 500));
+    return next(
+      new ErrorResponse(
+        `Error fetching data from TMDB: Status code ${tmdbResponse.status}`,
+        500
+      )
+    );
   }
   const tmdbData = tmdbResponse.data;
 
