@@ -1,5 +1,8 @@
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/RouteConfig';
+import '../src/styles/global.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ErrorBoundary } from 'react-error-boundary';

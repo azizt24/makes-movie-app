@@ -1,5 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
+import  aggregateData  from '../utils/aggregateData.js';
+import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/asyncHandler.js';
 import {
   HIGHEST_RATED_MOVIES,
@@ -7,6 +9,10 @@ import {
   LATEST_MOVIES_URL,
   MOVIE_BIG_IMAGE,
   MOVIE_SMALL_IMAGE,
+  getOmdbUrl ,
+  getTmbdbUrl,
+  CAST_QUERY_URL,
+  MOVIES_FETCHER,
 } from '../config/constants.js';
 
 dotenv.config({ path: './config/config.env' });
@@ -52,7 +58,7 @@ export const fetchHighestRatedMovies = asyncHandler(async (req, res) => {
   res.json({
     page: parseInt(page, 10),
     total_pages: data.total_pages,
-    data: movies,
+    movies,
   });
 });
 
@@ -76,8 +82,79 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
   }));
 
   res.json({
-    currentPage: page,
+    page: parseInt(page, 10),
     totalPages: data.total_pages,
     movies,
+  });
+});
+
+export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
+  const { id: movieId } = req.params;
+
+  const tmdbResponse = await axios.get(getTmbdbUrl(movieId));
+  if (tmdbResponse.status !== 200 || !tmdbResponse.data) {
+    return next(new ErrorResponse(`Error fetching data from TMDB: Status code ${tmdbResponse.status}`, 500));
+  }
+  const tmdbData = tmdbResponse.data;
+
+  const omdbResponse = await axios.get(getOmdbUrl(tmdbData.imdb_id));
+
+  if (omdbResponse.status !== 200 || !omdbResponse.data) {
+    return next(
+      new ErrorResponse(
+        `Error fetching data from OMDB: Status code ${omdbResponse.status}`,
+        500
+      )
+    );
+  }
+  const omdbData = omdbResponse.data;
+
+  const movieData = aggregateData(tmdbData, omdbData, tmdbData.reviews);
+
+  res.json(movieData);
+});
+
+
+export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
+  const { name, page } = req.params;
+
+  const pageNumber = parseInt(page);
+
+  if (isNaN(pageNumber) || pageNumber < 1) {
+    return next(new ErrorResponse('Invalid page number', 400));
+  }
+
+  const response = await axios.get(CAST_QUERY_URL(name, 1));
+  const results = response.data.results;
+  const totalPages = response.data.total_pages;
+
+  if (results.length === 0) {
+    return next(new ErrorResponse('Actor or director not found', 404));
+  }
+
+  const movies = [];
+  for (let i = 1; i <= totalPages; i++) {
+    const moviesResponse = await axios.get(
+      MOVIES_FETCHER(response.data.results[0].id),
+      {
+        params: {
+          api_key: API_KEY,
+          language: 'en-US',
+          page: i,
+        },
+      }
+    );
+    movies.push(...moviesResponse.data.cast);
+  }
+
+  const pageSize = 20;
+  const startIndex = (pageNumber - 1) * pageSize;
+  const endIndex = pageNumber * pageSize;
+  const paginatedMovies = movies.slice(startIndex, endIndex);
+
+  res.json({
+    currentPage: page,
+    totalPages: Math.ceil(movies.length / 20),
+    movies: paginatedMovies,
   });
 });

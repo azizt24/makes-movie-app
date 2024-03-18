@@ -1,8 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error } from '../pages';
-import Register from '../pages/Register/Register';
-import useAuth from './../components/useAuth/index';
+import { Error, Home, Register } from '../pages';
 
 //mock components
 
@@ -81,22 +79,17 @@ const router = createBrowserRouter([
           },
           {
             path: 'actors/:name/page/:page',
-            element: <ActorMovies />,
+            element: <Movies />,
           },
         ],
       },
       {
-        
         path: 'Register',
         element: <Register />,
       },
       {
         path: 'tv/:category/page/:page',
         element: <TvShows />,
-      },
-      {
-        path: 'search/:type/:query/page/:page',
-        element: <MovieListSearch />,
       },
       {
         path: 'popular-actors/page/:page',
@@ -115,7 +108,7 @@ const router = createBrowserRouter([
         element: <Watch />,
       },
       {
-        path: 'savedmovies',
+        path: 'saved-movies',
         element: <SavedMovies />,
       },
       {
@@ -130,7 +123,6 @@ const router = createBrowserRouter([
       //   path: 'login',
       //   element: <useAuth/>,
       // },
-
     ],
   },
 ]);
