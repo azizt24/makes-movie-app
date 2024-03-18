@@ -11,12 +11,11 @@ import {
   MOVIE_SMALL_IMAGE,
   SEARCH_MOVIE_URL,
   SEARCH_CAST_URL,
-  getOmdbUrl ,
+  getOmdbUrl,
   getTmbdbUrl,
   CAST_QUERY_URL,
   MOVIES_FETCHER,
 } from '../config/constants.js';
-import ErrorResponse from '../utils/errorResponse.js';
 dotenv.config({ path: './config/config.env' });
 
 const API_KEY = process.env.TMDB_API_KEY;

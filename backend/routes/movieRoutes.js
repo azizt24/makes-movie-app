@@ -4,7 +4,7 @@ import {
   fetchHomeCarouselMovies,
   fetchHighestRatedMovies,
   fetchLatestMovies,
-  searchMoviesAndCast
+  searchMoviesAndCast,
   fetchMovieDetails,
   fetchMoviesByCast,
 } from '../controllers/movies.js';
