@@ -10,22 +10,33 @@ export const CarouselStyling = styled(Slider)`
   position: fixed;
   margin-top: 10rem;
   position: relative;
-  overflow: hidden;  
+  overflow: visible;  
+  @media screen and (max-width: 768px) {
+    padding: 0 2rem; 
+  }
 
+  @media screen and (max-width: 500px) {
+    padding: 0 1rem; 
+    margin-top:0;
+  }
   .carousel-slide {
     position: relative;
+   
      
   }
 
   .carousel-image {
     width: 100%;   
-    height: 500px;   
+    /* height: 500px;    */
+    height:auto;
     object-fit: cover;  
+    
   }
 
   .carousel-caption {
     position: absolute;
-    bottom: 20px;
+    bottom: 15%;
+    
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.7);
@@ -139,7 +150,7 @@ border: none;
   text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  order: -1
+  order: -1;
   &:hover {
     background-color: var(--primary-color-light);
     transform: translateY(-1px);

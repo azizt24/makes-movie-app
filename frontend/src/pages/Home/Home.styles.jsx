@@ -14,6 +14,10 @@ export const HomeContainer = styled.div`
     min-height: auto;  
     padding: 20px;
   }
+  @media (max-width: 500px) {
+   padding: 0;
+   margin:0;
+  }
 `;
 
 
