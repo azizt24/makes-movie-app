@@ -17,12 +17,12 @@ const SlidingAnimation = ({ option1, option2, handleOpen }) => {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          transition={{ duration: 0.7, ease: 'easeInOut' }}
         >
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1, ease: 'easeInOut' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: 'easeInOut' }}
             onClick={() => handleOpen(option1)}
           >
             <OptionButton
@@ -35,7 +35,7 @@ const SlidingAnimation = ({ option1, option2, handleOpen }) => {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.2, ease: 'easeInOut' }}
+            transition={{ duration: 0.7, delay: 0.1, ease: 'easeInOut' }}
             onClick={() => handleOpen(option2)}
           >
             <OptionButton
