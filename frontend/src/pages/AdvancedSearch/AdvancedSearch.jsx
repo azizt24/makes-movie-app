@@ -10,7 +10,7 @@ import {
   MovieImage,
   MovieTitle,
   MovieYear,
-} from './AdvancedSearch.styles';
+} from './AdvancedSearch.styles.jsx';
 
 const AdvancedSearch = () => {
   const [searchParams, setSearchParams] = useState({
@@ -22,18 +22,20 @@ const AdvancedSearch = () => {
   });
   const [searchResults, setSearchResults] = useState([]);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    setSearchParams((prevParams) => ({
+    setSearchParams(prevParams => ({
       ...prevParams,
       [name]: value,
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.get('/api/movies/search/advanced', { params: searchParams });
+      const response = await axios.get('/api/movies/search/advanced', {
+        params: searchParams,
+      });
       setSearchResults(response.data.movies);
     } catch (error) {
       console.error('Failed to fetch search results', error);
@@ -43,14 +45,31 @@ const AdvancedSearch = () => {
   return (
     <SearchContainer>
       <SearchForm onSubmit={handleSubmit}>
-        <Input type="text" name="fromYear" value={searchParams.fromYear} onChange={handleChange} placeholder="From Year" />
-        <Input type="text" name="toYear" value={searchParams.toYear} onChange={handleChange} placeholder="To Year" />
-        <Input type="text" name="minRating" value={searchParams.minRating} onChange={handleChange} placeholder="Minimum Rating" />
+        <Input
+          type="text"
+          name="fromYear"
+          value={searchParams.fromYear}
+          onChange={handleChange}
+          placeholder="From Year"
+        />
+        <Input
+          type="text"
+          name="toYear"
+          value={searchParams.toYear}
+          onChange={handleChange}
+          placeholder="To Year"
+        />
+        <Input
+          type="text"
+          name="minRating"
+          value={searchParams.minRating}
+          onChange={handleChange}
+          placeholder="Minimum Rating"
+        />
         <SubmitButton type="submit">Search</SubmitButton>
       </SearchForm>
-
       <ResultsContainer>
-        {searchResults.map((movie) => (
+        {searchResults.map(movie => (
           <MovieCard key={movie.id}>
             <MovieImage src={movie.image} alt={movie.title} />
             <MovieTitle>{movie.title}</MovieTitle>

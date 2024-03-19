@@ -10,4 +10,3 @@ export { default as MovieCard } from './components/MovieCard/MovieCard.jsx';
 export { default as Carousel } from './components/Carousel/Carousel.jsx';
 export { default as MoviesTitle } from './components/MoviesTitle/MoviesTitle.jsx';
 export { default as Pagination } from './components/Pagination/Pagination.jsx';
-
