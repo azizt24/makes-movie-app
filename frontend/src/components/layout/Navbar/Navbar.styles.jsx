@@ -21,7 +21,6 @@ const slideOut = keyframes`
   to {
     transform: translateX(-120%);
   }
-   
 `;
 
 export const NavbarContainer = styled.nav`
