@@ -22,17 +22,17 @@ const Settings = () => {
     status: false,
     content: null,
   });
-  const [option1Open, setOption1Open] = useState(false);
-  const [option2Open, setOption2Open] = useState(false);
+  const [isSpinnerOpen, setIsSpinnerOpen] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
 
-  const toggleOption1 = () => {
-    setOption1Open(!option1Open);
-    if (option2Open) setOption2Open(false);
+  const toggleSpinner = () => {
+    setIsSpinnerOpen(!isSpinnerOpen);
+    if (isThemeOpen) setIsThemeOpen(false);
   };
 
-  const toggleOption2 = () => {
-    setOption2Open(!option2Open);
-    if (option1Open) setOption1Open(false);
+  const toggleTheme = () => {
+    setIsThemeOpen(!isThemeOpen);
+    if (isSpinnerOpen) setIsSpinnerOpen(false);
   };
 
   const handleCloseOverlay = () => {
@@ -70,8 +70,8 @@ const Settings = () => {
       <OptionsContainer>
         <SettingsOption
           label="Spinners"
-          isOpen={option1Open}
-          onClick={toggleOption1}
+          isOpen={isSpinnerOpen}
+          onClick={toggleSpinner}
         >
           <SlidingAnimation
             option1="Spin"
@@ -81,8 +81,8 @@ const Settings = () => {
         </SettingsOption>
         <SettingsOption
           label="Themes"
-          isOpen={option2Open}
-          onClick={toggleOption2}
+          isOpen={isThemeOpen}
+          onClick={toggleTheme}
         >
           <SlidingAnimation
             option1="Default-Theme"

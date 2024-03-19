@@ -20,15 +20,5 @@
     "concurrently": "^8.2.2",
     "husky": "^9.0.6",
     "lint-staged": "^15.2.0"
-  },
-  "dependencies": {
-    "axios": "^1.6.7",
-    "dotenv": "^16.4.5",
-    "movie-trailer": "^3.2.2",
-    "react-error-boundary": "^4.0.12",
-    "react-modal": "^3.16.1",
-    "react-responsive-carousel": "^3.2.23",
-    "react-toastify": "^10.0.4",
-    "styled-components": "^6.1.8"
   }
 }
