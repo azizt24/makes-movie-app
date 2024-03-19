@@ -76,7 +76,11 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
     },
   });
 
-  const movies = data.results.map(movie => ({
+  const sortedMovies = data.results.sort((a, b) =>
+    b.release_date.localeCompare(a.release_date)
+  );
+
+  const movies = sortedMovies.map(movie => ({
     image: `${MOVIE_SMALL_IMAGE}${movie.poster_path}`,
     title: movie.title,
     year: movie.release_date.slice(0, 4),
