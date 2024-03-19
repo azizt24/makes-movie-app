@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-
 export const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -12,16 +11,7 @@ export const NavbarContainer = styled.nav`
       : 'var(--secondary-color-light)'};
   color: #fff;
   width: 100%;
-  height: 67px; 
-  z-index: 10;
-  position: fixed;  
- 
-  
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
-  }
-   
+  height: 67px;
 `;
 
 export const LeftSide = styled.div`
@@ -45,7 +35,6 @@ const slideOut = keyframes`
   to {
     transform: translateX(-120%);
   }
-   
 `;
 
 export const MenuBox = styled.div`
@@ -69,9 +58,9 @@ export const MenuBox = styled.div`
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;
-  animation:
-    ${props => (props.isMenuOpen ? slideIn : slideOut)} 0.5s ease-out forwards;
-    
+  animation: ${props => (props.isMenuOpen ? slideIn : slideOut)} 0.5s ease-out
+    forwards;
+
   font-size: large;
 
   ul {
@@ -84,19 +73,18 @@ export const MenuBox = styled.div`
     margin-bottom: 0.5rem;
     cursor: pointer;
 
-    a{
+    a {
       color: white;
-      
+
       &:hover {
         color: var(--primary-color);
       }
     }
   }
 
-
   @media (max-width: 768px) {
     width: 270px;
-    height: 260px; 
+    height: 260px;
     margin-left: -2rem;
   }
 `;
@@ -111,7 +99,7 @@ export const SearchInput = styled.input`
   width: 180px;
   @media (max-width: 768px) {
     width: 130px;
-    height: 27px; 
+    height: 27px;
   }
 `;
 
@@ -128,8 +116,8 @@ export const ToggleButton = styled.button`
     props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
   border: 1px solid;
   border-radius: 18px;
-  height: 28px; 
-  width: 60px; 
+  height: 28px;
+  width: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,16 +128,15 @@ export const ToggleButton = styled.button`
   }
   @media (max-width: 768px) {
     width: 40px;
-    height: 20px; 
+    height: 20px;
     margin-right: 2rem;
   }
 `;
 
-
 export const HamburgerIcon = styled.div`
   width: 70px;
   height: 60px;
-  
+
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -169,7 +156,6 @@ export const HamburgerIcon = styled.div`
       props.isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
     transition: all 0.3s ease;
   }
-
 
   ${props =>
     props.isOpen &&
@@ -193,7 +179,6 @@ export const HamburgerLines = styled.span`
   transition: all 0.3s ease;
 `;
 
-
 export const SearchButton = styled.button`
   display: flex;
   align-items: center;
@@ -208,11 +193,11 @@ export const SearchButton = styled.button`
   cursor: pointer;
   width: 123px;
   transition: transform 0.5s ease;
-  height: 37px; 
+  height: 37px;
   img {
     width: 20px;
-    height: 20px; 
-    margin-right: 5px; 
+    height: 20px;
+    margin-right: 5px;
   }
   &:hover {
     background-color: #eae6e6;
@@ -220,7 +205,7 @@ export const SearchButton = styled.button`
   }
   @media (max-width: 768px) {
     width: 90px;
-    height: 27px; 
+    height: 27px;
   }
 `;
 
@@ -232,15 +217,13 @@ export const GoogleButton = styled.button`
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  height: 44px; 
+  height: 44px;
   width: 199px;
   margin-right: 1.5rem;
   &:hover {
     background-color: #eae6e6;
   }
 `;
-
-
 
 export const SettingIcon = styled.img`
   width: 28px;
