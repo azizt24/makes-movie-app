@@ -1,11 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error, Home ,AdvancedSearch } from '../pages';
- 
- 
-
-
-
+import { Error, Home, AdvancedSearch } from '../pages/index.js';
 
 //mock components
 
@@ -53,9 +48,6 @@ const Settings = () => {
   return <div>Settings</div>;
 };
 
- 
-
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -83,7 +75,7 @@ const router = createBrowserRouter([
           },
         ],
       },
-      
+
       {
         path: 'tv/:category/page/:page',
         element: <TvShows />,

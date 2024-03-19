@@ -1,26 +1,23 @@
 import styled from 'styled-components';
 import Slider from 'react-slick';
 
-
-
 export const CarouselStyling = styled(Slider)`
-  width: 1506px;   
-  height: 500px;   
+  width: 1506px;
+  height: 500px;
   z-index: 0;
   position: fixed;
   margin-top: 10rem;
   position: relative;
-  overflow: hidden;  
+  overflow: hidden;
 
   .carousel-slide {
     position: relative;
-     
   }
 
   .carousel-image {
-    width: 100%;   
-    height: 500px;   
-    object-fit: cover;  
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
   }
 
   .carousel-caption {
@@ -34,8 +31,6 @@ export const CarouselStyling = styled(Slider)`
     border-radius: 8px;
     text-align: left;
     width: 80%;
-     
-    
   }
 
   .movie-details-box {
@@ -56,21 +51,21 @@ export const CarouselStyling = styled(Slider)`
     font-size: 1.2rem;
     margin-top: 5px;
     color: var(--text-white);
-    overflow : auto;
-    width: 100%;  
-  height: 40px;  
-  line-height: 30px;  
-  overflow: hidden;  
-  white-space: nowrap;  
-  text-overflow: ellipsis;  
-   
-  padding: 0 10px; 
+    overflow: auto;
+    width: 100%;
+    height: 40px;
+    line-height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    padding: 0 10px;
   }
 
   .details-footer {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
   }
 
   .year {
@@ -82,8 +77,7 @@ export const CarouselStyling = styled(Slider)`
   .carousel-rating {
     font-size: 1.5rem;
     margin-top: 5px;
-    margin-left : 5px
-    
+    margin-left: 5px;
   }
 
   .carousel-star {
@@ -93,20 +87,15 @@ export const CarouselStyling = styled(Slider)`
   }
 
   .slick-arrow {
-     
-     
-  position: absolute;
-  top: 50%;
-  z-index: 99;
-  transform: translateY(-50%);
-  
-   
-   
+    position: absolute;
+    top: 50%;
+    z-index: 99;
+    transform: translateY(-50%);
   }
 
   .slick-prev {
     left: 25px;
-     
+
     color: var(--primary-color);
   }
 
@@ -132,7 +121,7 @@ width:104px;
 
 border: none;
   background-color: var(--primary-color);
-  color: ${props => props.white ? 'var(--text-white)' : 'var(--text-dark)'};
+  color: ${props => (props.white ? 'var(--text-white)' : 'var(--text-dark)')};
   font-weight: bold;
   padding: 10px 15px;
   border-radius: 5px;
