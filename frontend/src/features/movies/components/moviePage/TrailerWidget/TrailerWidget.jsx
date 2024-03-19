@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Modal from 'react-modal';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -15,8 +15,6 @@ import {
 } from './TrailerWidgetStyles';
 
 const TrailerWidget = ({ movie }) => {
-  const [Trailers, setTrailers] = useState(movie.trailers);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => setIsOpen(true);
@@ -96,7 +94,7 @@ const TrailerWidget = ({ movie }) => {
               )
             }
           >
-            {Trailers.map((trailer, index) => (
+            {movie.trailers.map((trailer, index) => (
               <StyledCarouselDiv key={index}>
                 <StyledIframe
                   src={`https://www.youtube.com/embed/${trailer.key}`}

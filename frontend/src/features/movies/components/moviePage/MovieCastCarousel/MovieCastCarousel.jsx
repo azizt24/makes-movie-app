@@ -1,4 +1,3 @@
-import { useState,} from 'react';
 import { Link } from 'react-router-dom';
 
 import { Carousel } from 'react-responsive-carousel';
@@ -7,18 +6,17 @@ import {
   CastCard,
   CastName,
   CastChar,
-  Castimg,
+  CastImg,
   arrowStyles,
-} from './MovieCastCarouelStyles';
-const MovieCastCarouel = ({ movie }) => {
-  const [Cast, setCast] = useState(movie.actors);
+} from './MovieCastCarouselStyles';
 
+const MovieCastCarousel = ({ movie }) => {
   const imageBaseURL = 'https://image.tmdb.org/t/p/w200';
 
   const chunkSize = 6;
   const chunks = [];
-  for (let i = 0; i < Cast.length; i += chunkSize) {
-    chunks.push(Cast.slice(i, i + chunkSize));
+  for (let i = 0; i < movie.actors.length; i += chunkSize) {
+    chunks.push(movie.actors.slice(i, i + chunkSize));
   }
   return (
     <div>
@@ -61,7 +59,7 @@ const MovieCastCarouel = ({ movie }) => {
               >
                 <Link to="">
                   <CastCard>
-                    <Castimg
+                    <CastImg
                       src={`${imageBaseURL}${element.image}`}
                       alt={element.name}
                     />
@@ -79,4 +77,4 @@ const MovieCastCarouel = ({ movie }) => {
   );
 };
 
-export default MovieCastCarouel;
+export default MovieCastCarousel;

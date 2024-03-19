@@ -1,6 +1,6 @@
 export { default as MoviesButtons } from './components/Buttons/MoviesButtons.jsx';
 export { default as DirectorAndWriters } from './components/moviePage/DirectorAndWriters/DirectorAndWriters';
-export { default as MovieCastCarouel } from './components/moviePage/MovieCastCarouel/MovieCastCarouel';
+export { default as MovieCastCarousel } from './components/moviePage/MovieCastCarousel/MovieCastCarousel.jsx';
 export { default as TrailerWidget } from './components/moviePage/TrailerWidget/TrailerWidget';
 export { default as TagLineAndPlot } from './components/moviePage/tagLineAndPlot/TagLineAndPlot.jsx';
 export { default as Reviews } from './components/moviePage/Reviews/Reviews';
