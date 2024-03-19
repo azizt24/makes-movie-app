@@ -1,4 +1,4 @@
-.carousel-slide {
+.carousel-slide-2 {
   margin-left: 2rem;
   margin-right: 2rem;
   margin-top: 2rem;
@@ -11,7 +11,7 @@
   font-weight: 400;
   width: 80%;
 }
-.carousel-slide p {
+.carousel-slide-2 p {
   margin-left: 50px;
   border-left: 2px solid #49bcec;
   border-right: 2px solid #49bcec;

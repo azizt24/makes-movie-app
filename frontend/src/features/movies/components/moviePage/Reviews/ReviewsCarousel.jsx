@@ -68,7 +68,7 @@ const ReviewsCarousel = ({ reviews }) => {
       }
     >
       {reviews.map((review, index) => (
-        <div key={index} className="carousel-slide">
+        <div key={index} className="carousel-slide-2">
           <h4>By: {review.author}</h4>
           <p>
             {renderReviewContent(review.content, index)}

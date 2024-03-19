@@ -10,7 +10,7 @@ export const NavbarContainer = styled.nav`
       ? 'var(--DarkModePurplelight)'
       : 'var(--secondary-color-light)'};
   color: #fff;
-  width: 100vw;
+  width: 100%;
   height: 67px;
 `;
 
