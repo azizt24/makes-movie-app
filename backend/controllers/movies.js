@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import  aggregateData  from '../utils/aggregateData.js';
+import aggregateData from '../utils/aggregateData.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/asyncHandler.js';
 import {
@@ -9,10 +9,11 @@ import {
   LATEST_MOVIES_URL,
   MOVIE_BIG_IMAGE,
   MOVIE_SMALL_IMAGE,
-  getOmdbUrl ,
+  getOmdbUrl,
   getTmbdbUrl,
   CAST_QUERY_URL,
   MOVIES_FETCHER,
+  DISCOVER_MOVIE_URL,
 } from '../config/constants.js';
 
 dotenv.config({ path: './config/config.env' });
@@ -93,7 +94,12 @@ export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
 
   const tmdbResponse = await axios.get(getTmbdbUrl(movieId));
   if (tmdbResponse.status !== 200 || !tmdbResponse.data) {
-    return next(new ErrorResponse(`Error fetching data from TMDB: Status code ${tmdbResponse.status}`, 500));
+    return next(
+      new ErrorResponse(
+        `Error fetching data from TMDB: Status code ${tmdbResponse.status}`,
+        500
+      )
+    );
   }
   const tmdbData = tmdbResponse.data;
 
@@ -113,7 +119,6 @@ export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
 
   res.json(movieData);
 });
-
 
 export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
   const { name, page } = req.params;
@@ -157,4 +162,43 @@ export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
     totalPages: Math.ceil(movies.length / 20),
     movies: paginatedMovies,
   });
+});
+
+export const advancedSearch = asyncHandler(async (req, res) => {
+  const {
+    vote_count_gte = 100,
+    sort_by = 'vote_average.desc',
+    primary_release_date_gte = '1900-01-01', // Default to early cinema
+    primary_release_date_lte = new Date().toISOString().split('T')[0], // Default to today's date
+    genres,
+    page = 1,
+  } = req.query;
+
+  const params = {
+    api_key: API_KEY,
+    'vote_count.gte': vote_count_gte,
+    sort_by,
+    'primary_release_date.gte': primary_release_date_gte,
+    'primary_release_date.lte': primary_release_date_lte,
+    page,
+  };
+
+  // Include genres in the search parameters if provided
+  if (genres) {
+    params.with_genres = genres;
+  }
+
+  try {
+    const response = await axios.get(DISCOVER_MOVIE_URL, { params });
+    res.json({
+      success: true,
+      results: response.data.results,
+      page: response.data.page,
+      total_results: response.data.total_results,
+      total_pages: response.data.total_pages,
+    });
+  } catch (error) {
+    console.error('Advanced search failed:', error.message);
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
 });

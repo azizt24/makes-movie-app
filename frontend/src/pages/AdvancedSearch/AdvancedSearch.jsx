@@ -10,7 +10,8 @@ import {
   MovieImage,
   MovieTitle,
   MovieYear,
-} from './Advanced-Search.styles';
+} from './AdvancedSearch.styles';
+
 const AdvancedSearch = () => {
   const [searchParams, setSearchParams] = useState({
     fromYear: '',

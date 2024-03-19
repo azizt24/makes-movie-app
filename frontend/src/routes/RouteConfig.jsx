@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error, Home  } from '../pages';
+import { Error, Home ,AdvancedSearch } from '../pages';
  
-import AdvancedSearch from '../pages/AdvancedSearch/Advanced-Search.jsx';
+ 
 
 
 
@@ -83,6 +83,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+      
       {
         path: 'tv/:category/page/:page',
         element: <TvShows />,
