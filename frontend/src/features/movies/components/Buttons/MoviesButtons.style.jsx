@@ -26,6 +26,11 @@ export const MoviesBtn = styled.div`
   transition: all 0.3s ease 0s;
   cursor: pointer;
   color: var(--text-white);
+  &.active {
+    background: var(--primary-color);
+    color: var(--text-dark);
+    border: 1px solid var(--secondary-color);  
+  }
   &:hover {
     background: var(--primary-color);
     color: var(--text-dark);
@@ -34,4 +39,6 @@ export const MoviesBtn = styled.div`
     width: 20rem;
     margin: 2rem auto;
   }
+  
 `;
+
