@@ -8,9 +8,9 @@ export const WidgetContainer = styled.div`
   background-image: url(${props => props.backgroundImage});
   background-size: contain;
   background-repeat: no-repeat;
-  width: 20rem;
-  height: 23rem;
-  top: 70%;
+  width: 25rem;
+  height: 25rem;
+  top: 50%;
   left: 83%;
 
   z-index: 1;
@@ -23,12 +23,13 @@ export const WidgetContainer = styled.div`
   }
   @media screen and (max-width: 500px) {
     top: 400px;
-    left: 73%;
+    left: 76%;
   }
 `;
 export const Arrow = styled.div`
-  margin-right: 2.3vw;
-  width: 45%;
+  margin-right: 4vw;
+
+  width: 39%;
   height: 30%;
   font-size: 30px;
   color: #79d3f3;

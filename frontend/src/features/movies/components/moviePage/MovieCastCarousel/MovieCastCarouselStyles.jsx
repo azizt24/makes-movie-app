@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CastCard = styled.div`
-  margin-top: 200px;
+  margin-top: 3rem;
   width: 160px;
   height: 330px;
   background-color: #49bcec;
@@ -28,7 +28,7 @@ export const CastChar = styled.p`
   color: red;
   font-size: 15px;
 `;
-export const Castimg = styled.img`
+export const CastImg = styled.img`
   padding: 5px;
 
   width: 80px;

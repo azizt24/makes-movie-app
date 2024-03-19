@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const PageContainer = styled.div`
-  padding: 0vw 15vw;
+  padding: 0vw 10vw;
   overflow: hidden;
   background: linear-gradient(to right, #141e30, #456181);
   @media screen and (max-width: 1200px) {
@@ -22,7 +22,7 @@ export const MovieContainer = styled.div`
 `;
 
 export const OverlayContainer = styled.div`
-  height: 60vh;
+  height: 50vh;
   position: relative;
   transform: skewY(2.5deg) translateY(-30px);
   color: var(--text-white);

@@ -1,11 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error, Home, MoviesPage, MoviePage } from '../pages';
-
+import { Error, Home, MoviesPage, MoviePage, Settings } from '../pages';
 //mock components
-const Movie = () => {
-  return <div>Movie</div>;
-};
 
 const TvShows = () => {
   return <div>Tv Shows</div>;
@@ -39,9 +35,9 @@ const SavedMovies = () => {
   return <div>Saved Movies</div>;
 };
 
-const Settings = () => {
-  return <div>Settings</div>;
-};
+// const Settings = () => {
+//   return <div>Settings</div>;
+// };
 
 const AdvancedSearch = () => {
   return <div>Advanced Search</div>;

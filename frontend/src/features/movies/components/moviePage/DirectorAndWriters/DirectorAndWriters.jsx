@@ -3,8 +3,8 @@ import { DirectorWriters } from './DirectorAndWritersStyles';
 const DirectorAndWriters = ({ movie }) => {
   return (
     <DirectorWriters>
-      <p>Director: {movie.Director}</p>
-      <p>Writer: {movie.Writer}</p>
+      {movie.director && (<p>Director: {movie.director}</p>)}
+     {movie.writer && ( <p>Writer: {movie.writer}</p>)}
     </DirectorWriters>
   );
 };

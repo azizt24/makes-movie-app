@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Carousel } from 'react-responsive-carousel';
@@ -7,29 +6,17 @@ import {
   CastCard,
   CastName,
   CastChar,
-  Castimg,
+  CastImg,
   arrowStyles,
-} from './MovieCastCarouelStyles';
-const MovieCastCarouel = ({ id }) => {
-  const [Cast, setCast] = useState([]);
-  const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=2a5b2bfab3731d2da0e262fb42a86194&language=en-US`;
-  useEffect(() => {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const castArray = data.cast;
-        //console.log(castArray);
-        setCast(castArray);
-      })
-      .catch(error => console.error(error));
-  }, []);
+} from './MovieCastCarouselStyles';
 
+const MovieCastCarousel = ({ movie }) => {
   const imageBaseURL = 'https://image.tmdb.org/t/p/w200';
 
   const chunkSize = 6;
   const chunks = [];
-  for (let i = 0; i < Cast.length; i += chunkSize) {
-    chunks.push(Cast.slice(i, i + chunkSize));
+  for (let i = 0; i < movie.actors.length; i += chunkSize) {
+    chunks.push(movie.actors.slice(i, i + chunkSize));
   }
   return (
     <div>
@@ -72,8 +59,8 @@ const MovieCastCarouel = ({ id }) => {
               >
                 <Link to="">
                   <CastCard>
-                    <Castimg
-                      src={`${imageBaseURL}${element.profile_path}`}
+                    <CastImg
+                      src={`${imageBaseURL}${element.image}`}
                       alt={element.name}
                     />
                     <CastName>{element.name}</CastName>
@@ -90,4 +77,4 @@ const MovieCastCarouel = ({ id }) => {
   );
 };
 
-export default MovieCastCarouel;
+export default MovieCastCarousel;
