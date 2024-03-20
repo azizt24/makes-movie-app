@@ -1,3 +1,4 @@
+import Title from './../../components/layout/Title/TItle';
 import { useState } from 'react';
 import axios from 'axios';
 import {
@@ -44,6 +45,7 @@ const AdvancedSearch = () => {
 
   return (
     <SearchContainer>
+      <Title title={'advanced search'} />
       <SearchForm onSubmit={handleSubmit}>
         <Input
           type="text"

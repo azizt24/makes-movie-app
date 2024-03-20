@@ -3,12 +3,9 @@ import styled from 'styled-components';
 export const SearchContainer = styled.div`
   background-color: var(--secondary-color);
   width: 100%;
-  height: auto;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
 `;
 
 export const SearchForm = styled.form`
