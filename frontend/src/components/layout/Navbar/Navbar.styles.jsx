@@ -19,7 +19,7 @@ export const LoginBtn = styled.button`
   color: #fff;
   border: 2px solid #fff;
   padding: 5px 15px;
-  border-radius: 10px 20px;
+  border-radius: 1px 20px;
   text-transform: capitalize;
   transition: all 0.3s ease;
   font-weight: 700;

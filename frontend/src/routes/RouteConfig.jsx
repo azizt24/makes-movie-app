@@ -4,10 +4,6 @@ import { Error, Home, Register } from '../pages';
 
 //mock components
 
-const Home = () => {
-  return <div>Home</div>;
-};
-
 const Movie = () => {
   return <div>Movie</div>;
 };
@@ -119,10 +115,7 @@ const router = createBrowserRouter([
         path: 'advanced-search',
         element: <AdvancedSearch />,
       },
-      // {
-      //   path: 'login',
-      //   element: <useAuth/>,
-      // },
+   
     ],
   },
 ]);
