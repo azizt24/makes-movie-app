@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.1",
     "axios": "^1.6.7",
+    "framer-motion": "^11.0.8",
+    "movie-trailer": "^3.2.2",
     "react": "^18.2.0",
     "react-card-flip": "^1.2.2",
     "react-circular-progressbar": "^2.1.0",
