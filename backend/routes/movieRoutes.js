@@ -4,6 +4,7 @@ import {
   fetchHomeCarouselMovies,
   fetchHighestRatedMovies,
   fetchLatestMovies,
+  searchMoviesAndCast,
   fetchMovieDetails,
   fetchMoviesByCast,
 } from '../controllers/movies.js';
@@ -16,6 +17,9 @@ router.get('/highest-rated/page/:page', fetchHighestRatedMovies);
 
 router.get('/latest/page/:page', fetchLatestMovies);
 
+router.get('/search', searchMoviesAndCast);
+
+router.get('/movies/:id', fetchMovieDetails);
 router.get('/:id', fetchMovieDetails);
 
 router.get('/actors/:name/page/:page', fetchMoviesByCast);

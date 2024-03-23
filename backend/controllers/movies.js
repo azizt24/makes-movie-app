@@ -9,12 +9,13 @@ import {
   LATEST_MOVIES_URL,
   MOVIE_BIG_IMAGE,
   MOVIE_SMALL_IMAGE,
+  SEARCH_MOVIE_URL,
+  SEARCH_CAST_URL,
   getOmdbUrl,
   getTmbdbUrl,
   CAST_QUERY_URL,
   MOVIES_FETCHER,
 } from '../config/constants.js';
-
 dotenv.config({ path: './config/config.env' });
 
 const API_KEY = process.env.TMDB_API_KEY;
@@ -91,6 +92,49 @@ export const fetchLatestMovies = asyncHandler(async (req, res) => {
     movies,
   });
 });
+
+export const searchMoviesAndCast = asyncHandler(async (req, res, next) => {
+  const inputSearch = req.params.query;
+
+  if (!inputSearch) {
+    return next(new ErrorResponse('Search query is required', 400));
+  }
+
+  const moviesResponse = await axios.get(SEARCH_MOVIE_URL, {
+    params: {
+      api_key: API_KEY,
+      query: inputSearch,
+      include_adult: false,
+      page:1,
+    },
+  });
+  const movies = moviesResponse.data.results.slice(0, 4).map(movie => ({
+    title: movie.title,
+    year: movie.release_date ? movie.release_date.slice(0, 4) : 'Unknown',
+    rating: movie.vote_average,
+    id: movie.id,
+  }));
+
+  const castResponse = await axios.get(SEARCH_CAST_URL, {
+    params: {
+      api_key: API_KEY,
+      query: inputSearch,
+      page:1,
+    },
+  });
+  const cast = castResponse.data.results.slice(0, 2).map(person => ({
+    name: person.name,
+    known_for: person.known_for_department,
+    id: person.id,
+  }));
+
+  res.json({
+    movies,
+    cast,
+  });
+});
+
+
 
 export const fetchMovieDetails = asyncHandler(async (req, res, next) => {
   const { id: movieId } = req.params;

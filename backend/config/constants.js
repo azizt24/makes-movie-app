@@ -16,6 +16,10 @@ export const LATEST_MOVIES_URL = 'https://api.themoviedb.org/3/movie/popular';
 export const MOVIE_SMALL_IMAGE = 'https://image.tmdb.org/t/p/w185/';
 export const REVIEWS = 'https://api.themoviedb.org/3';
 export const MOVIE_BIG_IMAGE = 'https://image.tmdb.org/t/p/w1280/';
+
+
+export const SEARCH_MOVIE_URL = 'https://api.themoviedb.org/3/search/movie';
+export const SEARCH_CAST_URL = 'https://api.themoviedb.org/3/search/person';
 export const ORIGINAL_IMG = 'https://image.tmdb.org/t/p/original';
 export const PROFILE_IMG = 'https://image.tmdb.org/t/p/w500';
 export const YOUTUBE = 'https://www.youtube.com/watch?v=';
