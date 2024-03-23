@@ -4,10 +4,7 @@ import { Error, Home, MoviePage } from '../pages';
 
 //mock components
 
-const Home = () => {
-  return <div>Home</div>;
-  //return <MoviePage />;
-};
+
 
 const Movie = () => {
   return <div>Movie</div>;
