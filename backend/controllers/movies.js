@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import aggregateData from '../utils/aggregateData.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/asyncHandler.js';
+import { fetchGenreList } from '../utils/genreService.js';
+import { getGenreList } from '../utils/genreService.js';
 import {
   HIGHEST_RATED_MOVIES,
   HOME_CAROUSEL_MOVIES,
@@ -168,29 +170,86 @@ export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
   });
 });
 
+// Utility function to map runtime descriptions to minutes
+function parseRuntime(runtimeRange) {
+  switch (runtimeRange) {
+    case '1-1.5h':
+      return 60;
+    case '1.5-2h':
+      return 90;
+    case '2-3h':
+      return 120;
+    case 'over 3h':
+      return 180;
+    default:
+      return 0;
+  }
+}
+
+// Function to fetch TMDB person IDs by name
+const fetchPersonIds = async names => {
+  const ids = [];
+  for (const name of names.split(',')) {
+    const response = await axios.get(CAST_QUERY_URL(name.trim(), 1), {
+      params: { api_key: API_KEY },
+    });
+    if (response.data.results.length > 0) {
+      ids.push(response.data.results[0].id);
+    }
+  }
+  return ids.join(',');
+};
+
 export const advancedSearch = asyncHandler(async (req, res) => {
   const {
-    vote_count_gte = 100,
-    sort_by = 'vote_average.desc',
-    primary_release_date_gte = '1900-01-01', // Default to early cinema
-    primary_release_date_lte = new Date().toISOString().split('T')[0], // Default to today's date
-    genres,
+    fromYear = '1903',
+    toYear = new Date().getFullYear().toString(),
+    minRating = 1,
+    minVotes = 100,
+    genres = '', // Expected as a comma-separated string of genre names
+    minRuntime,
+    actors,
+    directors,
+    writers,
     page = 1,
   } = req.query;
 
+  const runtimeRange = parseRuntime(minRuntime);
+
+  // Convert genre names to IDs
+  const genreList = getGenreList();
+  const genreIds = genres
+    .split(',')
+    .map(
+      name =>
+        genreList.find(
+          genre => genre.name.toLowerCase() === name.trim().toLowerCase()
+        )?.id
+    )
+    .filter(id => id)
+    .join(',');
+
   const params = {
     api_key: API_KEY,
-    'vote_count.gte': vote_count_gte,
-    sort_by,
-    'primary_release_date.gte': primary_release_date_gte,
-    'primary_release_date.lte': primary_release_date_lte,
+    'primary_release_date.gte': `${fromYear}-01-01`,
+    'primary_release_date.lte': `${toYear}-12-31`,
+    'vote_average.gte': minRating,
+    'vote_count.gte': minVotes,
+    with_genres: genreIds,
     page,
   };
 
-  // Include genres in the search parameters if provided
-  if (genres) {
-    params.with_genres = genres;
+  if (runtimeRange) {
+    params['with_runtime.gte'] = runtimeRange;
   }
+
+  // Handle actors, directors, and writers
+  if (actors) params.with_cast = await fetchPersonIds(actors);
+  if (directors) params.with_crew = await fetchPersonIds(directors);
+  if (writers)
+    params.with_crew =
+      (params.with_crew ? `${params.with_crew},` : '') +
+      (await fetchPersonIds(writers));
 
   try {
     const response = await axios.get(DISCOVER_MOVIE_URL, { params });
