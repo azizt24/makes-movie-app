@@ -1,4 +1,3 @@
-
 import { useState, useEffect ,useRef} from 'react';
 import { NavbarContainer, LeftSide, RightSide } from './Navbar.styles';
 import HamburgerIconComponnent from './HamburgerIconComponnent';
@@ -92,5 +91,7 @@ const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 };
 
 export default Navbar;
+
+
 
 
