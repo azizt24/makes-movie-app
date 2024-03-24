@@ -18,7 +18,7 @@ export const HomeContainer = styled.div`
 
 
 export const Title = styled.h1`
-margin-top: 5px;
+margin-top: 5rem;
   color: var(--text-white);
 `;
 

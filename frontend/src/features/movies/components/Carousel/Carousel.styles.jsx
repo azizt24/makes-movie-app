@@ -81,7 +81,6 @@ export const CarouselStyling = styled(Slider)`
 
   .carousel-rating {
     font-size: 1.5rem;
-    margin-top: 5px;
     margin-left : 5px
     
   }
@@ -129,19 +128,27 @@ export const CarouselStyling = styled(Slider)`
 export const DetailsButton = styled.button`
 height:37px;
 width:104px;
-
-border: none;
+ border: none;
   background-color: var(--primary-color);
-  color: ${props => props.white ? 'var(--text-white)' : 'var(--text-dark)'};
-  font-weight: bold;
-  padding: 10px 15px;
-  border-radius: 5px;
+  color: bold;
+  padding: 7px 7px;
+  width: 95px;
+  border-radius: 0px;
+  margin-right: 1rem ;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  order: -1
+  z-index: 1;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+
   &:hover {
     background-color: var(--primary-color-light);
     transform: translateY(-1px);
   }
+
+  color: ${props => props.white ? 'var(--text-white)' : 'var(--text-dark)'};
+  
 `;
+
+

@@ -41,7 +41,7 @@ const CarouselComponent = ({ movies }) => {
                 <span className="year">{movie.year}</span>
                 <div className="carousel-rating">
                   <span className="carousel-star">★</span>
-                  {movie.rating}
+                  {movie.rating.toFixed(1)}
                 </div>
               </div>
             </div>
