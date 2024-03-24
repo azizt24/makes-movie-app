@@ -1,7 +1,6 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useRef} from 'react';
 import { NavbarContainer, LeftSide, RightSide } from './Navbar.styles';
-
 import HamburgerIconComponnent from './HamburgerIconComponnent';
 import GoogleButtonComponnent from './GoogleButtonComponnent';
 import MenuBoxComponnent from './MenuBoxComponnent';
@@ -13,6 +12,7 @@ import SettingIconComponnent from './SettingIconComponnent';
 const Navbar = ({ isToggled, setIsToggled }) => {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navbarRef = useRef();
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,10 +35,26 @@ const Navbar = ({ isToggled, setIsToggled }) => {
   };
 
   const handleSearch = () => {};
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+            setIsMenuOpen(false);
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+}, []);
+
+const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <>
-      <NavbarContainer isToggled={isToggled}>
+      <NavbarContainer 
+      ref={navbarRef} 
+      isToggled={isToggled}>
         <LeftSide>
           <HamburgerIconComponnent
             onClick={handleMenuToggle}
@@ -46,10 +62,11 @@ const Navbar = ({ isToggled, setIsToggled }) => {
             isToggled={isToggled}
           />
           <MenuBoxComponnent
-            isToggled={isToggled}
-            onClick={handleToggle}
-            isMenuOpen={isMenuOpen}
-            setIsMenuOpen={setIsMenuOpen}
+             isToggled={isToggled}
+             onToggle={handleToggle} // Consider renaming to reflect the action
+             onMenuToggle={toggleMenu}
+             isMenuOpen={isMenuOpen}
+             setIsMenuOpen={setIsMenuOpen}
           />
         </LeftSide>
         <RightSide>
