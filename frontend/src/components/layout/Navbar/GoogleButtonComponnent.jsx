@@ -5,18 +5,20 @@ const GoogleButtonComponent = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    
     window.google.accounts.id.initialize({
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-      
       callback: handleCallbackResponse,
     });
 
     window.google.accounts.id.renderButton(
-      document.getElementById('signInDiv'), // This looks for an element with id="signInDiv"
-      { theme: 'outline', size: 'large' }
+      document.getElementById('signInDiv'), 
+      { theme: 'outline',
+         size: 'large',
+         shape : 'pill',
+
+       } 
     );
-  }, [user]);
+  }, []); 
 
   function handleCallbackResponse(response) {
     var userObject = jwtDecode.default(response.credential);
@@ -33,11 +35,12 @@ const GoogleButtonComponent = () => {
 
   return (
     <div>
-      <div id="signInDiv" style={{ marginLeft: '-280px'}}></div> 
+       <div id="signInDiv" style={{ marginLeft: '-280px' }}></div> 
       {Object.keys(user).length !== 0 &&
         <button onClick={handleSignOut}>Sign Out</button>
       }
     </div>
   );
-    }
+};
+
 export default GoogleButtonComponent;
