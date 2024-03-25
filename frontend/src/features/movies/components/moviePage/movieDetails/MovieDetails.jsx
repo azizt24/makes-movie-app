@@ -42,59 +42,73 @@ const MovieDetails = ({ movie }) => {
  
   return (
     <>
-    <DetailContainer>
-      <MovieTitle>{movie.title} ({movie.year})</MovieTitle>
-      <SubTitle>{movie.genre} | {movie.runTime} mins | {movie.language}</SubTitle>
-    
-   {movie.ratings && ( 
-      <RatingRow>
-    {movie.ratings.imdb && (  <RatingPair>
-          <LogoImage src={imdbIcon} alt="IMDb" />
-          <RatingText>{movie.ratings.imdb}</RatingText>
-        </RatingPair>)}
+      <DetailContainer>
+        <MovieTitle>
+          {movie.title} ({movie.year})
+        </MovieTitle>
+        <SubTitle>
+          {movie.genre} | {movie.runTime} mins | {movie.language}
+        </SubTitle>
 
-      {movie.ratings.tmdb && (  <RatingPair>
-          <LogoImage src={redTomatoesIcon} alt="Rotten Tomatoes" />
-          <RatingText>{movie.ratings.tmdb}</RatingText>
-        </RatingPair>)}
+        {movie.ratings && (
+          <RatingRow>
+            {typeof movie.ratings.imdb === 'number' && (
+              <RatingPair>
+                <LogoImage src={imdbIcon} alt="IMDb" />
+                <RatingText>{movie.ratings.imdb.toFixed(1)}</RatingText>
+              </RatingPair>
+            )}
 
-       {movie.ratings.metaCritic && ( <RatingPair>
-          <LogoImage src={metaIcon} alt="Metacritic" />
-          <RatingText>{movie.ratings.metaCritic}</RatingText>
-        </RatingPair>)}
-       {movie.ratings.imdb && ( <div
-          style={{
-            width: 80,
-            height: 80,
-            overflow: 'hidden',
-            backgroundColor: 'rgb(110, 202, 238)',
-            borderRadius: '50%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <CircularProgressbarWithChildren
-            value={progress}
-            styles={{
-              path: {
-                stroke: `rgba(50, 170, 222, ${progress / 100})`,
-                strokeWidth: '40',
-              },
-              trail: {
-                stroke: '#0c3675',
-                strokeWidth: '40',
-              },
-            }}
-          >
-            <strong style={{ color: 'rgb(6, 57, 117)', fontSize: '1.8rem' }}>
-              {progress}%
-            </strong>
-          </CircularProgressbarWithChildren>
-        </div>)}
-      </RatingRow>)}
-    </DetailContainer>
-    
+            {typeof movie.ratings.tmdb === 'number' && (
+              <RatingPair>
+                <LogoImage src={redTomatoesIcon} alt="Rotten Tomatoes" />
+                <RatingText>{movie.ratings.tmdb.toFixed(1)}</RatingText>
+              </RatingPair>
+            )}
+
+            {typeof movie.ratings.metaCritic === 'number' && (
+              <RatingPair>
+                <LogoImage src={metaIcon} alt="Metacritic" />
+                <RatingText>{movie.ratings.metaCritic.toFixed(1)}</RatingText>
+              </RatingPair>
+            )}
+            {movie.ratings.imdb && (
+              <div
+                style={{
+                  width: 80,
+                  height: 80,
+                  overflow: 'hidden',
+                  backgroundColor: 'rgb(110, 202, 238)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <CircularProgressbarWithChildren
+                  value={progress}
+                  styles={{
+                    path: {
+                      stroke: `rgba(50, 170, 222, ${progress / 100})`,
+                      strokeWidth: '40',
+                    },
+                    trail: {
+                      stroke: '#0c3675',
+                      strokeWidth: '40',
+                    },
+                  }}
+                >
+                  <strong
+                    style={{ color: 'rgb(6, 57, 117)', fontSize: '1.8rem' }}
+                  >
+                    {progress}%
+                  </strong>
+                </CircularProgressbarWithChildren>
+              </div>
+            )}
+          </RatingRow>
+        )}
+      </DetailContainer>
     </>
   );
 };
