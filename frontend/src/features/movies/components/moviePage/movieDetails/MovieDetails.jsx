@@ -52,26 +52,25 @@ const MovieDetails = ({ movie }) => {
 
         {movie.ratings && (
           <RatingRow>
-            {typeof movie.ratings.imdb === 'number' && (
+            {movie.ratings.imdb !== 'N/A' && (
               <RatingPair>
                 <LogoImage src={imdbIcon} alt="IMDb" />
-                <RatingText>{movie.ratings.imdb.toFixed(1)}</RatingText>
+                <RatingText>{movie.ratings.imdb}</RatingText>
               </RatingPair>
             )}
-
             {typeof movie.ratings.tmdb === 'number' && (
               <RatingPair>
                 <LogoImage src={redTomatoesIcon} alt="Rotten Tomatoes" />
                 <RatingText>{movie.ratings.tmdb.toFixed(1)}</RatingText>
               </RatingPair>
             )}
-
-            {typeof movie.ratings.metaCritic === 'number' && (
+            {movie.ratings.metaCritic !== 'N/A' && (
               <RatingPair>
                 <LogoImage src={metaIcon} alt="Metacritic" />
-                <RatingText>{movie.ratings.metaCritic.toFixed(1)}</RatingText>
+                <RatingText>{movie.ratings.metaCritic}</RatingText>
               </RatingPair>
             )}
+
             {movie.ratings.imdb && (
               <div
                 style={{
