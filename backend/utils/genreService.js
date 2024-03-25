@@ -1,10 +1,12 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 
+// Configure dotenv to load environment variables
+dotenv.config();
+let genreList = [];
 const API_KEY = process.env.TMDB_API_KEY;
 
 export const API_BASE_URL = 'https://api.themoviedb.org/3';
-let genreList = [];
 
 export async function fetchGenreList() {
   try {

@@ -7,7 +7,7 @@ export const validateUrl = url => {
   }
 };
 
-export const validateQueryKey = (queryKey, queryKeyTags) => {
+export const validateQueryKey = (queryKey, queryKeyTags = []) => {
   if (typeof queryKey !== 'string') {
     throw new Error(
       `Query key must be a valid string, received: ${typeof queryKey}`

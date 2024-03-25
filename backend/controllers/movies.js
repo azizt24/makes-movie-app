@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import aggregateData from '../utils/aggregateData.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/asyncHandler.js';
-import { fetchGenreList } from '../utils/genreService.js';
+
 import { getGenreList } from '../utils/genreService.js';
 import {
   HIGHEST_RATED_MOVIES,
@@ -203,14 +203,14 @@ const fetchPersonIds = async names => {
 export const advancedSearch = asyncHandler(async (req, res) => {
   const {
     fromYear = '1903',
-    toYear = new Date().getFullYear().toString(),
-    minRating = 1,
-    minVotes = 100,
-    genres = '', // Expected as a comma-separated string of genre names
-    minRuntime,
-    actors,
-    directors,
-    writers,
+    toYear = '2024',
+    minRating = '',
+    minVotes = '',
+    genre = '',
+    minRuntime = '',
+    actors = '',
+    directors = '',
+    writers = '',
     page = 1,
   } = req.query;
 
@@ -218,23 +218,25 @@ export const advancedSearch = asyncHandler(async (req, res) => {
 
   // Convert genre names to IDs
   const genreList = getGenreList();
-  const genreIds = genres
-    .split(',')
-    .map(
-      name =>
-        genreList.find(
-          genre => genre.name.toLowerCase() === name.trim().toLowerCase()
-        )?.id
-    )
-    .filter(id => id)
-    .join(',');
+  const genreIds = genre
+    ? genre
+        .split(',')
+        .map(name => {
+          const genre = genreList.find(
+            genre => genre.name.toLowerCase() === name.trim().toLowerCase()
+          );
+          return genre ? genre.id : null;
+        })
+        .filter(id => id)
+        .join(',')
+    : '';
 
   const params = {
-    api_key: API_KEY,
+    api_key: process.env.TMDB_API_KEY,
     'primary_release_date.gte': `${fromYear}-01-01`,
     'primary_release_date.lte': `${toYear}-12-31`,
-    'vote_average.gte': minRating,
-    'vote_count.gte': minVotes,
+    'vote_average.gte': minRating || undefined,
+    'vote_count.gte': minVotes || undefined,
     with_genres: genreIds,
     page,
   };

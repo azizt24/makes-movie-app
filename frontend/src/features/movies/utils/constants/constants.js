@@ -3,6 +3,7 @@ export const CONSTANTS = {
   LATEST_MOVIES_URL: `${import.meta.env.VITE_BACKEND_URL}movies/latest/page/`,
   CAROUSEL_URL: `${import.meta.env.VITE_BACKEND_URL}movies/home-carousel`,
   MOVIE_URL: `${import.meta.env.VITE_BACKEND_URL}movies/`,
+  SEARCH_MOVIES_URL: `${import.meta.env.VITE_BACKEND_URL}movies/search/advanced`,
   QUERY_KEY_TAGS: ['movies'],
   HOME_CAROUSEL_QUERY_KEY: 'home-carousel',
   LATEST_MOVIES_QUERY_KEY: 'latest-movies',
