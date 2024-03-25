@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export const MoviesContainer = styled.div`
   display: flex;
+  flex-wrap: wrap
   flex-direction: flex;
   align-items: center;
   justify-content: start;
