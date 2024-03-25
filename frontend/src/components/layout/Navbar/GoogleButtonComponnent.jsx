@@ -12,7 +12,8 @@ const GoogleButtonComponent = () => {
 
     window.google.accounts.id.renderButton(
       document.getElementById('signInDiv'), 
-      { theme: 'outline',
+      { 
+        theme: 'outline',
          size: 'large',
          shape : 'pill',
 
