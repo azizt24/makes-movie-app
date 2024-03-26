@@ -170,6 +170,7 @@ export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
   });
 });
 
+// CR - put the utility functions in a separate file in the utils folder
 // Utility function to map runtime descriptions to minutes
 function parseRuntime(runtimeRange) {
   switch (runtimeRange) {
@@ -253,6 +254,7 @@ export const advancedSearch = asyncHandler(async (req, res) => {
       (params.with_crew ? `${params.with_crew},` : '') +
       (await fetchPersonIds(writers));
 
+  // CR - since we are using the asyncHandler function, we don't need the try catch block
   try {
     const response = await axios.get(DISCOVER_MOVIE_URL, { params });
     res.json({
