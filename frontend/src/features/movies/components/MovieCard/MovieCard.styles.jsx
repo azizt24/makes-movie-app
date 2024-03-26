@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const FlipCard = styled.div`
   perspective: 1000px;
-  width: 200px;
-  height: 300px;
+
+  width: 17rem;
+  height: 27rem;
 `;
 
 export const FlipCardInner = styled.div`

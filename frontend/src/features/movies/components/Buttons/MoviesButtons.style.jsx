@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const MoviesButtonsContainer = styled.div`
   width: 100%;
-  margin-bottom: 5rem;
-  margin-top: 3rem;
+  /* margin-bottom: 5rem;
+  margin-top: 3rem; */
   display: flex;
   justify-content: center;
   @media (max-width: 768px) {
