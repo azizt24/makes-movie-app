@@ -1,26 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
-
+import { SharedLayout } from '../components';
+import { Error, Home, MoviesPage, MoviePage, Settings, Register } from '../pages';
 //mock components
-
-const SharedLayout = () => {
-  return <div>Shared Layout</div>;
-};
-
-const Error = () => {
-  return <div>Error</div>;
-};
-
-const Home = () => {
-  return <div>Home</div>;
-};
-
-const Movie = () => {
-  return <div>Movie</div>;
-};
-
-const Movies = () => {
-  return <div>Movies</div>;
-};
 
 const TvShows = () => {
   return <div>Tv Shows</div>;
@@ -54,9 +35,9 @@ const SavedMovies = () => {
   return <div>Saved Movies</div>;
 };
 
-const Settings = () => {
-  return <div>Settings</div>;
-};
+// const Settings = () => {
+//   return <div>Settings</div>;
+// };
 
 const AdvancedSearch = () => {
   return <div>Advanced Search</div>;
@@ -73,29 +54,29 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'movie/:id',
-        element: <Movie />,
-      },
-      {
         path: 'movies',
         children: [
           {
+            path: ':id',
+            element: <MoviePage />,
+          },
+          {
             path: ':category/page/:page',
-            element: <Movies />,
+            element: <MoviesPage />,
           },
           {
             path: 'actors/:name/page/:page',
-            element: <ActorMovies />,
+            element: <MoviesPage />,
           },
         ],
       },
       {
-        path: 'tv/:category/page/:page',
-        element: <TvShows />,
+        path: 'Register',
+        element: <Register />,
       },
       {
-        path: 'search/:type/:query/page/:page',
-        element: <MovieListSearch />,
+        path: 'tv/:category/page/:page',
+        element: <TvShows />,
       },
       {
         path: 'popular-actors/page/:page',
@@ -114,7 +95,7 @@ const router = createBrowserRouter([
         element: <Watch />,
       },
       {
-        path: 'savedmovies',
+        path: 'saved-movies',
         element: <SavedMovies />,
       },
       {
@@ -125,6 +106,7 @@ const router = createBrowserRouter([
         path: 'advanced-search',
         element: <AdvancedSearch />,
       },
+   
     ],
   },
 ]);
