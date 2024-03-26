@@ -77,7 +77,7 @@ const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
           />
         </LeftSide>
         <RightSide>
-          <GoogleButtonComponnent />
+          {/* <GoogleButtonComponnent /> */}
           {!isMobileView && <SettingIconComponnent isToggled={isToggled} />}
           {!isMobileView && (
             <ToggleButtonComponnent
