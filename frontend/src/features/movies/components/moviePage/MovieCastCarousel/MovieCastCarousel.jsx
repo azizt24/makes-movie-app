@@ -36,6 +36,7 @@ const MovieCastCarousel = ({ movie }) => {
         showThumbs={false}
         showStatus={false}
         showIndicators={false}
+        infiniteLoop={true}
         renderArrowPrev={(onClickHandler, hasPrev, label) =>
           hasPrev && (
             <button

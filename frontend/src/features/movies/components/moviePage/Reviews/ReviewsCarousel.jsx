@@ -45,6 +45,7 @@ const ReviewsCarousel = ({ reviews }) => {
       showThumbs={false}
       showStatus={false}
       showIndicators={false}
+      infiniteLoop={true}
       renderArrowPrev={(onClickHandler, hasPrev, label) =>
         hasPrev && (
           <button
@@ -63,7 +64,7 @@ const ReviewsCarousel = ({ reviews }) => {
             type="button"
             onClick={onClickHandler}
             title={label}
-            style={{ ...arrowStyles, right:150 }}
+            style={{ ...arrowStyles, right: 150 }}
           >
             &gt;
           </button>
