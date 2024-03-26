@@ -1,0 +1,3 @@
+.activeClass {
+    border: var(--primary-color) 3px solid;
+}

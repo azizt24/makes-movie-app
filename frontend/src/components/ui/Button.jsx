@@ -1,6 +1,4 @@
 const Button = () => {
-  return (
-    <div>Button</div>
-  );
+  return <div>Button</div>;
 };
 export default Button;
