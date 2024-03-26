@@ -61,9 +61,7 @@ const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <>
-      <NavbarContainer 
-      ref={navbarRef} 
-      isToggled={isToggled}>
+      <NavbarContainer ref={navbarRef} isToggled={isToggled}>
         <LeftSide>
           <HamburgerIconComponnent
             onClick={handleMenuToggle}
@@ -71,11 +69,11 @@ const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
             isToggled={isToggled}
           />
           <MenuBoxComponnent
-             isToggled={isToggled}
-             onToggle={handleToggle} // Consider renaming to reflect the action
-             onMenuToggle={toggleMenu}
-             isMenuOpen={isMenuOpen}
-             setIsMenuOpen={setIsMenuOpen}
+            isToggled={isToggled}
+            onToggle={handleToggle} // Consider renaming to reflect the action
+            onMenuToggle={toggleMenu}
+            isMenuOpen={isMenuOpen}
+            setIsMenuOpen={setIsMenuOpen}
           />
         </LeftSide>
         <RightSide>
@@ -87,13 +85,13 @@ const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
               isToggled={isToggled}
             />
           )}
-          {!isMobileView && <SearchInputComponnent isToggled={isToggled} />}
+          {/* {!isMobileView && <SearchInputComponnent isToggled={isToggled} />}
           {!isMobileView && (
             <SearchButtonComponnent
               onClick={handleSearch}
               isToggled={isToggled}
             />
-          )}
+          )} */}
         </RightSide>
       </NavbarContainer>
     </>

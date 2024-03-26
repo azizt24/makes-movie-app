@@ -54,10 +54,10 @@ const MenuBoxComponnent = ({
                 />
                 <SettingIconComponnent isToggled={isToggled} />
               </FlexContainerAbove>
-              <FlexContainerBelow>
+              {/* <FlexContainerBelow>
                 <SearchInputComponnent isToggled={isToggled} />
                 <SearchButtonComponnent isToggled={isToggled} />
-              </FlexContainerBelow>
+              </FlexContainerBelow> */}
             </MobileFlex>
             <MobileList>
               <LinksList links={links} setIsMenuOpen={setIsMenuOpen} />

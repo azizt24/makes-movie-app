@@ -83,7 +83,7 @@ export const MenuBox = styled.div`
 
   @media (max-width: 768px) {
     width: 270px;
-    height: 200px;
+    height: 150px;
     margin-left: -2rem;
   }
 `;
