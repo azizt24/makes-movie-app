@@ -76,7 +76,7 @@ export const CarouselStyling = styled(Slider)`
     height: 40px;
     line-height: 30px;
     overflow: hidden;
-
+    margin-bottom: 7px;
     height: auto;
     line-height: 30px;
 
