@@ -13,16 +13,17 @@ export const CastCard = styled.div`
 `;
 export const CastName = styled.h3`
   display: flex;
-  justify-content: left;
+  justify-content: center;
   font-size: 15px;
   margin-left: 10px;
   color: black;
   font-weight: bold;
-  font-weight: 400;
+  font-weight: bold;
+
 `;
 export const CastChar = styled.p`
   display: flex;
-  justify-content: left;
+  justify-content: center;
   margin-left: 8px;
 
   color: red;

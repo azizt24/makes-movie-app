@@ -10,6 +10,8 @@ import {
   arrowStyles,
 } from './MovieCastCarouselStyles';
 
+import defaultAvatar from '../../../../../../public/images/AvatarPhoto.png';
+
 const MovieCastCarousel = ({ movie }) => {
   const imageBaseURL = 'https://image.tmdb.org/t/p/w200';
 
@@ -18,6 +20,15 @@ const MovieCastCarousel = ({ movie }) => {
   for (let i = 0; i < movie.actors.length; i += chunkSize) {
     chunks.push(movie.actors.slice(i, i + chunkSize));
   }
+
+  const splitName = fullName => {
+    const nameArray = fullName.split(' ');
+    const firstName = nameArray[0];
+    const lastName = nameArray.slice(1).join(' '); // Join the remaining words for the last name
+    return { firstName, lastName };
+  };
+
+  
   return (
     <div>
       <Carousel
@@ -62,9 +73,13 @@ const MovieCastCarousel = ({ movie }) => {
                     <CastImg
                       src={`${imageBaseURL}${element.image}`}
                       alt={element.name}
+                      onError={e => {
+                        e.target.src = defaultAvatar; // Set default avatar on error
+                      }}
                     />
-                    <CastName>{element.name}</CastName>
+                    <CastName> {splitName(element.name).firstName}</CastName>
 
+                    <CastName> {splitName(element.name).lastName}</CastName>
                     <CastChar>{element.character}</CastChar>
                   </CastCard>
                 </Link>
@@ -78,3 +93,4 @@ const MovieCastCarousel = ({ movie }) => {
 };
 
 export default MovieCastCarousel;
+
