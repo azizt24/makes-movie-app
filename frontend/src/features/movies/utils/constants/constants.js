@@ -8,4 +8,7 @@ export const CONSTANTS = {
   LATEST_MOVIES_QUERY_KEY: 'latest-movies',
   HIGHEST_RATED_MOVIES_QUERY_KEY: 'highest-rated-movies',
   MOVIE_QUERY_KEY: 'movie',
+  AUTH : `${import.meta.env.VITE_BACKEND_URL}auth/login`,
+  CURR_USER : `${import.meta.env.VITE_BACKEND_URL}auth/current`,
+
 };

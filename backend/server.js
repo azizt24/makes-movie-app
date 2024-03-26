@@ -33,7 +33,7 @@ app.use(cors(corsOptions));
 
 // Routes
 app.use('/api/v1/movies', movieRoutes);
-app.use('/auth', authRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 app.use(errorHandler);
 
