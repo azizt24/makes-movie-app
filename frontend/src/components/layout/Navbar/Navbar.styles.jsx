@@ -78,6 +78,10 @@ export const MenuBox = styled.div`
       &:hover {
         color: var(--primary-color);
       }
+
+      &.active {
+        font-weight: bolder;
+      }
     }
   }
 
