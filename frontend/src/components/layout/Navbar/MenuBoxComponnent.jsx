@@ -15,10 +15,10 @@ const links = [
     name: 'Home',
     path: '/',
   },
-  {
-    name: 'Ai Generated Movies',
-    path: '/ai-generated-movies',
-  },
+  // {
+  //   name: 'Ai Generated Movies',
+  //   path: '/ai-generated-movies',
+  // },
   {
     name: 'Movies',
     path: '/movies/latest/page/1',
@@ -27,10 +27,10 @@ const links = [
     name: 'Advanced Search',
     path: '/advanced-search',
   },
-  {
-    name: 'Popular Actors',
-    path: '/popular-actors/page/1',
-  },
+  // {
+  //   name: 'Popular Actors',
+  //   path: '/popular-actors/page/1',
+  // },
 ];
 
 const MenuBoxComponnent = ({
@@ -45,11 +45,7 @@ const MenuBoxComponnent = ({
     <>
       {isMobileView ? (
         <>
-          <MenuBox
-            isToggled={isToggled}
-            isMenuOpen={isMenuOpen}
-            className="menu-box"
-          >
+          <MenuBox isToggled={isToggled} isMenuOpen={isMenuOpen}>
             <MobileFlex>
               <FlexContainerAbove>
                 <ToggleButtonComponnent
@@ -69,11 +65,7 @@ const MenuBoxComponnent = ({
           </MenuBox>
         </>
       ) : (
-        <MenuBox
-          isToggled={isToggled}
-          isMenuOpen={isMenuOpen}
-          className="menu-box"
-        >
+        <MenuBox isToggled={isToggled} isMenuOpen={isMenuOpen}>
           <LinksList links={links} setIsMenuOpen={setIsMenuOpen} />
         </MenuBox>
       )}
