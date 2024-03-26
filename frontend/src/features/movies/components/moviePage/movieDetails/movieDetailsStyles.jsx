@@ -5,7 +5,7 @@ export const DetailContainer = styled.div`
   background: rgba(0, 0, 0, 0.5);
   text-align: center;
   height: fit-content;
-  margin-top: 1rem;
+  margin-top: 2.8rem;
   border-radius: 8px;
   padding: 2rem 4rem;
   color: #69bada;

@@ -15,7 +15,7 @@ export const MovieContainer = styled.div`
   position: relative;
   background-color: #79d3f3;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 13rem;
+  margin-top:6.8rem;
 
   @media only screen and (max-width: 500px) {
     overflow: hidden;

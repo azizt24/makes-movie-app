@@ -42,7 +42,7 @@ const MovieCastCarousel = ({ movie }) => {
               type="button"
               onClick={onClickHandler}
               title={label}
-              style={{ ...arrowStyles, left: 15 }}
+              style={{ ...arrowStyles, left: 210 }}
             >
               &lt;
             </button>
@@ -54,7 +54,7 @@ const MovieCastCarousel = ({ movie }) => {
               type="button"
               onClick={onClickHandler}
               title={label}
-              style={{ ...arrowStyles, right: 15 }}
+              style={{ ...arrowStyles, right: 200 }}
             >
               &gt;
             </button>
