@@ -1,12 +1,12 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const asyncHandler = require('../middleware/asyncHandler');
-const { OAuth2Client } = require('google-auth-library');
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import asyncHandler from '../middleware/asyncHandler.js';
+import { OAuth2Client } from 'google-auth-library';
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Login route
-const login = asyncHandler(async (req, res) => {
+export const login = asyncHandler(async (req, res) => {
   const { token } = req.body;
   const ticket = await client.verifyIdToken({
     idToken: token,
@@ -41,7 +41,7 @@ const login = asyncHandler(async (req, res) => {
 });
 
 // Get current user route
-const current_user = asyncHandler(async (req, res) => {
+export const current_user = asyncHandler(async (req, res) => {
   const token = req.cookies.access_token;
   if (!token) {
     return res.status(401).json({ error: 'Unauthorized' });
@@ -56,5 +56,3 @@ const current_user = asyncHandler(async (req, res) => {
 
   res.json({ user });
 });
-
-module.exports = { login, current_user };
