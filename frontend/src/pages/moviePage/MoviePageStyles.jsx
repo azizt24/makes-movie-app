@@ -15,30 +15,33 @@ export const MovieContainer = styled.div`
   position: relative;
   background-color: #79d3f3;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 13rem;
 
   @media only screen and (max-width: 500px) {
     overflow: hidden;
+    margin-top: 6.8rem;
   }
 `;
 
 export const OverlayContainer = styled.div`
-  height: 50vh;
   position: relative;
   transform: skewY(2.5deg) translateY(-30px);
   color: var(--text-white);
   display: flex;
   justify-content: center;
+  height:60vh;
 
   @media screen and (max-width: 500px) {
     height: 45vh;
   }
 
   &:after {
+    margin-top: -0.4rem;
     content: '';
     position: absolute;
     height: 100%;
     width: 100%;
-    top: 0;
+    top: 1;
     left: 0;
     z-index: -1;
     overflow: hidden;
@@ -55,4 +58,11 @@ export const OverlayContainer = styled.div`
 
 export const DetailContainer = styled.div`
   /* transform: skewY(-2.5deg); */
+`;
+
+
+export const LineSeparator = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #d7cdcd; /* Adjust the color as needed */
 `;

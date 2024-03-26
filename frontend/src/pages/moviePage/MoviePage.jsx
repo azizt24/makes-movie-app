@@ -6,6 +6,7 @@ import {
   PageContainer,
   MovieContainer,
   OverlayContainer,
+  LineSeparator,
 } from './MoviePageStyles';
 
 import { useParams } from 'react-router-dom';
@@ -44,6 +45,7 @@ const MoviePage = () => {
             <TagLineAndPlot movie={Movie} />
             <Reviews movie={Movie} />
             <DirectorAndWriters movie={Movie} />
+            <LineSeparator />
             <MovieCastCarousel movie={Movie} />
           </MovieContainer>
         </PageContainer>
