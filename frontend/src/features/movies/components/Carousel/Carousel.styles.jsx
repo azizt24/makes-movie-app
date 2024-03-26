@@ -2,27 +2,43 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 
 export const CarouselStyling = styled(Slider)`
-  width: 1506px;
-  height: 500px;
-  z-index: 0;
-  position: fixed;
-  margin-top: 10rem;
-  position: relative;
-  overflow: hidden;
+  width: 100%;
 
+  z-index: 0;
+  padding: 0 10%;
+
+  margin-top: 7%;
+  position: relative;
+  overflow: visible;
+  @media screen and (max-width: 1200px) {
+    padding: 0 3%;
+  }
+  @media screen and (max-width: 700px) {
+    padding: 0 3%;
+    margin-top: 7%;
+  }
+  /* @media screen and (max-width: 768px) {
+    padding: 0 2rem; 
+  }
+
+  @media screen and (max-width: 500px) {
+    padding: 0 1rem; 
+    margin-top:0;
+  } */
   .carousel-slide {
     position: relative;
   }
 
   .carousel-image {
     width: 100%;
-    height: 500px;
+    height: 40rem;
+
     object-fit: cover;
   }
 
   .carousel-caption {
     position: absolute;
-    bottom: 20px;
+    bottom: 2%;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.7);
@@ -31,6 +47,9 @@ export const CarouselStyling = styled(Slider)`
     border-radius: 8px;
     text-align: left;
     width: 80%;
+    line-height: 1;
+    @media screen and (max-width: 700px) {
+    }
   }
 
   .movie-details-box {
@@ -41,25 +60,30 @@ export const CarouselStyling = styled(Slider)`
   }
 
   .carousel-title {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0;
     color: var(--text-white);
     z-index: 10;
   }
 
   .carousel-description {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-top: 5px;
     color: var(--text-white);
     overflow: auto;
-    width: 100%;
+    width: 80%;
     height: 40px;
     line-height: 30px;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+
+    height: auto;
+    line-height: 30px;
 
     padding: 0 10px;
+    @media screen and (max-width: 700px) {
+      font-size: 1.2rem;
+      width: 100%;
+    }
   }
 
   .details-footer {
@@ -72,12 +96,18 @@ export const CarouselStyling = styled(Slider)`
     color: var(--text-white);
     font-size: 1.5rem;
     margin-top: 5px;
+    @media screen and (max-width: 700px) {
+      font-size: 1.2rem;
+    }
   }
 
   .carousel-rating {
     font-size: 1.5rem;
     margin-top: 5px;
     margin-left: 5px;
+    @media screen and (max-width: 700px) {
+      font-size: 1.2rem;
+    }
   }
 
   .carousel-star {
@@ -87,21 +117,43 @@ export const CarouselStyling = styled(Slider)`
   }
 
   .slick-arrow {
-    position: absolute;
-    top: 50%;
-    z-index: 99;
-    transform: translateY(-50%);
+    font-size: 2rem;
+    display: none;
+    @media screen and (max-width: 600px) {
+      display: none !important;
+    }
+    /* position: absolute;
+  top: 50%;
+  z-index: 99;
+  transform: translateY(-50%); */
   }
 
   .slick-prev {
-    left: 25px;
+    position: absolute;
+    top: 50%;
+    left: 11%;
+    z-index: 99;
 
-    color: var(--primary-color);
+    @media screen and (max-width: 1200px) {
+      left: 7%;
+    }
   }
 
   .slick-next {
-    right: 25px;
-    color: var(--primary-color);
+    /* right: 25px;
+    color: var(--primary-color); */
+    position: absolute;
+    top: 50%;
+
+    right: 11%;
+    z-index: 99;
+    @media screen and (max-width: 600px) {
+      display: none !important;
+      /* left:-18px; */
+    }
+    /* @media screen and (max-width: 1300px){
+      right:0;
+    } */
   }
 
   .slick-prev::before,
@@ -116,10 +168,10 @@ export const CarouselStyling = styled(Slider)`
 `;
 
 export const DetailsButton = styled.button`
-height:37px;
-width:104px;
+  height: 37px;
+  width: 104px;
 
-border: none;
+  border: none;
   background-color: var(--primary-color);
   color: ${props => (props.white ? 'var(--text-white)' : 'var(--text-dark)')};
   font-weight: bold;
@@ -127,10 +179,15 @@ border: none;
   border-radius: 5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  order: -1
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+  order: -1;
   &:hover {
     background-color: var(--primary-color-light);
     transform: translateY(-1px);
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 1.2rem;
   }
 `;

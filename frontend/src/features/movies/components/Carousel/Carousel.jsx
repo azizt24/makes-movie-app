@@ -13,7 +13,12 @@ const CarouselComponent = ({ movies }) => {
     autoplay: true,
     autoplaySpeed: 3500,
   };
-
+  const plotDetails = (plot) => {
+    if (plot.length > 100) {
+      return plot.slice(0, 100) + '...';
+    }
+    return plot;
+  };
   return (
     <CarouselStyling {...settings}>
       {movies &&
@@ -28,7 +33,7 @@ const CarouselComponent = ({ movies }) => {
             <div className="carousel-caption">
               <div className="movie-details-box">
                 <h3 className="carousel-title">{movie.title}</h3>
-                <p className="carousel-description">{movie.overview}</p>
+                <p className="carousel-description">{plotDetails(movie.overview)}</p>
               </div>
               <div className="details-footer">
                 <DetailsButton

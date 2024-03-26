@@ -9,6 +9,7 @@ import {
   SubTitle,
 } from './Home.styles';
 
+
 const Home = () => {
   const [displayLatest, setDisplayLatest] = useState(true);
 
@@ -39,7 +40,9 @@ const Home = () => {
 
   return (
     <HomeContainer>
+
       <Carousel movies={carouselMovies} />
+
       <Title>Welcome to Movie Finder</Title>
       <SubTitle>Discover and watch</SubTitle>
       <ButtonsContainer>
