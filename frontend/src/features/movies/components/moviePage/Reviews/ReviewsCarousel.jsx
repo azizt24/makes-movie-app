@@ -36,6 +36,9 @@ const ReviewsCarousel = ({ reviews }) => {
     fontWeight: 'bold',
   };
 
+  
+ 
+
   return (
     <Carousel
       showArrows={true}

@@ -24,6 +24,7 @@
 }
 .show-more {
   background: none;
+    cursor: pointer;
   border: none;
   color: #195b97;
   font-weight: bold;

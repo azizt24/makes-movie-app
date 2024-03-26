@@ -71,19 +71,31 @@ export const arrowStyles = {
 };
 
 export const StyledIframe = styled.iframe`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 45vh;
   border: 0;
+
+  @media screen and (max-width: 480px) {
+    height: 40vh;
+    width: 100vw;
+
+  }
 `;
 
 export const StyledCarouselDiv = styled.div`
-  margin-top: 15%;
+  margin-top: 4.5rem;
   margin-left: 10%;
   width: 80%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 480px) {
+
+    height: 30vh;
+    width: 100vw;
+  }
 `;
 export const TitleText = styled.div`
   display: flex;
@@ -91,6 +103,8 @@ export const TitleText = styled.div`
   color: white;
   font-size: 23px;
   font-weight: 400;
+  margin-bottom:5rem;
+  
 `;
 export const UnderlinedText = styled.span`
   position: relative;
