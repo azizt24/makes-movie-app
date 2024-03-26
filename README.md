@@ -71,6 +71,13 @@ On this page, users can browse a curated selection of popular actors, offering a
 - React-responsive-carousel
 - React-slick
 - Slick-carousel
+- Cors
+- Dotenv
+- Express
+- Mongoose
+- Morgan
+- Winston
+
 
 ## Screenshots
 
@@ -173,4 +180,13 @@ This structured approach to state management with Redux Toolkit not only simplif
 
 - User-friendly error notifications are shown using the [`react-toastify`](https://www.npmjs.com/package/react-toastify) package. It's centralized in the App component to handle errors application-wide.
 
+##  contributors
+
+- Ori Baram (Supervisor).
+- Amal Shweiki.
+- Aziz Touma.
+- Mahmoud Dana.
+- Mony Baruch
+- Mohammed Alyan.
+- Shadi Nabwani.
 
