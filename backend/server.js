@@ -4,6 +4,7 @@ import logger from './config/logger.js';
 import connectDB from './db/db.js';
 import movieRoutes from './routes/movieRoutes.js';
 import errorHandler from './middleware/errorHandler.js';
+import { fetchGenreList } from './utils/genreService.js';
 import cors from 'cors';
 import morgan from 'morgan';
 
@@ -11,40 +12,40 @@ dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
-app.get('/', (req, res) => res.send('Server running'));
-
-// Connect to MongoDB
-connectDB();
-
-//MiddleWare
 app.use(express.json());
-
-if (process.env.NODE_ENV !== 'production') {
-  app.use(morgan('dev'));
-}
 
 const corsOptions = {
   origin: process.env.FRONTEND_URL,
   credentials: true,
 };
-
 app.use(cors(corsOptions));
 
-// Routes
-app.use('/api/v1/movies', movieRoutes);
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
-app.use(errorHandler);
+// Connect to the database
+connectDB();
 
-const PORT = process.env.PORT || 5000;
+fetchGenreList().then(() => {
+  logger.info('Genre list');
 
-const server = app.listen(
-  PORT,
-  logger.info(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
-);
+  const PORT = process.env.PORT || 5000;
+  const server = app.listen(PORT, () => {
+    logger.info(
+      `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+    );
+  });
 
-// Handle unhandled promise rejections
-process.on('unhandledRejection', err => {
-  logger.error(`Error: ${err.message}`);
-  // Close server & exit process
-  server.close(() => process.exit(1));
+  app.get('/', (req, res) => res.send('Server is running!'));
+
+  app.use('/api/v1/movies', movieRoutes);
+
+  app.use(errorHandler);
+
+  process.on('unhandledRejection', err => {
+    logger.error(`Unhandled Rejection: ${err.message}`);
+
+    server.close(() => process.exit(1));
+  });
 });

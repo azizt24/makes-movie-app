@@ -1,5 +1,5 @@
-import { MoviesList, MoviesButtons, Carousel } from '../../features/movies';
 import { CONSTANTS } from '../../features/movies/utils/constants/constants.js';
+import { MoviesList, MoviesButtons, Carousel } from '../../features/movies';
 import { useFetch } from '../../hooks/useFetch.js';
 import { useState } from 'react';
 import {
@@ -8,6 +8,7 @@ import {
   Title,
   SubTitle,
 } from './Home.styles';
+
 
 const Home = () => {
   const [displayLatest, setDisplayLatest] = useState(true);
@@ -33,13 +34,15 @@ const Home = () => {
   const handleHighestRatedClick = () => setDisplayLatest(false);
 
   if (isPendingLatest || isPendingHighestRated || isPendingCarousel) {
-    // TODO - show spinner
-    return <div>Pending...</div>;
+    // TODO - Implement a better spinner or loading indicator here
+    return <div>Loading...</div>;
   }
 
   return (
     <HomeContainer>
+
       <Carousel movies={carouselMovies} />
+
       <Title>Welcome to Movie Finder</Title>
       <SubTitle>Discover and watch</SubTitle>
       <ButtonsContainer>

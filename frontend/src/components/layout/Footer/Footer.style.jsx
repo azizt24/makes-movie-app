@@ -6,17 +6,11 @@ export const FooterContainer = styled.footer`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  /* background-color: var(--secondary-color-light); */
-  background-color: ${props =>
-    props.isToggled
-      ? 'var(--DarModeBodyColor)'
-      : 'var(--secondary-color-light)'};
+  background-color: var(--secondary-color-light);
   color: #fff;
   padding: 20px;
   width: 100%;
-  height: 32px;
-  
- 
+  height: 5vh;
 `;
 
 export const FooterContent = styled.div`
@@ -26,9 +20,9 @@ export const FooterContent = styled.div`
   width: 180px;
   height: 17px;
   align-items: center;
-  background-image: url(${TmdbSvg}); 
-  background-size: contain; 
-  background-repeat: no-repeat; 
+  background-image: url(${TmdbSvg});
+  background-size: contain;
+  background-repeat: no-repeat;
   @media screen and (max-width: 768px) {
     margin-right: 15px;
     margin-left: 5px;
