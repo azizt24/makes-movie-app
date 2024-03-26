@@ -14,4 +14,5 @@ export const MovieGrid = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
   }
+ 
 `;

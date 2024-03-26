@@ -48,7 +48,7 @@ export const MenuBox = styled.div`
   background-color: var(--secondary-color-light);
   color: #fff;
   width: 267px;
-  height: 235px;
+  height: auto;
   padding: 26px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -83,7 +83,7 @@ export const MenuBox = styled.div`
 
   @media (max-width: 768px) {
     width: 270px;
-    height: 260px;
+    height: 150px;
     margin-left: -2rem;
   }
 `;
