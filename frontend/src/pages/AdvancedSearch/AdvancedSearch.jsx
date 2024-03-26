@@ -8,12 +8,10 @@ import {
   StyledContainer,
   Input,
   InputWrapper,
-  AddButton,
   SubmitButton,
 } from './AdvancedSearch.styles';
 
 const AdvancedSearch = () => {
-  
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fromYear: '',
@@ -29,9 +27,11 @@ const AdvancedSearch = () => {
 
   const updateFormData = (field, value) => {
     setFormData({ ...formData, [field]: value });
+    // CR - remove console.logs
     console.log(`Updated ${field}:`, value); // Log updated form data
   };
 
+  // CR - move to a utils or helper file in a utils directory
   const yearOptions = () => {
     return [...Array(new Date().getFullYear() - 1904 + 1).keys()]
       .reverse()
@@ -42,6 +42,7 @@ const AdvancedSearch = () => {
       ));
   };
 
+  // CR - move all this to a constants file
   const minVotesOptions = [
     20000, 15000, 10000, 9000, 8000, 7000, 6000, 5000, 4000, 3000, 2000, 500,
     100,
@@ -78,27 +79,24 @@ const AdvancedSearch = () => {
   ];
 
   const handleSubmit = () => {
-    let { fromYear, toYear } = formData;   
+    let { fromYear, toYear } = formData;
 
-    
     fromYear = fromYear || '1903';
     toYear = toYear || '2024';
 
     if (parseInt(fromYear) > parseInt(toYear)) {
+      // CR - don't use alert
       alert('From year cannot be greater than To year');
       return;
     }
 
-     
     const updatedFormData = { ...formData, fromYear, toYear };
 
-    
     const searchParams = new URLSearchParams(updatedFormData).toString();
     navigate(`/search/results?${searchParams}&page=1`);
-};
+  };
 
-
-
+  // CR - the jsx is too long, break it down into smaller parts
   return (
     <SearchContainer>
       <Title title={'advanced search'} />
@@ -184,19 +182,30 @@ const AdvancedSearch = () => {
       </StyledContainer>
       <StyledContainer>
         <InputWrapper>
-          <Input type="text" placeholder="Add actors" onChange={e => updateFormData('actors', e.target.value)} />
-          
+          <Input
+            type="text"
+            placeholder="Add actors"
+            onChange={e => updateFormData('actors', e.target.value)}
+          />
         </InputWrapper>
         <InputWrapper>
-          <Input type="text" placeholder="Add directors" onChange={e => updateFormData('directors', e.target.value)} />
-           
+          <Input
+            type="text"
+            placeholder="Add directors"
+            onChange={e => updateFormData('directors', e.target.value)}
+          />
         </InputWrapper>
         <InputWrapper>
-          <Input type="text" placeholder="Add writers" onChange={e => updateFormData('writers', e.target.value)} />
-           
+          <Input
+            type="text"
+            placeholder="Add writers"
+            onChange={e => updateFormData('writers', e.target.value)}
+          />
         </InputWrapper>
       </StyledContainer>
-      <SubmitButton type="button" onClick={handleSubmit}>Search</SubmitButton>
+      <SubmitButton type="button" onClick={handleSubmit}>
+        Search
+      </SubmitButton>
     </SearchContainer>
   );
 };
