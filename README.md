@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [Movies App](#movies-app)
+- [Movies App](#react-movies-app)
   - [Table of Contents](#table-of-contents)
   - [Acknowledgments](#acknowledgments)
   - [Overview](#overview)
@@ -12,51 +12,52 @@
   - [Screenshots](#screenshots)
     - [Home Screen](#home-screen)
     - [Movies Screen](#movies-screen)
-    - [Movie Details Screen](#movie-details-screen)
+    - [Movie Details Screen](#movie-Details-screen)
     - [Advanced Search Screen](#advanced-search-screen)
-    - [Spinners and Themes Page](#spinners-and-themes-page)
+    - [Popular Actors Screen](#popular-actors-screen)
+    - [Spinners and Themes Page Screen](#spinners-and-themes-page-screen)
     - [Error Toast](#error-toast)
   - [Getting Started](#getting-started)
   - [API Integration](#api-integration)
     - [Environment Variable Protection](#environment-variable-protection)
+    - [Request Management](#request-management)
   - [Custom Hooks](#custom-hooks)
-    - [`useDynamicApiMutation`](#usedynamicapimutation)
-    - [`useFetch`](#usefetch)
+    - [`useDynamicApiMutation`](#useDynamicApiMutation)
+    - [`useFetch`](#useFetch)
   - [Technical Architecture](#technical-architecture)
-    - [State Management](#state-management)
+    - [`State Management`](#statemanagement)
   - [User Experience](#user-experience)
     - [Reusable Components](#reusable-components)
     - [Movie Display Components](#movie-display-components)
+  - [Authentication Flow](#authentication-flow)  
   - [Data Fetching and State Management](#data-fetching-and-state-management)
   - [Error Management](#error-management)
-  - [License](#license)
   
 
 
 ## Acknowledgments
-Providing movie data:
-<br/>
+Providing movie data.
 [The Movie DB](https://www.themoviedb.org/)  
-[The Open Movie Database](http://www.omdbapi.com/)
+[The Movie DB](http://www.omdbapi.com/)
 
 
 ## Overview
 
-Welcome to the Movie Finder Project! This is a dynamic web application that allows users to explore, discover, and learn more about the latest and most popular movies. Whether you're looking for details on the newest blockbusters or just browsing through high-rated films, Movie Finder makes it easy and fun.
+This project is based on the [React Movie App](https://github.com/obrm/makes-movie-app.git) Welcome to the Movie Finder Project! This is a dynamic web application that allows users to explore, discover, and learn more about the latest and most popular movies. Whether you're looking for details on the newest blockbusters or just browsing through high-rated films, Movie Finder makes it easy and fun.
 
 ## Live Demo
 
-Visit the [live demo](https://makes-movie-app-prod.netlify.app/).
+Visit the [live demo](https://dev-makes-movie-app.netlify.app/).
 
 ## Features
 
 - Latest Movies: Get information about the most recent movies released.
 - Highest Rated: Discover which movies are topping the charts with the highest ratings.
 - Movie Details: Dive deep into each movie's synopsis, cast, and more!
-- Advanced Search: Explore our Advanced Search to finely-tune your movie discoveries by filtering through actors, directors, writers, ratings, and more, ensuring you find exactly what you're looking for.
+- Advanced Search:Explore our Advanced Search to finely-tune your movie discoveries by filtering through actors, directors,    writers, ratings, and more, ensuring you find exactly what you're looking for.
 - Popular actors:
 On this page, users can browse a curated selection of popular actors, offering a visual directory to explore profiles and learn more about the most recognized talents in the industry.
-- LogIn: The website features convenient Google sign-in integration, allowing users to quickly register or log in using their existing Google accounts for a streamlined and secure authentication process.
+- LogIn:The website features convenient Google sign-in integration, allowing users to quickly register or log in using their existing Google accounts for a streamlined and secure authentication process.
 
 ## Tech Stack
 
@@ -82,64 +83,57 @@ On this page, users can browse a curated selection of popular actors, offering a
 
 ---
 ### Home Screen
-![Home Screen](frontend/src/assets/home.png)
+![Home Screen](src/assets/home.png)
 
 ---
 ### Movies Screen
-![Login Screen](frontend/src/assets/movies.png)
+![Login Screen](src/assets/movies.png)
 
 ---
 ### Movie Details Screen
-![Movie Details Screen](frontend/src/assets/movie.png)
+![Movie Details Screen](src/assets/movie.png)
 
 ---
 
 ### Advanced Search Screen
-![Advanced Search Screen](frontend/src/assets/)
+![Advanced Search Screen](src/assets/)
 
+---
+### Popular Actors
+![Popular Actors Screen](src/assets/)
 ---
 
 ### Spinners and Themes Page
-![ Spinners and Themes Page Screen](frontend/src/assets/SpinenerAndThemes.png)
+![ Spinners and Themes Page Screen](src/assets/SpinenerAndThemes.png)
 
 ---
 
 ### Error Toast 
-![Error Toast](frontend/src/assets/error.png)
+![Error Toast](src/assets/error.png)
 
 ---
 ## Getting Started
 
 1. Clone the repository from `https://github.com/obrm/makes-movie-app.git`.
 2. Install dependencies with `npm install`.
-3. cd to frontend and install dependencies.
-4. cd to the backend and install dependencies.
-5. Add the `config.env` in the backend folder and `.env` in the frontend folder.
-6. Run the application using `npm run dev`.
+3. Add the `config.env` in the backend folder and `.env` in the frontend folder.
+4. Run the application using `npm run dev`.
 
 
 
 ## API Integration
 
-All the API calls are available in the `constant.js` file in the `config` folder in the backend.
+All the API calls are available in the `constant.js` file in the `config` folder.
 
 ### Environment Variable Protection
 
-- The `config.env` file in the `backend/config` folder is omitted from the repository for security reasons. The values are as follows. Insert your relevant values where the blanks:
-```
-  PORT=5000
-  NODE_ENV=development
-  FRONTEND_URL=http://localhost:5173
-  MONGO_URI=
-  JWT_SECRET=
-  OPENAI_API_KEY=
-  TMDB_API_KEY=
-  OMDB_API_KEY=
-```
-- In the frontend, this is the content of the `.env` fille:
-```
-VITE_BACKEND_URL=http://localhost:5000/api/v1/
-```
+- The API URL is secured in an `.env` file, which is omitted from the repository for security reasons.
+
+### Request Management
+
+- A generic request function is available for making API calls. This function is utilized in other utility functions designed for specific request types (GET, POST, PUT, DELETE).
+
+
 
 ## Custom Hooks
 
@@ -174,6 +168,11 @@ This structured approach to state management with Redux Toolkit not only simplif
 - MovieCard Component: A MovieCard component abstracts the display logic, enabling a concise iteration over movie data arrays for rendering within various views such as Home, Search Results, and Recommendations.
 
 
+## Authentication Flow
+
+- Streamlined Sign-In Process: Leveraging Google's authentication API, the app offers users a seamless sign-in experience, allowing them to access their personalized movie lists and preferences with minimal effort.
+
+
 ## Data Fetching and State Management
 - Optimized Data Queries: Utilizing react-query, the app efficiently manages server state with hooks that handle data fetching, caching, and state synchronization, providing a responsive and up-to-date user interface.
 
@@ -184,14 +183,10 @@ This structured approach to state management with Redux Toolkit not only simplif
 ##  contributors
 
 - Ori Baram (Supervisor).
-- Amal Shweiki.
-- Aziz Touma.
-- Mahmoud Dana.
-- Mony Baruch
-- Mohammed Alyan.
-- Shadi Nabwani.
+- Amal Shweiki. (https://github.com/amalshweiki)
+- Aziz Touma. (https://github.com/azizt24)
+- Mahmoud Dana. (https://github.com/mahmoudd3na)
+- Mony Baruch. (https://github.com/monybaruch)
+- Mohammed Alyan. (https://github.com/Mohasalyan)
+- Shadi Nabwani. (https://github.com/Mohasalyan)
 
-
-## License
-
-- This project is licensed under the MIT License.
