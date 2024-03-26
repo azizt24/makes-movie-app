@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import logger from './config/logger.js';
 import connectDB from './db/db.js';
 import movieRoutes from './routes/movieRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import errorHandler from './middleware/errorHandler.js';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -32,6 +33,7 @@ app.use(cors(corsOptions));
 
 // Routes
 app.use('/api/v1/movies', movieRoutes);
+app.use('/auth', authRoutes);
 
 app.use(errorHandler);
 
