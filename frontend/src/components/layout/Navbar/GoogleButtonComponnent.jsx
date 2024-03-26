@@ -36,10 +36,13 @@ const GoogleButtonComponent = () => {
 
   return (
     <div>
-       <div id="signInDiv" style={{ marginLeft: '-280px' }}></div> 
-      {Object.keys(user).length !== 0 &&
+      <div
+        id="signInDiv"
+        style={{ marginLeft: '-200px', marginRight: '20px' }}
+      ></div>
+      {Object.keys(user).length !== 0 && (
         <button onClick={handleSignOut}>Sign Out</button>
-      }
+      )}
     </div>
   );
 };
