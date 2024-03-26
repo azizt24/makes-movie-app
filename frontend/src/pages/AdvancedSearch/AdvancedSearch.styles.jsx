@@ -78,19 +78,3 @@ export const Input = styled.input`
   border-radius: 5px;
   text-align: center;
 `;
-
-export const SubmitButton = styled.button`
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  width: 200px;
-  text-align: center;
-  box-sizing: border-box;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;

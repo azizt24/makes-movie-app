@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { MoviesBtn } from '../../features/movies/components/Buttons/MoviesButtons.style';
 import Title from './../../components/layout/Title/TItle';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import {
   SearchContainer,
   StyledLabel,
@@ -8,9 +9,7 @@ import {
   StyledContainer,
   Input,
   InputWrapper,
-  SubmitButton,
 } from './AdvancedSearch.styles';
-
 const AdvancedSearch = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -203,9 +202,9 @@ const AdvancedSearch = () => {
           />
         </InputWrapper>
       </StyledContainer>
-      <SubmitButton type="button" onClick={handleSubmit}>
+      <MoviesBtn type="button" onClick={handleSubmit}>
         Search
-      </SubmitButton>
+      </MoviesBtn>
     </SearchContainer>
   );
 };
