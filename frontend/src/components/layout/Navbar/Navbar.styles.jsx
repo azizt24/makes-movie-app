@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { MdLocalMovies } from 'react-icons/md';
 import { RxAvatar } from "react-icons/rx";
 import { FaStar } from 'react-icons/fa';
-
+import { Link} from 'react-router-dom';
 
 export const NavbarContainer = styled.nav`
   display: flex;
@@ -317,33 +317,37 @@ export const SearchResultsBox = styled.div`
   }
 `;
 
-// Individual Search Result Item
+ 
 export const SearchResultItem = styled.div`
-display: flex;
-width: 100%;
-background: var(--secondary-color-light);
-padding: 1rem;
-font-size: 1.7rem;
-color: var(--text-white);
-border-bottom: 1px solid white;
-transition: all 0.3s ease 0s;
-cursor: pointer;
-
+  display: flex;  
+  align-items: center;  
+  width: 100%;
+  background: var(--secondary-color-light);
+  padding: 1rem;
+  font-size: 1.7rem;
+  color: var(--text-white);
+  border-bottom: 1px solid white;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
 `;
 
-// Search Result Image
+ 
 export const SearchResultImage = styled.img`
-  flex-shrink: 0;
-  width: 20%;
-  height: auto;
-  margin-right: 10px;
+  flex-shrink: 0;  
+  width: 20%;  
+  height: auto;  
+  margin-right: 10px; 
 `;
 
-// Content area for text and icons in a search result
+ 
 export const SearchResultContent = styled.div`
-margin: 0px;
-padding: 0px;
-box-sizing: border-box;
+  display: flex;  
+  flex-direction: column;  
+  justify-content: center;  
+  width: 80%;  
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 `;
 
 // Title in a search result (e.g., name or movie title)
@@ -386,10 +390,17 @@ export const StarIcon = styled(FaStar)`
 margin: 0px;
 padding: 0px;
 box-sizing: border-box;
+ color : gold ;
 `;
  
  
- 
+export const StyledLink = styled(Link)`
+display: flex;
+align-items: center;
+width: 100%;
+text-decoration: none;  
+color: inherit;  
+`;
 
  
  
