@@ -36,8 +36,8 @@ const MoviePage = () => {
     <div>
       {Movie && (
         <PageContainer>
-          <TrailerWidget movie={Movie} />
-          <MovieContainer>
+          {/* <TrailerWidget movie={Movie} /> */}
+          <MovieContainer >
             <OverlayContainer poster={Movie.backdrop}>
               <MovieDetails movie={Movie} />
             </OverlayContainer>

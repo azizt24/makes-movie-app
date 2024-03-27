@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const PageContainer = styled.div`
-  padding: 0vw 10vw;
+  padding: 0vw 14vw;
   overflow: hidden;
   background: linear-gradient(to right, #141e30, #456181);
   @media screen and (max-width: 1200px) {
@@ -12,7 +12,7 @@ export const PageContainer = styled.div`
 `;
 
 export const MovieContainer = styled.div`
-  position: relative;
+  padding-top:4vw;
   background-color: #79d3f3;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
@@ -47,8 +47,8 @@ export const OverlayContainer = styled.div`
       props.poster
         ? `url(https://image.tmdb.org/t/p/w1280/${props.poster})`
         : null};
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-repeat:cover;
     background-position: center;
   }
 `;

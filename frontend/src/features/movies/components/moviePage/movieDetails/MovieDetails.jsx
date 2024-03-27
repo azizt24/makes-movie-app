@@ -48,17 +48,17 @@ const MovieDetails = ({ movie }) => {
     
    {movie.ratings && ( 
       <RatingRow>
-    {movie.ratings.imdb && (  <RatingPair>
+    {movie.ratings.imdb && !isNaN(parseFloat(movie.ratings.imdb)) &&(  <RatingPair>
           <LogoImage src={imdbIcon} alt="IMDb" />
           <RatingText>{movie.ratings.imdb}</RatingText>
         </RatingPair>)}
 
-      {movie.ratings.tmdb && (  <RatingPair>
+      {movie.ratings.tmdb && !isNaN(parseFloat(movie.ratings.tmbd)) && (  <RatingPair>
           <LogoImage src={redTomatoesIcon} alt="Rotten Tomatoes" />
           <RatingText>{movie.ratings.tmdb}</RatingText>
         </RatingPair>)}
 
-       {movie.ratings.metaCritic && ( <RatingPair>
+       {movie.ratings.metaCritic && !isNaN(parseFloat(movie.ratings.metaCritic)) &&( <RatingPair>
           <LogoImage src={metaIcon} alt="Metacritic" />
           <RatingText>{movie.ratings.metaCritic}</RatingText>
         </RatingPair>)}

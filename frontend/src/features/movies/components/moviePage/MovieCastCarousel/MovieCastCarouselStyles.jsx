@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const CastCard = styled.div`
-  margin-top: 3rem;
+  margin-top: 5rem;
   width: 160px;
   height: 330px;
   background-color: #49bcec;
 
   border-radius: 20px;
-  margin-left: 10px;
+  margin-left: 8px;
   box-shadow: 0 8px 6px -6px grey;
   margin-bottom: 60px;
 `;
@@ -38,7 +38,7 @@ export const CastImg = styled.img`
 export const arrowStyles = {
   position: 'absolute',
   zIndex: 2,
-  top: 'calc(60% - 30px)',
+  top: 'calc(60% - 72px)',
 
   width: 30,
   height: 30,
@@ -50,3 +50,11 @@ export const arrowStyles = {
   fontSize: '30px',
   fontWeight: 'bold',
 };
+export const HorizontalLine = styled.hr`
+  border: 0;
+  height: 1px;
+  background:red;
+  margin-top: 5rem; 
+  margin-left:0.5rem;
+  margin-right:0.5rem;
+`;
