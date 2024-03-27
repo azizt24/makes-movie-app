@@ -1,42 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error, Home, MoviesPage, MoviePage, AdvancedSearch, SearchResults } from '../pages'; 
-
-const TvShows = () => {
-  return <div>Tv Shows</div>;
-};
-
-const MovieListSearch = () => {
-  return <div>Movie List Search</div>;
-};
-
-const PopularActors = () => {
-  return <div>Popular Actors</div>;
-};
-
-const ActorMovies = () => {
-  return <div>Actor Movies</div>;
-};
-
-const AIGeneratedMovies = () => {
-  return <div>AI Generated Movies</div>;
-};
-
-const AIGeneratedMoviesByCategory = () => {
-  return <div>AI Generated Movies By Category</div>;
-};
-
-const Watch = () => {
-  return <div>Watch</div>;
-};
-
-const SavedMovies = () => {
-  return <div>Saved Movies</div>;
-};
-
-const Settings = () => {
-  return <div>Settings</div>;
-};
+import {
+  Error,
+  Home,
+  MoviesPage,
+  MoviePage,
+  AdvancedSearch,
+  SearchResults,
+  Settings,
+} from '../pages'; 
 
 const router = createBrowserRouter([
   {
@@ -65,40 +37,25 @@ const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: 'tv/:category/page/:page',
-        element: <TvShows />,
-      },
-      {
-        path: 'popular-actors/page/:page',
-        element: <PopularActors />,
-      },
-      {
-        path: 'ai-generated-movies',
-        element: <AIGeneratedMovies />,
-      },
-      {
-        path: 'ai-generated-movies/:categoryName',
-        element: <AIGeneratedMoviesByCategory />,
-      },
-      {
-        path: 'watch/:id',
-        element: <Watch />,
-      },
-      {
-        path: 'saved-movies',
-        element: <SavedMovies />,
-      },
+      // {
+      //   path: 'popular-actors/page/:page',
+      //   element: <PopularActors />,
+      // },
+      // {
+      //   path: 'saved-movies',
+      //   element: <SavedMovies />,
+      // },
       {
         path: 'settings',
         element: <Settings />,
       },
-      { 
+      {
         path: 'advanced-search',
-       element: <AdvancedSearch /> },
-       {
+        element: <AdvancedSearch />,
+      },
+      {
         path: '/search/results',
-        element: <SearchResults />
+        element: <SearchResults />,
       },
     ],
   },
