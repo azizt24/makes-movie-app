@@ -1,6 +1,9 @@
 import { MenuBox } from './Navbar.styles';
-import SettingIconComponnent from './SettingIconComponnent';
-import ToggleButtonComponnent from './ToggleButtonComponnent';
+import SettingIconComponnent from './SettingIconComponent';
+import ToggleButtonComponnent from './ToggleButtonComponent';
+import SearchButtonComponnent from './SearchButtonComponent';
+import SearchInputComponnent from './SearchInputComponent';
+
 import { FlexContainerAbove } from './Navbar.styles';
 import { MobileFlex } from './Navbar.styles';
 import { MobileList } from './Navbar.styles';

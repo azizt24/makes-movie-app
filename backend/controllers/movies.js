@@ -2,6 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import aggregateData from '../utils/aggregateData.js';
 import ErrorResponse from '../utils/errorResponse.js';
+
 import asyncHandler from '../middleware/asyncHandler.js';
 
 import { getGenreList } from '../utils/genreService.js';
@@ -15,6 +16,8 @@ import {
   getTmbdbUrl,
   CAST_QUERY_URL,
   MOVIES_FETCHER,
+  MOVIE_SEARCH_URL,
+  PROFILE_IMG,
   DISCOVER_MOVIE_URL,
 } from '../config/constants.js';
 
@@ -168,6 +171,44 @@ export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
     totalPages: Math.ceil(movies.length / 20),
     movies: paginatedMovies,
   });
+});
+
+export const searchMoviesAndPeople = asyncHandler(async (req, res, next) => {
+  const { query } = req.params;
+  const page = 1;
+
+  try {
+    const response = {};
+    const peopleResponse = await axios.get(CAST_QUERY_URL(query, page));
+    const peopleResults = peopleResponse.data.results
+      .slice(0, 2)
+      .map(person => ({
+        name: person.name,
+        profileImg: person.profile_path
+          ? `${PROFILE_IMG}${person.profile_path}`
+          : null,
+        knownFor: person.known_for_department,
+        id: person.id,
+      }));
+
+    const moviesResponse = await axios.get(MOVIE_SEARCH_URL(query, page));
+    const movieResults = moviesResponse.data.results.slice(0, 4).map(movie => ({
+      title: movie.title,
+      posterImg: movie.poster_path
+        ? `${MOVIE_SMALL_IMAGE}${movie.poster_path}`
+        : null,
+      releaseYear: movie.release_date ? movie.release_date.slice(0, 4) : 'N/A',
+      rating: movie.vote_average,
+      id: movie.id,
+    }));
+
+    response.actorsAndDirectors = peopleResults.length > 0 ? peopleResults : [];
+    response.movies = movieResults.length > 0 ? movieResults : [];
+
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // CR - put the utility functions in a separate file in the utils folder

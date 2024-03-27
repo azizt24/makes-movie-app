@@ -35,6 +35,10 @@ const router = createBrowserRouter([
             path: 'actors/:name/page/:page',
             element: <MoviesPage />,
           },
+          {
+            path: 'search/:name/page/:page',
+            element : <movies/>
+          }
         ],
       },
       // {

@@ -6,6 +6,7 @@ import {
   fetchLatestMovies,
   fetchMovieDetails,
   fetchMoviesByCast,
+  searchMoviesAndPeople,
   advancedSearch,
 } from '../controllers/movies.js';
 
@@ -21,5 +22,6 @@ router.get('/:id', fetchMovieDetails);
 
 router.get('/actors/:name/page/:page', fetchMoviesByCast);
 
+router.get('/search/:query', searchMoviesAndPeople);
 router.get('/search/advanced', advancedSearch);
 export default router;

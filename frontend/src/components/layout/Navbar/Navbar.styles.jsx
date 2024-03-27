@@ -1,4 +1,30 @@
 import styled, { keyframes } from 'styled-components';
+import { MdLocalMovies } from 'react-icons/md';
+import { RxAvatar } from "react-icons/rx";
+import { FaStar } from 'react-icons/fa';
+import { Link} from 'react-router-dom';
+
+export const NavbarContainer = styled.nav`
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: ${props => (props.isToggled ? 'var(--DarkModePurplelight)' : 'var(--secondary-color-light)')};
+  color: #fff;
+  width: 100%;
+  height: 67px;
+  z-index: 10;
+  position: fixed;
+
+ 
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
+   
+`;
 
 export const LeftSide = styled.div`
   position: relative;
@@ -23,24 +49,23 @@ const slideOut = keyframes`
   }
 `;
 
-export const NavbarContainer = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--secondary-color-light);
-  color: #fff;
-  width: 100%;
-  height: 67px;
-  z-index: 10;
-  position: fixed;
-  transition: background-color 0.5s;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
-  }
-`;
+// export const NavbarContainer = styled.nav`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 1rem 2rem;
+//   background-color: var(--secondary-color-light);
+//   color: #fff;
+//   width: 100%;
+//   height: 67px;
+//   z-index: 10;
+//   position: fixed;
+//   transition: background-color 0.5s;
+//   @media (max-width: 768px) {
+//     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+//     gap: 20px;
+//   }
+// `;
 
 export const MenuBox = styled.div`
   position: absolute;
@@ -97,7 +122,8 @@ export const MenuBox = styled.div`
 export const SearchInput = styled.input`
   padding: 0.5rem;
   border: 3px solid;
-  border-color: var(--primary-color);
+  border-color: ${props =>
+    props.$isToggled ? 'var(--DarkMOdePurple)' : 'var(--primary-color)'};
   margin-right: 1rem;
   height: 36px;
   width: 180px;
@@ -265,3 +291,123 @@ export const MobileList = styled.div`
   font-size: 14px;
   height: 140px;
 `;
+ 
+ // search baar styless//
+
+export const SearchInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const SearchResultsBox = styled.div`
+  position: fixed;
+  top: 68px; 
+  right: 0;
+  z-index: 10;
+  background-color: var(--secondary-color, #524763);  
+  border: 1px solid white;
+  
+  width: 330px;
+  max-height: 90%;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &::-webkit-scrollbar {
+    width: 2px;   
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--secondary-color, #524763);;  
+    border-radius: 2px; 
+    width: 2px;   
+  }
+`;
+
+ 
+export const SearchResultItem = styled.div`
+  display: flex;  
+  align-items: center;  
+  width: 100%;
+  
+  background: var(--secondary-color-light);
+  padding: 1rem;
+  font-size: 1.7rem;
+  color: var(--text-white);
+  border-bottom: 1px solid white;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+`;
+
+ 
+export const SearchResultImage = styled.img`
+  flex-shrink: 0;  
+  width: 20%;  
+  height: auto;  
+  margin-right: 10px; 
+`;
+
+ 
+export const SearchResultContent = styled.div`
+  display: flex;  
+  flex-direction: column;  
+  justify-content: center;  
+  width: 100%;  
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+`;
+
+ 
+export const SearchResultTitle = styled.h3`
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+`;
+
+ 
+export const SearchResultSubText = styled.span`
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+`;
+
+ 
+export const SearchResultRating = styled.div`
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+`;
+
+ 
+export const MdLocalMoviesIcon = styled(MdLocalMovies)`
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+`;
+
+ 
+export const RxAvatarIcon = styled(RxAvatar)`  
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+`;
+
+ 
+export const StarIcon = styled(FaStar)`
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+ color : gold ;
+`;
+ 
+ 
+export const StyledLink = styled(Link)`
+display: flex;
+align-items: center;
+width: 100%;
+text-decoration: none;  
+color: inherit;  
+`;
+
+ 
+ 
+ 

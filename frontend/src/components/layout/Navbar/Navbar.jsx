@@ -1,47 +1,94 @@
-import { useState, useEffect, useRef } from 'react';
-import { NavbarContainer, LeftSide, RightSide } from './Navbar.styles';
-import HamburgerIconComponnent from './HamburgerIconComponnent';
-import GoogleButtonComponnent from './GoogleButtonComponnent';
-import MenuBoxComponnent from './MenuBoxComponnent';
-import ToggleButtonComponnent from './ToggleButtonComponnent';
-import SearchInputComponnent from './SearchInputComponnent';
-import SearchButtonComponnent from './SearchButtonComponnent';
-import SettingIconComponnent from './SettingIconComponnent';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import noImagePlaceholder from '../../../../public/images/No-Image-Placeholder.svg.png';
+
+import {
+  NavbarContainer,
+  LeftSide,
+  RightSide,
+  SearchResultContent,
+  SearchInputWrapper,
+  SearchResultsBox,
+  SearchResultItem,
+  SearchResultImage,
+  SearchResultTitle,
+  SearchResultSubText,
+  SearchResultRating,
+  MdLocalMoviesIcon,
+  RxAvatarIcon,
+  StarIcon,
+  StyledLink,
+} from './Navbar.styles';
+
+import HamburgerIconComponent from './HamburgerIconComponent';
+import MenuBoxComponent from './MenuBoxComponent';
+import ToggleButtonComponent from './ToggleButtonComponent';
+import SearchInputComponent from './SearchInputComponent';
+import SearchButtonComponent from './SearchButtonComponent';
+import SettingIconComponent from './SettingIconComponent';
+import { useDebouncedSearch } from '../../../hooks/useDebouncedSearch';
+import MenuBoxComponnent from './MenuBoxComponent';
 import { setTheme } from '../../../redux/slices/ui.slice';
 import { useDispatch } from 'react-redux';
 
 const Navbar = ({ isToggled, setIsToggled }) => {
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 300);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navbarRef = useRef();
+  const [searchResults, setSearchResults] = useState(null);
+  const navigate = useNavigate();
+  const handleResults = useCallback(results => {
+    setSearchResults(results);
+    setIsSearchResultsVisible(true); // Show the search results box
+  }, []);
+  const { query, setQuery } = useDebouncedSearch('', handleResults);
 
+  const navbarRef = useRef();
+  const searchResultsRef = useRef(null);
   const dispatch = useDispatch();
 
-  const handleThemeChange = newTheme => {
-    dispatch(setTheme(newTheme));
-  };
+  const handleResize = () => setIsMobileView(window.innerWidth <= 300);
+  const [isSearchResultsVisible, setIsSearchResultsVisible] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-    };
-
     window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleSearch = () =>
+    navigate(`/movies/search/${encodeURIComponent(query)}/page/1`);
 
   const handleToggle = () => {
     setIsToggled(!isToggled);
-    if (isToggled === false) dispatch(setTheme('Dark-Theme'));
-    else if (isToggled === true) dispatch(setTheme('Default-Theme'));
+    const newTheme = isToggled ? 'Default-Theme' : 'Dark-Theme';
+    dispatch(setTheme(newTheme));
   };
+
+  const handleSearchFocus = () => {
+    if (
+      searchResults &&
+      (searchResults.actorsAndDirectors.length > 0 ||
+        searchResults.movies.length > 0)
+    ) {
+      setIsSearchResultsVisible(true);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (
+        searchResultsRef.current &&
+        !searchResultsRef.current.contains(event.target)
+      ) {
+        setIsSearchResultsVisible(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = event => {
@@ -49,8 +96,6 @@ const Navbar = ({ isToggled, setIsToggled }) => {
         setIsMenuOpen(false);
       }
     };
-
-    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -61,7 +106,7 @@ const Navbar = ({ isToggled, setIsToggled }) => {
     <>
       <NavbarContainer ref={navbarRef} isToggled={isToggled}>
         <LeftSide>
-          <HamburgerIconComponnent
+          <HamburgerIconComponent
             onClick={handleMenuToggle}
             isOpen={isMenuOpen}
             isToggled={isToggled}
@@ -76,23 +121,65 @@ const Navbar = ({ isToggled, setIsToggled }) => {
           />
         </LeftSide>
         <RightSide>
-          {/* <GoogleButtonComponnent /> */}
-          {!isMobileView && <SettingIconComponnent isToggled={isToggled} />}
+          {!isMobileView && <SettingIconComponent isToggled={isToggled} />}
           {!isMobileView && (
-            <ToggleButtonComponnent
+            <ToggleButtonComponent
               onClick={handleToggle}
               isToggled={isToggled}
             />
           )}
-          {/* {!isMobileView && <SearchInputComponnent isToggled={isToggled} />}
           {!isMobileView && (
-            <SearchButtonComponnent
-              onClick={handleSearch}
-              isToggled={isToggled}
-            />
-          )} */}
+            <SearchInputWrapper>
+              <SearchInputComponent
+                isToggled={isToggled}
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                onFocus={handleSearchFocus}
+              />
+              <SearchButtonComponent
+                handleSearch={handleSearch}
+                isToggled={isToggled}
+              />
+            </SearchInputWrapper>
+          )}
         </RightSide>
       </NavbarContainer>
+      {!isMobileView && isSearchResultsVisible && searchResults && (
+        <SearchResultsBox ref={searchResultsRef}>
+          {/* {searchResults.actorsAndDirectors?.map(person => (
+            <SearchResultItem key={person.id}>
+              <StyledLink to={`/movies/actors/${encodeURIComponent(person.name)}/page/1`}>
+                <SearchResultImage src={person.profileImg || noImagePlaceholder} alt={person.name} />
+                <SearchResultContent>
+                  <SearchResultTitle>{person.name}</SearchResultTitle>
+                  <SearchResultSubText>
+                    <RxAvatarIcon /> Actor
+                  </SearchResultSubText>
+                </SearchResultContent>
+              </StyledLink>
+            </SearchResultItem>
+          ))} */}
+          {searchResults.movies?.map(movie => (
+            <SearchResultItem key={movie.id}>
+              <StyledLink to={`/movies/${movie.id}`}>
+                <SearchResultImage
+                  src={movie.posterImg || noImagePlaceholder}
+                  alt={movie.title}
+                />
+                <SearchResultContent>
+                  <SearchResultTitle>{movie.title}</SearchResultTitle>
+                  <SearchResultSubText>
+                    <MdLocalMoviesIcon /> {movie.releaseYear}
+                  </SearchResultSubText>
+                  <SearchResultRating>
+                    <StarIcon /> {movie.rating}
+                  </SearchResultRating>
+                </SearchResultContent>
+              </StyledLink>
+            </SearchResultItem>
+          ))}
+        </SearchResultsBox>
+      )}
     </>
   );
 };

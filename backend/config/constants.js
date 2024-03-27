@@ -28,3 +28,6 @@ export const CAST_QUERY_URL = (name, page) =>
 
 export const MOVIES_FETCHER = id =>
   `https://api.themoviedb.org/3/person/${id}/movie_credits`;
+
+export const MOVIE_SEARCH_URL = (query, page) =>
+  `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(query)}&page=${page}&include_adult=false`;
