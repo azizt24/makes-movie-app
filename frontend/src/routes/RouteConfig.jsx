@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from '../components';
-import { Error, Home, MoviesPage, MoviePage, Settings } from '../pages';
-//mock components
+import { Error, Home, MoviesPage, MoviePage, AdvancedSearch, SearchResults } from '../pages'; 
 
 const TvShows = () => {
   return <div>Tv Shows</div>;
@@ -35,12 +34,8 @@ const SavedMovies = () => {
   return <div>Saved Movies</div>;
 };
 
-// const Settings = () => {
-//   return <div>Settings</div>;
-// };
-
-const AdvancedSearch = () => {
-  return <div>Advanced Search</div>;
+const Settings = () => {
+  return <div>Settings</div>;
 };
 
 const router = createBrowserRouter([
@@ -98,12 +93,15 @@ const router = createBrowserRouter([
         path: 'settings',
         element: <Settings />,
       },
-      {
+      { 
         path: 'advanced-search',
-        element: <AdvancedSearch />,
+       element: <AdvancedSearch /> },
+       {
+        path: '/search/results',
+        element: <SearchResults />
       },
     ],
   },
-]);
+]); 
 
 export default router;

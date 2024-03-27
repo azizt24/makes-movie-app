@@ -5,7 +5,7 @@ const CarouselComponent = ({ movies }) => {
   const navigate = useNavigate();
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
@@ -13,7 +13,7 @@ const CarouselComponent = ({ movies }) => {
     autoplay: true,
     autoplaySpeed: 3500,
   };
-  const plotDetails = (plot) => {
+  const plotDetails = plot => {
     if (plot.length > 100) {
       return plot.slice(0, 100) + '...';
     }
@@ -33,7 +33,9 @@ const CarouselComponent = ({ movies }) => {
             <div className="carousel-caption">
               <div className="movie-details-box">
                 <h3 className="carousel-title">{movie.title}</h3>
-                <p className="carousel-description">{plotDetails(movie.overview)}</p>
+                <p className="carousel-description">
+                  {plotDetails(movie.overview)}
+                </p>
               </div>
               <div className="details-footer">
                 <DetailsButton
@@ -46,7 +48,7 @@ const CarouselComponent = ({ movies }) => {
                 <span className="year">{movie.year}</span>
                 <div className="carousel-rating">
                   <span className="carousel-star">★</span>
-                  {movie.rating}
+                  {movie.rating.toFixed(1)}
                 </div>
               </div>
             </div>

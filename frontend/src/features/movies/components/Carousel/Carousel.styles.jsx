@@ -1,22 +1,19 @@
 import styled from 'styled-components';
 import Slider from 'react-slick';
 
-
-
 export const CarouselStyling = styled(Slider)`
   width: 100%;
- 
+
   z-index: 0;
   padding: 0 10%;
- 
+
   margin-top: 7%;
   position: relative;
-  overflow: visible;  
+  overflow: visible;
   @media screen and (max-width: 1200px) {
     padding: 0 3%;
   }
   @media screen and (max-width: 700px) {
-    
     padding: 0 3%;
     margin-top: 7%;
   }
@@ -30,16 +27,13 @@ export const CarouselStyling = styled(Slider)`
   } */
   .carousel-slide {
     position: relative;
-   
-     
   }
 
   .carousel-image {
-    width: 100%;   
-     height: 40rem;    
-   
-    object-fit: cover;  
-    
+    width: 100%;
+    height: 40rem;
+
+    object-fit: cover;
   }
 
   .carousel-caption {
@@ -55,9 +49,7 @@ export const CarouselStyling = styled(Slider)`
     width: 80%;
     line-height: 1;
     @media screen and (max-width: 700px) {
-   
-  }
-    
+    }
   }
 
   .movie-details-box {
@@ -72,33 +64,33 @@ export const CarouselStyling = styled(Slider)`
     margin: 0;
     color: var(--text-white);
     z-index: 10;
-  
   }
 
   .carousel-description {
     font-size: 1.5rem;
     margin-top: 5px;
     color: var(--text-white);
-    overflow : auto;
-    width: 80%;  
-  height: 40px;  
-  line-height: 30px;  
-  overflow: hidden;  
- 
-  height: auto; 
-  line-height: 30px;
-   
-  padding: 0 10px; 
-  @media screen and (max-width: 700px) {
-    font-size: 1.2rem; ;
-    width: 100%;  
-  }
+    overflow: auto;
+    width: 80%;
+    margin-left: -9px;
+    height: 40px;
+    line-height: 30px;
+    overflow: hidden;
+    margin-bottom: 7px;
+    height: auto;
+    line-height: 30px;
+
+    padding: 0 10px;
+    @media screen and (max-width: 700px) {
+      font-size: 1.2rem;
+      width: 100%;
+    }
   }
 
   .details-footer {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
   }
 
   .year {
@@ -106,19 +98,16 @@ export const CarouselStyling = styled(Slider)`
     font-size: 1.5rem;
     margin-top: 5px;
     @media screen and (max-width: 700px) {
-    font-size: 1.2rem; ;
-    
-  }}
+      font-size: 1.2rem;
+    }
+  }
 
   .carousel-rating {
     font-size: 1.5rem;
-    margin-top: 5px;
-    margin-left : 5px;
+    margin-left: 5px;
     @media screen and (max-width: 700px) {
-    font-size: 1.2rem; ;
-    
-  }
-    
+      font-size: 1.2rem;
+    }
   }
 
   .carousel-star {
@@ -132,15 +121,11 @@ export const CarouselStyling = styled(Slider)`
     display: none;
     @media screen and (max-width: 600px) {
       display: none !important;
-     
     }
-  /* position: absolute;
+    /* position: absolute;
   top: 50%;
   z-index: 99;
   transform: translateY(-50%); */
-  
-   
-   
   }
 
   .slick-prev {
@@ -148,20 +133,18 @@ export const CarouselStyling = styled(Slider)`
     top: 50%;
     left: 11%;
     z-index: 99;
- 
+
     @media screen and (max-width: 1200px) {
-      
       left: 7%;
     }
-   
   }
 
   .slick-next {
     /* right: 25px;
-    color: var(--primary-color); */ 
+    color: var(--primary-color); */
     position: absolute;
     top: 50%;
-    
+
     right: 11%;
     z-index: 99;
     @media screen and (max-width: 600px) {
@@ -187,23 +170,30 @@ export const CarouselStyling = styled(Slider)`
 export const DetailsButton = styled.button`
 height:37px;
 width:104px;
-
-border: none;
+ border: none;
   background-color: var(--primary-color);
-  color: ${props => props.white ? 'var(--text-white)' : 'var(--text-dark)'};
-  font-weight: bold;
-  padding: 10px 15px;
-  border-radius: 5px;
+  color: bold;
+  padding: 7px 7px;
+  width: 95px;
+  border-radius: 0px;
+  margin-right: 1rem ;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  order: -1;
+  z-index: 1;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+
   &:hover {
     background-color: var(--primary-color-light);
     transform: translateY(-1px);
   }
+
+  color: ${props => props.white ? 'var(--text-white)' : 'var(--text-dark)'};
+  
   @media screen and (max-width: 700px) {
-    font-size: 1.2rem; ;
-    
+    font-size: 1.2rem;
   }
 `;
+
+

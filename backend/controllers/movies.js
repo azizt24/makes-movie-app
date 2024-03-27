@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import aggregateData from '../utils/aggregateData.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/asyncHandler.js';
+
+import { getGenreList } from '../utils/genreService.js';
 import {
   HIGHEST_RATED_MOVIES,
   HOME_CAROUSEL_MOVIES,
@@ -13,6 +15,7 @@ import {
   getTmbdbUrl,
   CAST_QUERY_URL,
   MOVIES_FETCHER,
+  DISCOVER_MOVIE_URL,
 } from '../config/constants.js';
 
 dotenv.config({ path: './config/config.env' });
@@ -165,4 +168,104 @@ export const fetchMoviesByCast = asyncHandler(async (req, res, next) => {
     totalPages: Math.ceil(movies.length / 20),
     movies: paginatedMovies,
   });
+});
+
+// CR - put the utility functions in a separate file in the utils folder
+// Utility function to map runtime descriptions to minutes
+function parseRuntime(runtimeRange) {
+  switch (runtimeRange) {
+    case '1-1.5h':
+      return 60;
+    case '1.5-2h':
+      return 90;
+    case '2-3h':
+      return 120;
+    case 'over 3h':
+      return 180;
+    default:
+      return 0;
+  }
+}
+
+// Function to fetch TMDB person IDs by name
+const fetchPersonIds = async names => {
+  const ids = [];
+  for (const name of names.split(',')) {
+    const response = await axios.get(CAST_QUERY_URL(name.trim(), 1), {
+      params: { api_key: API_KEY },
+    });
+    if (response.data.results.length > 0) {
+      ids.push(response.data.results[0].id);
+    }
+  }
+  return ids.join(',');
+};
+
+export const advancedSearch = asyncHandler(async (req, res) => {
+  const {
+    fromYear = '1903',
+    toYear = '2024',
+    minRating = '',
+    minVotes = '',
+    genre = '',
+    minRuntime = '',
+    actors = '',
+    directors = '',
+    writers = '',
+    page = 1,
+  } = req.query;
+
+  const runtimeRange = parseRuntime(minRuntime);
+
+  // Convert genre names to IDs
+  const genreList = getGenreList();
+  const genreIds = genre
+    ? genre
+        .split(',')
+        .map(name => {
+          const genre = genreList.find(
+            genre => genre.name.toLowerCase() === name.trim().toLowerCase()
+          );
+          return genre ? genre.id : null;
+        })
+        .filter(id => id)
+        .join(',')
+    : '';
+
+  const params = {
+    api_key: process.env.TMDB_API_KEY,
+    'primary_release_date.gte': `${fromYear}-01-01`,
+    'primary_release_date.lte': `${toYear}-12-31`,
+    'vote_average.gte': minRating || undefined,
+    'vote_count.gte': minVotes || undefined,
+    with_genres: genreIds,
+    page,
+  };
+
+  if (runtimeRange) {
+    params['with_runtime.gte'] = runtimeRange;
+  }
+
+  // Handle actors, directors, and writers
+  if (actors) params.with_cast = await fetchPersonIds(actors);
+  if (directors) params.with_crew = await fetchPersonIds(directors);
+  if (writers)
+    params.with_crew =
+      (params.with_crew ? `${params.with_crew},` : '') +
+      (await fetchPersonIds(writers));
+
+  // CR - since we are using the asyncHandler function, we don't need the try catch block
+  try {
+    const response = await axios.get(DISCOVER_MOVIE_URL, { params });
+    res.json({
+      success: true,
+      results: response.data.results,
+      page: response.data.page,
+      total_results: response.data.total_results,
+      total_pages: response.data.total_pages,
+    });
+  } catch (error) {
+    console.error('Advanced search failed:', error.message);
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
 });

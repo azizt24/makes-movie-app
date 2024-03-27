@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [Movies App](#react-movies-app)
+- [Movies App](#movies-app)
   - [Table of Contents](#table-of-contents)
   - [Acknowledgments](#acknowledgments)
   - [Overview](#overview)
@@ -12,26 +12,29 @@
   - [Screenshots](#screenshots)
     - [Home Screen](#home-screen)
     - [Movies Screen](#movies-screen)
-    - [Movie Details Screen](#movie-Details-screen)
+    - [Movie Details Screen](#movie-details-screen)
     - [Advanced Search Screen](#advanced-search-screen)
-    - [Popular Actors Screen](#popular-actors-screen)
-    - [Spinners and Themes Page Screen](#spinners-and-themes-page-screen)
+    - [Popular Actors](#popular-actors)
+  - [](#)
+    - [Spinners and Themes Page](#spinners-and-themes-page)
     - [Error Toast](#error-toast)
   - [Getting Started](#getting-started)
   - [API Integration](#api-integration)
     - [Environment Variable Protection](#environment-variable-protection)
     - [Request Management](#request-management)
   - [Custom Hooks](#custom-hooks)
-    - [`useDynamicApiMutation`](#useDynamicApiMutation)
-    - [`useFetch`](#useFetch)
+    - [`useDynamicApiMutation`](#usedynamicapimutation)
+    - [`useFetch`](#usefetch)
   - [Technical Architecture](#technical-architecture)
-    - [`State Management`](#statemanagement)
+    - [State Management](#state-management)
   - [User Experience](#user-experience)
     - [Reusable Components](#reusable-components)
     - [Movie Display Components](#movie-display-components)
-  - [Authentication Flow](#authentication-flow)  
+  - [Authentication Flow](#authentication-flow)
   - [Data Fetching and State Management](#data-fetching-and-state-management)
   - [Error Management](#error-management)
+  - [contributors](#contributors)
+  - [License](#license)
   
 
 
@@ -47,7 +50,7 @@ This project is based on the [React Movie App](https://github.com/obrm/makes-mov
 
 ## Live Demo
 
-Visit the [live demo](https://dev-makes-movie-app.netlify.app/).
+Visit the [live demo](https://makes-movie-finder.netlify.app/).
 
 ## Features
 
@@ -182,11 +185,15 @@ This structured approach to state management with Redux Toolkit not only simplif
 
 ##  contributors
 
-- Ori Baram (Supervisor).
-- Amal Shweiki. (https://github.com/amalshweiki)
-- Aziz Touma. (https://github.com/azizt24)
-- Mahmoud Dana. (https://github.com/mahmoudd3na)
-- Mony Baruch. (https://github.com/monybaruch)
-- Mohammed Alyan. (https://github.com/Mohasalyan)
-- Shadi Nabwani. (https://github.com/Mohasalyan)
+- [Ori Baram](https://github.com/obrm) (Team Lead).
+- [Amal Shweiki](https://github.com/amalshweiki). 
+- [Aziz Touma](https://github.com/azizt24). 
+- [Mahmoud Dana](https://github.com/mahmoudd3na). 
+- [Mony Baruch](https://github.com/monybaruch). 
+- [Mohammed Alyan](https://github.com/Mohasalyan). 
+- [Shadi Nabwani](https://github.com/Mohasalyan). 
 
+
+## License
+
+- This project is licensed under the MIT License.

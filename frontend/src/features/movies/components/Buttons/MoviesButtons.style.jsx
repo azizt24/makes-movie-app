@@ -8,6 +8,8 @@ export const MoviesButtonsContainer = styled.div`
   justify-content: center;
   @media (max-width: 768px) {
     flex-direction: column;
+    width: 20rem;
+    margin: 0 auto;
     align-items: center;
   }
 `;
@@ -27,7 +29,7 @@ export const MoviesBtn = styled.div`
   &.active {
     background: var(--primary-color);
     color: var(--text-dark);
-    border: 1px solid var(--secondary-color);  
+    border: 1px solid var(--secondary-color);
   }
   &:hover {
     background: var(--primary-color);
@@ -35,8 +37,6 @@ export const MoviesBtn = styled.div`
   }
   @media (max-width: 768px) {
     width: 20rem;
-    margin: 2rem auto;
+    margin: 1rem auto;
   }
-  
 `;
-

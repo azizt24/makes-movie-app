@@ -26,6 +26,7 @@ export const HomeContainer = styled.div`
 export const Title = styled.div`
 font-size: var(--heading-primary);
   font-weight: 700;
+margin-top: 5rem;
   color: var(--text-white);
   text-align: center;
   margin-top: 4rem;
@@ -39,6 +40,7 @@ font-size: var(--heading-primary);
 export const SubTitle = styled.div`
    font-size: var(--heading-secondary);
   font-weight: 700;
+  margin-bottom: 15px;
   color: var(--primary-color);
   text-align: center;
   @media (max-width: 1200px) {
@@ -51,7 +53,7 @@ export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
  
-
+margin-bottom: 45px;
  
 `;
 
