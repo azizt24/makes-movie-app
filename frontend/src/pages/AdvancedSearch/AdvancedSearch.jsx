@@ -1,6 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { MoviesBtn } from '../../features/movies/components/Buttons/MoviesButtons.style';
+import { handleSerchSubmit } from '../../features/movies/hooks/handleSerchSubmit.js';
+import { CONSTANTS } from '../../features/movies/utils/constants/constants.js';
+import { yearOptions } from '../../features/movies/utils/useYearOptions';
 import Title from './../../components/layout/Title/TItle';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import {
   SearchContainer,
   StyledLabel,
@@ -8,9 +12,7 @@ import {
   StyledContainer,
   Input,
   InputWrapper,
-  SubmitButton,
 } from './AdvancedSearch.styles';
-
 const AdvancedSearch = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -27,76 +29,20 @@ const AdvancedSearch = () => {
 
   const updateFormData = (field, value) => {
     setFormData({ ...formData, [field]: value });
-    // CR - remove console.logs
-    console.log(`Updated ${field}:`, value); // Log updated form data
   };
 
-  // CR - move to a utils or helper file in a utils directory
-  const yearOptions = () => {
-    return [...Array(new Date().getFullYear() - 1904 + 1).keys()]
-      .reverse()
-      .map(year => (
-        <option key={year} value={1905 + year}>
-          {1905 + year}
-        </option>
-      ));
-  };
+  const minimumvotes = CONSTANTS.MIN_VOTES_OPTIONS.map(value => ({
+    label: value.toLocaleString(),
+    value,
+  }));
 
-  // CR - move all this to a constants file
-  const minVotesOptions = [
-    20000, 15000, 10000, 9000, 8000, 7000, 6000, 5000, 4000, 3000, 2000, 500,
-    100,
-  ].map(value => ({ label: value.toLocaleString(), value }));
+  const genreOptions = CONSTANTS.GENRE_OPTIONS.map(genre => ({
+    label: genre,
+    value: genre,
+  }));
 
-  const genreOptions = [
-    'Action',
-    'Adventure',
-    'Animation',
-    'Comedy',
-    'Crime',
-    'Documentary',
-    'Drama',
-    'Family',
-    'Fantasy',
-    'History',
-    'Horror',
-    'Music',
-    'Mystery',
-    'Romance',
-    'Science Fiction',
-    'TV Movie',
-    'Thriller',
-    'War',
-    'Western',
-  ].map(genre => ({ label: genre, value: genre }));
+  const runtimeOptions = CONSTANTS.RUN_TIME_OPTIONS;
 
-  const runtimeOptions = [
-    { label: 'Any runtime', value: '' },
-    { label: '1 hour - 1.5 hours', value: '1-1.5h' },
-    { label: '1.5 hours - 2 hours', value: '1.5-2h' },
-    { label: '2 hours - 3 hours', value: '2-3h' },
-    { label: 'More than 3 hours', value: 'over 3h' },
-  ];
-
-  const handleSubmit = () => {
-    let { fromYear, toYear } = formData;
-
-    fromYear = fromYear || '1903';
-    toYear = toYear || '2024';
-
-    if (parseInt(fromYear) > parseInt(toYear)) {
-      // CR - don't use alert
-      alert('From year cannot be greater than To year');
-      return;
-    }
-
-    const updatedFormData = { ...formData, fromYear, toYear };
-
-    const searchParams = new URLSearchParams(updatedFormData).toString();
-    navigate(`/search/results?${searchParams}&page=1`);
-  };
-
-  // CR - the jsx is too long, break it down into smaller parts
   return (
     <SearchContainer>
       <Title title={'advanced search'} />
@@ -144,7 +90,7 @@ const AdvancedSearch = () => {
             onChange={e => updateFormData('minVotes', e.target.value)}
           >
             <option>Minimum Votes</option>
-            {minVotesOptions.map(option => (
+            {minimumvotes.map(option => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -203,9 +149,12 @@ const AdvancedSearch = () => {
           />
         </InputWrapper>
       </StyledContainer>
-      <SubmitButton type="button" onClick={handleSubmit}>
+      <MoviesBtn
+        type="button"
+        onClick={() => handleSerchSubmit(formData, setFormData, navigate)}
+      >
         Search
-      </SubmitButton>
+      </MoviesBtn>
     </SearchContainer>
   );
 };
