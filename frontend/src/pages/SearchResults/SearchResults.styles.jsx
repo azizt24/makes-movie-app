@@ -1,6 +1,7 @@
 // MoviesPage.style.jsx or wherever you define your styled components
 
 import styled from 'styled-components';
+import { Center } from './../../components/Spinners/Camera/Camera.styles';
 
 export const MoviesContainer = styled.div`
   display: flex;
@@ -35,11 +36,24 @@ export const MovieGrid = styled.div`
 `;
 
 export const NoResultsMessage = styled.div`
-  color: red;
-  font-size: 30px;
-  text-align: center;
-  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-top: 200px;
+  height: 95vh;
+  p {
+    color: red;
+    font-size: 30px;
+    text-align: center;
+    width: 600px;
+    padding-bottom: 10px;
+  }
+  img {
+    width: 400px;
+    height: 300px;
+    padding-bottom: 10px;
+  }
+
   @media (max-width: 768px) {
     padding-top: 10px;
   }

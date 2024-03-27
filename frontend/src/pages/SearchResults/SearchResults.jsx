@@ -56,8 +56,10 @@ const SearchResults = () => {
   if (moviesData.results.length === 0) {
     return (
       <NoResultsMessage>
-        We can not find any movies that match your search criteria. Try
-        adjusting your search and filtering options!
+        <p>
+          We can not find any movies that match your search criteria. Try
+          adjusting your search and filtering options!
+        </p>
         <img src="../../../public/images/travolta-waiting.gif" alt="" />
       </NoResultsMessage>
     );
