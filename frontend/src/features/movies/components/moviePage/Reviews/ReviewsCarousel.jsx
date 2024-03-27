@@ -23,14 +23,14 @@ const ReviewsCarousel = ({ reviews }) => {
     position: 'absolute',
     zIndex: 2,
 
-    top: '50% ',
+    top: '45% ',
 
     width: 30,
     height: 30,
     cursor: 'pointer',
-    background: '#49BCEC',
+    background: 'var(--primary-color)',
     border: 'none',
-    color: '#7AD3F3',
+    color:  'var(--secondary-color-light)',
     borderRadius: '50%',
     fontSize: '30px',
     fontWeight: 'bold',

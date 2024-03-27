@@ -20,6 +20,13 @@ const TrailerWidget = ({ movie }) => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  const correctTrailerUrl = (url) => {
+    const urlParts = url.split('watch?v==');
+    if (urlParts.length === 2) {
+      return `https://www.youtube.com/embed/${urlParts[1]}`;
+    }
+    return url; 
+  };
   return (
     <>
       <WidgetContainer backgroundImage={movie.poster} onClick={openModal}>
@@ -97,7 +104,7 @@ const TrailerWidget = ({ movie }) => {
             {movie.trailers.map((trailer, index) => (
               <StyledCarouselDiv key={index}>
                 <StyledIframe
-                  src={`https://www.youtube.com/embed/${trailer.key}`}
+                   src={correctTrailerUrl(trailer)}
                   allowFullScreen
                 ></StyledIframe>
               </StyledCarouselDiv>

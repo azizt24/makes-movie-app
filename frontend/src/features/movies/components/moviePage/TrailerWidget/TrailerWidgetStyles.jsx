@@ -11,7 +11,7 @@ export const WidgetContainer = styled.div`
   width: 25rem;
   height: 25rem;
   top: 50%;
-  left: 83%;
+  left: 85%;
 
   z-index: 1;
   transition: transform 0.5s ease;

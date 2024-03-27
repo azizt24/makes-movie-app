@@ -25,6 +25,7 @@ const MovieCastCarousel = ({ movie }) => {
        <HorizontalLine/>
       <Carousel
         showArrows={true}
+        infiniteLoop={true}
         showThumbs={false}
         showStatus={false}
         showIndicators={false}
