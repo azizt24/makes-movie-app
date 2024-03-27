@@ -60,7 +60,7 @@ const SearchResults = () => {
           We can not find any movies that match your search criteria. <br /> Try
           adjusting your search and filtering options!
         </p>
-        <img src="../../../public/images/travolta-waiting.gif" alt="" />
+        <img src="/images/travolta-waiting.gif" alt="" />
       </NoResultsMessage>
     );
   }

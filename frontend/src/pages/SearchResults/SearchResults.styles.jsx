@@ -43,6 +43,7 @@ export const NoResultsMessage = styled.div`
   height: 95vh;
   p {
     color: #fff;
+    font-family: var(--font-family-main);
     font-weight: bold;
     font-size: 30px;
     text-align: center;
