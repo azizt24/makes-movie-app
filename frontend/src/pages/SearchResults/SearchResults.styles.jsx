@@ -42,11 +42,16 @@ export const NoResultsMessage = styled.div`
   padding-top: 200px;
   height: 95vh;
   p {
-    color: red;
+    color: #fff;
+    font-weight: bold;
     font-size: 30px;
     text-align: center;
-    width: 600px;
-    padding-bottom: 10px;
+    width: 65vw;
+    margin-bottom: 20px;
+    @media (max-width: 768px) {
+      margin-top: 100px;
+      font-size: 18px;
+    }
   }
   img {
     width: 400px;
