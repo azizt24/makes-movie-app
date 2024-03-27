@@ -25,7 +25,10 @@ export const handleSerchSubmit = (formData, setFormData, navigate) => {
     !writers;
 
   if (isFormEmpty) {
-    toast.error('Please enter search data before submitting!');
+    toast.error('Please enter search data before submitting!',
+    {
+      position: 'top-center',
+    });
     return;
   }
 
@@ -33,7 +36,10 @@ export const handleSerchSubmit = (formData, setFormData, navigate) => {
   toYear = toYear || '2024';
 
   if (parseInt(fromYear) > parseInt(toYear)) {
-    toast.error('From year cannot be greater than To year!');
+    toast.error('From year cannot be greater than To year!',
+    {
+      position: 'top-center',
+    });
     return;
   }
 
