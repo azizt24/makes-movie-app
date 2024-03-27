@@ -4,7 +4,7 @@ export const CastCard = styled.div`
   margin-top: 5rem;
   width: 160px;
   height: 330px;
-  background-color:var(--primary-color);
+  background-color:var(--secondary-color);
 
   border-radius: 20px;
   margin-left: 8px;
@@ -16,7 +16,7 @@ export const CastName = styled.h3`
   justify-content: left;
   font-size: 15px;
   margin-left: 10px;
-  color:var(--secondary-color);
+  color:var(--primary-color);
   font-weight: bold;
   font-weight: 400;
 `;
@@ -25,7 +25,7 @@ export const CastChar = styled.p`
   justify-content: left;
   margin-left: 8px;
 
-  color:var(--secondary-color);
+  color:var(--primary-color);
   font-size: 15px;
 `;
 export const CastImg = styled.img`
@@ -43,9 +43,9 @@ export const arrowStyles = {
   width: 30,
   height: 30,
   cursor: 'pointer',
-  background: 'var(--primary-color)',
-  border: 'none',
-  color: 'var(--secondary-color-light)',
+  background: 'var(--secondary-color-light)',
+    border: 'none',
+    color:  'var(--secondary-color-lightest)',
   borderRadius: '50%',
   fontSize: '30px',
   fontWeight: 'bold',
@@ -53,7 +53,7 @@ export const arrowStyles = {
 export const HorizontalLine = styled.hr`
   border: 0;
   height: 1px;
-  background:var(--primary-color);
+  background:var(--secondary-color-light);
   margin-top: 5rem; 
   margin-left:0.5rem;
   margin-right:0.5rem;

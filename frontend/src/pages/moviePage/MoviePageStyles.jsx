@@ -14,7 +14,7 @@ export const PageContainer = styled.div`
 
 export const MovieContainer = styled.div`
   padding-top:4vw;
-  background-color:var(--secondary-color);
+  background-color:var(--primary-color);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
   @media only screen and (max-width: 500px) {

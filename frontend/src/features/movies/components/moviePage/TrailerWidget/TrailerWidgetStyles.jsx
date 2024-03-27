@@ -9,7 +9,7 @@ export const WidgetContainer = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   width: 25rem;
-  height: 25rem;
+  height: 30rem;
   top: 50%;
   left: 85%;
 
