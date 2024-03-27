@@ -81,20 +81,20 @@ const Navbar = ({ isToggled, setIsToggled }) => {
           </SearchResultItem>
         ))}
         {searchResults.movies?.map((movie) => (
-          <SearchResultItem key={movie.id}>
-            <StyledLink to={`/movies/${movie.id}`}>
-              <SearchResultImage src={movie.posterImg || noImagePlaceholder} alt={movie.title} />
-              <SearchResultContent>
-                <SearchResultTitle>{movie.title}</SearchResultTitle>
-                <SearchResultSubText>
-                  <MdLocalMoviesIcon /> {movie.releaseYear}
-                </SearchResultSubText>
-                <SearchResultRating>
-                  <StarIcon /> {movie.rating}
-                </SearchResultRating>
-              </SearchResultContent>
-            </StyledLink>
-          </SearchResultItem>
+    <SearchResultItem key={movie.id}>
+    <StyledLink to={`/movies/${movie.id}`}>
+    <SearchResultImage src={movie.posterImg || noImagePlaceholder} alt={movie.title} />
+      <SearchResultContent>
+          <SearchResultTitle>{movie.title}</SearchResultTitle>
+          <SearchResultSubText>
+              <MdLocalMoviesIcon /> {movie.releaseYear}
+        </SearchResultSubText>
+          <SearchResultRating>
+              <StarIcon /> {movie.rating}
+          </SearchResultRating>
+           </SearchResultContent>
+       </StyledLink>
+     </SearchResultItem>
         ))}
       </SearchResultsBox>)}
     </>
