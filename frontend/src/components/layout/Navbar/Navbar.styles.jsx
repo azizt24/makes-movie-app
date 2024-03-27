@@ -306,7 +306,7 @@ export const SearchResultsBox = styled.div`
   border: 1px solid white;
   
   width: 330px;
-  max-height: 50%;
+  max-height: 90%;
   overflow-y: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
