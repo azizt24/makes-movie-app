@@ -18,3 +18,4 @@ export const useFetch = (url, queryKey = '') => {
 
   return { isPending, isError, data, error };
 };
+export default useFetch;

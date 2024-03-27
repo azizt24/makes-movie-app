@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const HomeContainer = styled.div`
   background-color: var(--secondary-color);
   width: 100%;
-  height: auto;  
+ 
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,24 +14,46 @@ export const HomeContainer = styled.div`
   @media (max-width: 768px) {
     min-height: auto;  
     padding: 20px;
+    
+  }
+  @media (max-width: 500px) {
+   padding: 0;
+   margin:0;
   }
 `;
 
 
-export const Title = styled.h1`
-margin-top: 5px;
+export const Title = styled.div`
+font-size: var(--heading-primary);
+  font-weight: 700;
+margin-top: 5rem;
   color: var(--text-white);
+  text-align: center;
+  margin-top: 4rem;
+  @media (max-width:1200px) {
+    font-size:2rem;
+    
+  }
+ 
 `;
 
-export const SubTitle = styled.h2`
+export const SubTitle = styled.div`
+   font-size: var(--heading-secondary);
+  font-weight: 700;
+  margin-bottom: 15px;
   color: var(--primary-color);
+  text-align: center;
+  @media (max-width: 1200px) {
+    font-size:1.8rem;
+    
+  }
 `;
 
 export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+ 
+margin-bottom: 45px;
  
 `;
 
@@ -49,8 +72,4 @@ export const MovieCardContainer = styled.div`
 `;
 
 
-export const CarouselContainer = styled.div`
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`;
+

@@ -5,4 +5,5 @@ export const CONSTANTS = {
   HOME_CAROUSEL_QUERY_KEY: 'home-carousel',
   LATEST_MOVIES_QUERY_KEY: 'latest-movies',
   HIGHEST_RATED_MOVIES_QUERY_KEY: 'highest-rated-movies',
+  SEARCH_MOVIES_URL: `${import.meta.env.VITE_BACKEND_URL}movies/search`, // Added search endpoint
 };

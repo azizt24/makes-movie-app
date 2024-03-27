@@ -9,7 +9,8 @@ export const HIGHEST_RATED_MOVIES =
   'https://api.themoviedb.org/3/discover/movie';
 
 export const HOME_CAROUSEL_MOVIES = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&vote_average.gte=7&&vote_count.gte=1000&include_adult=false&include_video=false&total_results=1&page=1`;
-
+export const API_BASE_URL = 'https://api.themoviedb.org/3';
+export const DISCOVER_MOVIE_URL = `${API_BASE_URL}/discover/movie`;
 export const LATEST_MOVIES_URL = 'https://api.themoviedb.org/3/movie/popular';
 export const MOVIE_SMALL_IMAGE = 'https://image.tmdb.org/t/p/w185/';
 export const REVIEWS = 'https://api.themoviedb.org/3';
