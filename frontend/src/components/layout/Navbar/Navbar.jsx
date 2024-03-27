@@ -55,7 +55,7 @@ const Navbar = ({ isToggled, setIsToggled }) => {
 
   const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
 
-  const handleSearch = () => navigate(`/movies/search/${encodeURIComponent(query)}/page/1`);
+  const handleSearch = () =>  navigate(`/movies/search/${encodeURIComponent(query)}/page/1`); 
 
   const handleToggle = () => {
     setIsToggled(!isToggled);
@@ -65,7 +65,7 @@ const Navbar = ({ isToggled, setIsToggled }) => {
 
   const handleSearchFocus = () => {
     if (searchResults && (searchResults.actorsAndDirectors.length > 0 || searchResults.movies.length > 0)) {
-      setIsSearchResultsVisible(true); // Only show if there are results
+      setIsSearchResultsVisible(true);  
     }
   };
   
@@ -113,7 +113,7 @@ const Navbar = ({ isToggled, setIsToggled }) => {
       </NavbarContainer>
       {!isMobileView && isSearchResultsVisible && searchResults && (
         <SearchResultsBox ref={searchResultsRef}>
-          {searchResults.actorsAndDirectors?.map(person => (
+          {/* {searchResults.actorsAndDirectors?.map(person => (
             <SearchResultItem key={person.id}>
               <StyledLink to={`/movies/actors/${encodeURIComponent(person.name)}/page/1`}>
                 <SearchResultImage src={person.profileImg || noImagePlaceholder} alt={person.name} />
@@ -125,7 +125,7 @@ const Navbar = ({ isToggled, setIsToggled }) => {
                 </SearchResultContent>
               </StyledLink>
             </SearchResultItem>
-          ))}
+          ))} */}
           {searchResults.movies?.map(movie => (
             <SearchResultItem key={movie.id}>
               <StyledLink to={`/movies/${movie.id}`}>
