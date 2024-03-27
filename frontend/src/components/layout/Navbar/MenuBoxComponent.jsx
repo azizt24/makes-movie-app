@@ -5,7 +5,6 @@ import SearchButtonComponnent from './SearchButtonComponent';
 import SearchInputComponnent from './SearchInputComponent';
 
 import { FlexContainerAbove } from './Navbar.styles';
-import { FlexContainerBelow } from './Navbar.styles';
 import { MobileFlex } from './Navbar.styles';
 import { MobileList } from './Navbar.styles';
 import LinksList from './LinksList';
@@ -15,10 +14,6 @@ const links = [
     name: 'Home',
     path: '/',
   },
-  // {
-  //   name: 'Ai Generated Movies',
-  //   path: '/ai-generated-movies',
-  // },
   {
     name: 'Movies',
     path: '/movies/latest/page/1',
@@ -27,15 +22,11 @@ const links = [
     name: 'Advanced Search',
     path: '/advanced-search',
   },
-  // {
-  //   name: 'Popular Actors',
-  //   path: '/popular-actors/page/1',
-  // },
 ];
 
 const MenuBoxComponnent = ({
   isToggled,
-  onClick,
+  onToggle,
   isMenuOpen,
   setIsMenuOpen,
 }) => {
@@ -50,7 +41,7 @@ const MenuBoxComponnent = ({
               <FlexContainerAbove>
                 <ToggleButtonComponnent
                   isToggled={isToggled}
-                  onClick={onClick}
+                  onClick={onToggle}
                 />
                 <SettingIconComponnent isToggled={isToggled} />
               </FlexContainerAbove>

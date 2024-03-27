@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef ,useCallback} from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import noImagePlaceholder from '../../../../public/images/No-Image-Placeholder.svg.png';
 
@@ -27,15 +27,16 @@ import SearchInputComponent from './SearchInputComponent';
 import SearchButtonComponent from './SearchButtonComponent';
 import SettingIconComponent from './SettingIconComponent';
 import { useDebouncedSearch } from '../../../hooks/useDebouncedSearch';
-import { useDispatch } from 'react-redux';
+import MenuBoxComponnent from './MenuBoxComponent';
 import { setTheme } from '../../../redux/slices/ui.slice';
+import { useDispatch } from 'react-redux';
 
 const Navbar = ({ isToggled, setIsToggled }) => {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 300);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
   const navigate = useNavigate();
-  const handleResults = useCallback((results) => {
+  const handleResults = useCallback(results => {
     setSearchResults(results);
     setIsSearchResultsVisible(true); // Show the search results box
   }, []);
@@ -55,7 +56,8 @@ const Navbar = ({ isToggled, setIsToggled }) => {
 
   const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
 
-  const handleSearch = () =>  navigate(`/movies/search/${encodeURIComponent(query)}/page/1`); 
+  const handleSearch = () =>
+    navigate(`/movies/search/${encodeURIComponent(query)}/page/1`);
 
   const handleToggle = () => {
     setIsToggled(!isToggled);
@@ -64,49 +66,80 @@ const Navbar = ({ isToggled, setIsToggled }) => {
   };
 
   const handleSearchFocus = () => {
-    if (searchResults && (searchResults.actorsAndDirectors.length > 0 || searchResults.movies.length > 0)) {
-      setIsSearchResultsVisible(true);  
+    if (
+      searchResults &&
+      (searchResults.actorsAndDirectors.length > 0 ||
+        searchResults.movies.length > 0)
+    ) {
+      setIsSearchResultsVisible(true);
     }
   };
-  
 
   useEffect(() => {
     const handleClickOutside = event => {
-      if (searchResultsRef.current && !searchResultsRef.current.contains(event.target)) {
+      if (
+        searchResultsRef.current &&
+        !searchResultsRef.current.contains(event.target)
+      ) {
         setIsSearchResultsVisible(false);
       }
     };
-  
-  
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   return (
     <>
       <NavbarContainer ref={navbarRef} isToggled={isToggled}>
         <LeftSide>
-          <HamburgerIconComponent onClick={handleMenuToggle} isOpen={isMenuOpen} isToggled={isToggled} />
-          <MenuBoxComponent
+          <HamburgerIconComponent
+            onClick={handleMenuToggle}
+            isOpen={isMenuOpen}
+            isToggled={isToggled}
+          />
+
+          <MenuBoxComponnent
             isToggled={isToggled}
             onToggle={handleToggle}
-            onMenuToggle={handleMenuToggle}
+            onMenuToggle={toggleMenu}
             isMenuOpen={isMenuOpen}
             setIsMenuOpen={setIsMenuOpen}
           />
         </LeftSide>
         <RightSide>
           {!isMobileView && <SettingIconComponent isToggled={isToggled} />}
-          {!isMobileView && <ToggleButtonComponent onClick={handleToggle} isToggled={isToggled} />}
+          {!isMobileView && (
+            <ToggleButtonComponent
+              onClick={handleToggle}
+              isToggled={isToggled}
+            />
+          )}
           {!isMobileView && (
             <SearchInputWrapper>
               <SearchInputComponent
                 isToggled={isToggled}
                 value={query}
                 onChange={e => setQuery(e.target.value)}
-                onFocus={handleSearchFocus} 
+                onFocus={handleSearchFocus}
               />
-              <SearchButtonComponent handleSearch={handleSearch} isToggled={isToggled} />
+              <SearchButtonComponent
+                handleSearch={handleSearch}
+                isToggled={isToggled}
+              />
             </SearchInputWrapper>
           )}
         </RightSide>
