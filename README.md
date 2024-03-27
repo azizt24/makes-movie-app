@@ -18,7 +18,7 @@
     - [Error Toast](#error-toast)
   - [Getting Started](#getting-started)
   - [API Integration](#api-integration)
-    - [Environment Variable Protection](#environment-variable-protection)
+    - [Environment Variables](#environment-variables)
   - [Custom Hooks](#custom-hooks)
     - [`useDynamicApiMutation`](#usedynamicapimutation)
     - [`useFetch`](#usefetch)
@@ -29,6 +29,7 @@
     - [Movie Display Components](#movie-display-components)
   - [Data Fetching and State Management](#data-fetching-and-state-management)
   - [Error Management](#error-management)
+  - [contributors](#contributors)
   - [License](#license)
   
 
@@ -36,8 +37,8 @@
 ## Acknowledgments
 Providing movie data:
 <br/>
-[The Movie DB](https://www.themoviedb.org/)  
-[The Open Movie Database](http://www.omdbapi.com/)
+[The Movie DB](https://www.themoviedb.org/).  
+[The Open Movie Database](http://www.omdbapi.com/).
 
 
 ## Overview
@@ -53,10 +54,7 @@ Visit the [live demo](https://makes-movie-finder.netlify.app/).
 - Latest Movies: Get information about the most recent movies released.
 - Highest Rated: Discover which movies are topping the charts with the highest ratings.
 - Movie Details: Dive deep into each movie's synopsis, cast, and more!
-- Advanced Search: Explore our Advanced Search to finely-tune your movie discoveries by filtering through actors, directors, writers, ratings, and more, ensuring you find exactly what you're looking for.
-- Popular actors:
-On this page, users can browse a curated selection of popular actors, offering a visual directory to explore profiles and learn more about the most recognized talents in the industry.
-- LogIn: The website features convenient Google sign-in integration, allowing users to quickly register or log in using their existing Google accounts for a streamlined and secure authentication process.
+- Advanced Search:Explore our Advanced Search to finely-tune your movie discoveries by filtering through actors, directors,    writers, ratings, and more, ensuring you find exactly what you're looking for.
 
 ## Tech Stack
 
@@ -70,6 +68,13 @@ On this page, users can browse a curated selection of popular actors, offering a
 - React-responsive-carousel
 - React-slick
 - Slick-carousel
+- Cors
+- Dotenv
+- Express
+- Mongoose
+- Morgan
+- Winston
+
 
 ## Screenshots
 
@@ -88,7 +93,7 @@ On this page, users can browse a curated selection of popular actors, offering a
 ---
 
 ### Advanced Search Screen
-![Advanced Search Screen](frontend/src/assets/)
+![Advanced Search Screen](frontend/src/assets/advanced_search.png)
 
 ---
 
@@ -116,7 +121,7 @@ On this page, users can browse a curated selection of popular actors, offering a
 
 All the API calls are available in the `constant.js` file in the `config` folder in the backend.
 
-### Environment Variable Protection
+### Environment Variables
 
 - The `config.env` file in the `backend/config` folder is omitted from the repository for security reasons. The values are as follows. Insert your relevant values where the blanks:
 ```
@@ -133,6 +138,7 @@ All the API calls are available in the `constant.js` file in the `config` folder
 ```
 VITE_BACKEND_URL=http://localhost:5000/api/v1/
 ```
+
 
 ## Custom Hooks
 
@@ -174,6 +180,15 @@ This structured approach to state management with Redux Toolkit not only simplif
 
 - User-friendly error notifications are shown using the [`react-toastify`](https://www.npmjs.com/package/react-toastify) package. It's centralized in the App component to handle errors application-wide.
 
+##  contributors
+
+- [Ori Baram](https://github.com/obrm) (Team Lead).
+- [Amal Shweiki](https://github.com/amalshweiki). 
+- [Aziz Touma](https://github.com/azizt24). 
+- [Mahmoud Dana](https://github.com/mahmoudd3na). 
+- [Mony Baruch](https://github.com/monybaruch). 
+- [Mohammed Alyan](https://github.com/Mohasalyan). 
+- [Shadi Nabwani](https://github.com/Mohasalyan). 
 
 
 ## License

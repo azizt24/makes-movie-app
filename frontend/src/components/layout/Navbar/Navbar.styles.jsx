@@ -35,6 +35,7 @@ export const NavbarContainer = styled.nav`
   z-index: 10;
   position: fixed;
   transition: background-color 0.5s;
+
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
@@ -58,6 +59,7 @@ export const MenuBox = styled.div`
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;
+  transform: translateX(400px);
   animation: ${props => (props.isMenuOpen ? slideIn : slideOut)} 0.5s ease-out
     forwards;
   font-size: large;
