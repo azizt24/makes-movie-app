@@ -72,10 +72,11 @@ export const CarouselStyling = styled(Slider)`
     color: var(--text-white);
     overflow: auto;
     width: 80%;
+    margin-left: -9px;
     height: 40px;
     line-height: 30px;
     overflow: hidden;
-
+    margin-bottom: 7px;
     height: auto;
     line-height: 30px;
 
@@ -103,7 +104,6 @@ export const CarouselStyling = styled(Slider)`
 
   .carousel-rating {
     font-size: 1.5rem;
-    margin-top: 5px;
     margin-left: 5px;
     @media screen and (max-width: 700px) {
       font-size: 1.2rem;
@@ -168,26 +168,32 @@ export const CarouselStyling = styled(Slider)`
 `;
 
 export const DetailsButton = styled.button`
-  height: 37px;
-  width: 104px;
-
-  border: none;
+height:37px;
+width:104px;
+ border: none;
   background-color: var(--primary-color);
-  color: ${props => (props.white ? 'var(--text-white)' : 'var(--text-dark)')};
-  font-weight: bold;
-  padding: 10px 15px;
-  border-radius: 5px;
+  color: bold;
+  padding: 7px 7px;
+  width: 95px;
+  border-radius: 0px;
+  margin-right: 1rem ;
   text-transform: uppercase;
   cursor: pointer;
+  z-index: 1;
   transition:
     background-color 0.3s ease,
     transform 0.3s ease;
-  order: -1;
+
   &:hover {
     background-color: var(--primary-color-light);
     transform: translateY(-1px);
   }
+
+  color: ${props => props.white ? 'var(--text-white)' : 'var(--text-dark)'};
+  
   @media screen and (max-width: 700px) {
     font-size: 1.2rem;
   }
 `;
+
+

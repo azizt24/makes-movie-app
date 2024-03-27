@@ -46,7 +46,7 @@ Welcome to the Movie Finder Project! This is a dynamic web application that allo
 
 ## Live Demo
 
-Visit the [live demo](https://makes-movie-app-prod.netlify.app/).
+Visit the [live demo](https://makes-movie-finder.netlify.app/).
 
 ## Features
 

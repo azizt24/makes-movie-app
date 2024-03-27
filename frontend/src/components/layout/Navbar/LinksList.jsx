@@ -1,13 +1,17 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const LinksList = ({ links, setIsMenuOpen }) => {
   return (
     <ul>
       {links.map(link => (
         <li key={link.name}>
-          <Link to={link.path} onClick={() => setIsMenuOpen(false)}>
+          <NavLink
+            to={link.path}
+            className={({ isActive }) => (isActive ? 'active' : undefined)}
+            onClick={() => setIsMenuOpen(false)}
+          >
             {link.name}
-          </Link>{' '}
+          </NavLink>{' '}
         </li>
       ))}
     </ul>
