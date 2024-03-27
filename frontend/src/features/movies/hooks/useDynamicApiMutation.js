@@ -17,10 +17,15 @@ export const useDynamicApiMutation = (url, method, data = {}, queryKey) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(queryKey);
-      toast.success('Operation successful');
+      toast.success('Operation successful', {
+        position: 'top-center',
+      });
     },
     onError: error => {
-      toast.error(error.response?.data?.msg || 'An error occurred');
+      toast.error(error.response?.data?.msg || 'An error occurred',
+      {
+        position: 'top-center',
+      });
     },
   });
 
