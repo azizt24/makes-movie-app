@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './reviews.css';
@@ -23,14 +23,14 @@ const ReviewsCarousel = ({ reviews }) => {
     position: 'absolute',
     zIndex: 2,
 
-    top: '50% ',
+    top: '45% ',
 
     width: 30,
     height: 30,
     cursor: 'pointer',
-    background: '#49BCEC',
+    background: 'var(--secondary-color-light)',
     border: 'none',
-    color: '#7AD3F3',
+    color:  'var(--secondary-color-lightest)',
     borderRadius: '50%',
     fontSize: '30px',
     fontWeight: 'bold',
@@ -39,32 +39,33 @@ const ReviewsCarousel = ({ reviews }) => {
   return (
     <Carousel
       showArrows={true}
+      infiniteLoop={true}
       showThumbs={false}
       showStatus={false}
       showIndicators={false}
-      renderArrowPrev={(onClickHandler, hasPrev, label) =>
-        hasPrev && (
+      renderArrowPrev={(onClickHandler, label) =>
+       
           <button
             type="button"
             onClick={onClickHandler}
             title={label}
-            style={{ ...arrowStyles, left: 18 }}
+            style={{ ...arrowStyles, left: 105}}
           >
             &lt;
           </button>
-        )
+        
       }
-      renderArrowNext={(onClickHandler, hasNext, label) =>
-        hasNext && (
+      renderArrowNext={(onClickHandler, label) =>
+       
           <button
             type="button"
             onClick={onClickHandler}
             title={label}
-            style={{ ...arrowStyles, right: 18 }}
+            style={{ ...arrowStyles, right: 100}}
           >
             &gt;
           </button>
-        )
+        
       }
     >
       {reviews.map((review, index) => (
@@ -73,7 +74,7 @@ const ReviewsCarousel = ({ reviews }) => {
           <p>
             {renderReviewContent(review.content, index)}
             {review.content.split(' ').length > 50 && (
-              <button onClick={() => toggleExpand(index)} className="show-more">
+              <button onClick={() => toggleExpand(index)} className="show-more"  >
                 {expandedReviewIndex === index ? 'Show Less' : 'Show More'}
               </button>
             )}

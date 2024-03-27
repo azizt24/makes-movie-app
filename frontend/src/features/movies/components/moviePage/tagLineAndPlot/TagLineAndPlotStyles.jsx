@@ -8,7 +8,7 @@ export const TagPlotContainer = styled.div`
   padding: 2rem;
   align-self: flex-start;
   font-size: var(--paragraph);
-  color: #0c3675;
+  color:var(--secondary-color-light);
   text-align: left;
 
   @media screen and (max-width: 500px) {

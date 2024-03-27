@@ -5,7 +5,7 @@ export const DirectorWriters = styled.div`
   padding: 2rem;
   align-self: flex-end;
   font-size: var(--paragraph);
-  color: #0c3675;
+  color:var(--secondary-color-light);
   text-align: left;
   margin-top: 1rem;
 `;

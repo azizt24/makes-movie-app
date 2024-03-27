@@ -5,10 +5,10 @@ export const DetailContainer = styled.div`
   background: rgba(0, 0, 0, 0.5);
   text-align: center;
   height: fit-content;
-  margin-top: 1rem;
+  margin-top: 2.5em;
   border-radius: 8px;
   padding: 2rem 4rem;
-  color: #69bada;
+  color: var(--primary-color);
   @media screen and (max-width: 500px) {
     padding: 2rem 4rem;
     width: 100vw;

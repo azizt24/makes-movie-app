@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const CastCard = styled.div`
-  margin-top: 3rem;
+  margin-top: 5rem;
   width: 160px;
   height: 330px;
-  background-color: #49bcec;
+  background-color:var(--secondary-color);
 
   border-radius: 20px;
-  margin-left: 10px;
+  margin-left: 8px;
   box-shadow: 0 8px 6px -6px grey;
   margin-bottom: 60px;
 `;
@@ -16,7 +16,7 @@ export const CastName = styled.h3`
   justify-content: left;
   font-size: 15px;
   margin-left: 10px;
-  color: black;
+  color:var(--primary-color);
   font-weight: bold;
   font-weight: 400;
 `;
@@ -25,7 +25,7 @@ export const CastChar = styled.p`
   justify-content: left;
   margin-left: 8px;
 
-  color: red;
+  color:var(--primary-color);
   font-size: 15px;
 `;
 export const CastImg = styled.img`
@@ -38,15 +38,23 @@ export const CastImg = styled.img`
 export const arrowStyles = {
   position: 'absolute',
   zIndex: 2,
-  top: 'calc(60% - 30px)',
+  top: 'calc(60% - 72px)',
 
   width: 30,
   height: 30,
   cursor: 'pointer',
-  background: '#49BCEC',
-  border: 'none',
-  color: '#7AD3F3',
+  background: 'var(--secondary-color-light)',
+    border: 'none',
+    color:  'var(--secondary-color-lightest)',
   borderRadius: '50%',
   fontSize: '30px',
   fontWeight: 'bold',
 };
+export const HorizontalLine = styled.hr`
+  border: 0;
+  height: 1px;
+  background:var(--secondary-color-light);
+  margin-top: 5rem; 
+  margin-left:0.5rem;
+  margin-right:0.5rem;
+`;

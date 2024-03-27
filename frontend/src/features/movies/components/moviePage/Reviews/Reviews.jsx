@@ -6,7 +6,7 @@ const Reviews = ({ movie }) => {
   return (
   <>
   
-  {reviews && ( <ReviewsCarousel reviews={reviews} />)};
+  {reviews && ( <ReviewsCarousel reviews={reviews} />)}
   </>
     
     );

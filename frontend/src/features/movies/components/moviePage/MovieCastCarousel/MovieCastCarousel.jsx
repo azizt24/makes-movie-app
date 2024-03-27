@@ -2,12 +2,14 @@ import { Link } from 'react-router-dom';
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import defaultAvatar from '../../../../../../public/images/noImage.png';
 import {
   CastCard,
   CastName,
   CastChar,
   CastImg,
   arrowStyles,
+  HorizontalLine,
 } from './MovieCastCarouselStyles';
 
 const MovieCastCarousel = ({ movie }) => {
@@ -20,37 +22,41 @@ const MovieCastCarousel = ({ movie }) => {
   }
   return (
     <div>
+       <HorizontalLine/>
       <Carousel
         showArrows={true}
+        infiniteLoop={true}
         showThumbs={false}
         showStatus={false}
         showIndicators={false}
         renderArrowPrev={(onClickHandler, hasPrev, label) =>
-          hasPrev && (
+         
             <button
               type="button"
               onClick={onClickHandler}
               title={label}
-              style={{ ...arrowStyles, left: 15 }}
+              style={{ ...arrowStyles, left: 50 }}
             >
               &lt;
             </button>
-          )
+         
         }
         renderArrowNext={(onClickHandler, hasNext, label) =>
-          hasNext && (
+         
             <button
               type="button"
               onClick={onClickHandler}
               title={label}
-              style={{ ...arrowStyles, right: 15 }}
+              style={{ ...arrowStyles, right: 48 }}
             >
               &gt;
             </button>
-          )
+          
         }
       >
+        
         {chunks.map((chunk, index) => (
+
           <div key={index}>
             {chunk.map(element => (
               <div
@@ -58,10 +64,14 @@ const MovieCastCarousel = ({ movie }) => {
                 style={{ display: 'inline-block', margin: '2px' }}
               >
                 <Link to="">
+                 
                   <CastCard>
                     <CastImg
                       src={`${imageBaseURL}${element.image}`}
                       alt={element.name}
+                      onError={e => {
+                        e.target.src = defaultAvatar;
+                      }}
                     />
                     <CastName>{element.name}</CastName>
 
