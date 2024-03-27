@@ -1,4 +1,4 @@
-import { useState, useEffect ,useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NavbarContainer, LeftSide, RightSide } from './Navbar.styles';
 import HamburgerIconComponnent from './HamburgerIconComponnent';
 import GoogleButtonComponnent from './GoogleButtonComponnent';
@@ -43,22 +43,20 @@ const Navbar = ({ isToggled, setIsToggled }) => {
     else if (isToggled === true) dispatch(setTheme('Default-Theme'));
   };
 
-  const handleSearch = () => {};
   useEffect(() => {
-    const handleClickOutside = (event) => {
-        if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-            setIsMenuOpen(false);
-        }
+    const handleClickOutside = event => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-}, []);
+  }, []);
 
-const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   return (
     <>
       <NavbarContainer ref={navbarRef} isToggled={isToggled}>
@@ -68,9 +66,10 @@ const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
             isOpen={isMenuOpen}
             isToggled={isToggled}
           />
+
           <MenuBoxComponnent
             isToggled={isToggled}
-            onToggle={handleToggle} // Consider renaming to reflect the action
+            onToggle={handleToggle}
             onMenuToggle={toggleMenu}
             isMenuOpen={isMenuOpen}
             setIsMenuOpen={setIsMenuOpen}
