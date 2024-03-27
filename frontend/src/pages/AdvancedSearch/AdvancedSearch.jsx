@@ -1,4 +1,5 @@
 import { MoviesBtn } from '../../features/movies/components/Buttons/MoviesButtons.style';
+import { handleSerchSubmit } from '../../features/movies/hooks/handleSerchSubmit.js';
 import { CONSTANTS } from '../../features/movies/utils/constants/constants.js';
 import { yearOptions } from '../../features/movies/utils/useYearOptions';
 import Title from './../../components/layout/Title/TItle';
@@ -42,18 +43,6 @@ const AdvancedSearch = () => {
 
   const runtimeOptions = CONSTANTS.RUN_TIME_OPTIONS;
 
-  const handleSubmit = () => {
-    let { fromYear, toYear } = formData;
-
-    fromYear = fromYear || '1903';
-    toYear = toYear || '2024';
-
-    const updatedFormData = { ...formData, fromYear, toYear };
-    const searchParams = new URLSearchParams(updatedFormData).toString();
-    navigate(`/search/results?${searchParams}&page=1`);
-  };
-
-  // CR - the jsx is too long, break it down into smaller parts
   return (
     <SearchContainer>
       <Title title={'advanced search'} />
@@ -160,7 +149,10 @@ const AdvancedSearch = () => {
           />
         </InputWrapper>
       </StyledContainer>
-      <MoviesBtn type="button" onClick={handleSubmit}>
+      <MoviesBtn
+        type="button"
+        onClick={() => handleSerchSubmit(formData, setFormData, navigate)}
+      >
         Search
       </MoviesBtn>
     </SearchContainer>
